@@ -16,7 +16,7 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-interface   Erebot_Interface_Event_ServerCapabitilies
+interface   Erebot_Interface_Event_ServerCapabilities
 extends     Erebot_Interface_Event_Base_Generic
 {
     public function getModule();
