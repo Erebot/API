@@ -101,9 +101,9 @@ abstract class Erebot_Module_Base
         $this->_mainCfg     = NULL;
         $this->_channel     = $channel;
         $this->_factories   = array();
+
         $ifaces = array(
             '!Styling' => 'Erebot_Styling',
-            ''
         );
         foreach ($ifaces as $iface => $cls)
             $this->setFactory($iface, $cls);
