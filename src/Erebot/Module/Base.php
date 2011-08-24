@@ -24,13 +24,15 @@
 abstract class Erebot_Module_Base
 {
     /// The connection associated with this instance.
-    protected   $_connection;
+    protected $_connection;
 
     /// The channel associated with this instance, if any.
-    protected   $_channel;
+    protected $_channel;
 
     /// The translator to use for messages coming from this instance.
-    protected   $_translator;
+    protected $_translator;
+
+    protected $_factories;
 
 
     /// Passed when the module is loaded (instead of reloaded).
@@ -98,6 +100,13 @@ abstract class Erebot_Module_Base
         $this->_translator  =
         $this->_mainCfg     = NULL;
         $this->_channel     = $channel;
+        $this->_factories   = array();
+        $ifaces = array(
+            '!Styling' => 'Erebot_Styling',
+            ''
+        );
+        foreach ($ifaces as $iface => $cls)
+            $this->setFactory($iface, $cls);
     }
 
     /** Destructor. */
@@ -159,6 +168,36 @@ abstract class Erebot_Module_Base
     public function uninstall()
     {
         // By default, we do nothing.
+    }
+
+    public function setFactory($iface, $cls)
+    {
+        if (!is_string($iface))
+            throw new Erebot_InvalidValueException('Not an interface name');
+
+        $iface = str_replace('!', 'Erebot_Interface_', $iface);
+        $iface = strtolower($iface);
+        if (!interface_exists($iface, TRUE))
+            throw new Erebot_InvalidValueException('No such interface');
+
+        $reflector = new ReflectionClass($cls);
+        if (!$reflector->isSubclassOf($iface))
+            throw new Erebot_InvalidValueException(
+                'A class that implements the interface was expected'
+            );
+        $this->_factories[$iface] = $cls;
+    }
+
+    public function getFactory($iface)
+    {
+        if (!is_string($iface))
+            throw new Erebot_InvalidValueException('Not an interface name');
+
+        $iface = str_replace('!', 'Erebot_Interface_', $iface);
+        $iface = strtolower($iface);
+        if (!isset($this->_factories[$iface]))
+            throw new Erebot_InvalidValueException('No such interface');
+        return $this->_factories[$iface];
     }
 
     /**
