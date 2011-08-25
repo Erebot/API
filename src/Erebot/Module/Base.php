@@ -176,7 +176,6 @@ abstract class Erebot_Module_Base
             throw new Erebot_InvalidValueException('Not an interface name');
 
         $iface = str_replace('!', 'Erebot_Interface_', $iface);
-        $iface = strtolower($iface);
         if (!interface_exists($iface, TRUE))
             throw new Erebot_InvalidValueException('No such interface');
 
@@ -185,6 +184,7 @@ abstract class Erebot_Module_Base
             throw new Erebot_InvalidValueException(
                 'A class that implements the interface was expected'
             );
+        $iface = strtolower($iface);
         $this->_factories[$iface] = $cls;
     }
 
