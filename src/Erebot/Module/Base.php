@@ -105,8 +105,15 @@ abstract class Erebot_Module_Base
         $ifaces = array(
             '!Styling' => 'Erebot_Styling',
         );
-        foreach ($ifaces as $iface => $cls)
-            $this->setFactory($iface, $cls);
+        foreach ($ifaces as $iface => $cls) {
+            try {
+                $this->setFactory($iface, $cls);
+            }
+            catch (Erebot_InvalidValueException $e) {
+                // Ignore silently as the only time the default classes
+                // won't exist is when we run the tests for some module.
+            }
+        }
     }
 
     /** Destructor. */
@@ -178,6 +185,8 @@ abstract class Erebot_Module_Base
         $iface = str_replace('!', 'Erebot_Interface_', $iface);
         if (!interface_exists($iface, TRUE))
             throw new Erebot_InvalidValueException('No such interface');
+        if (!class_exists($cls, TRUE))
+            throw new Erebot_InvalidValueException('No such class');
 
         $reflector = new ReflectionClass($cls);
         if (!$reflector->isSubclassOf($iface))
