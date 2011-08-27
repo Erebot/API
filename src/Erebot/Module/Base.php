@@ -105,7 +105,8 @@ abstract class Erebot_Module_Base
         $this->_factories   = array();
 
         $ifaces = array(
-            '!Styling' => 'Erebot_Styling',
+            '!Styling'  => 'Erebot_Styling',
+            '!Identity' => 'Erebot_Identity',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
