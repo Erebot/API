@@ -34,6 +34,8 @@ abstract class Erebot_Module_Base
 
     protected $_factories;
 
+    protected $_logger;
+
 
     /// Passed when the module is loaded (instead of reloaded).
     const RELOAD_INIT       = 0x01;
@@ -113,6 +115,15 @@ abstract class Erebot_Module_Base
                 // Ignore silently as the only time the default classes
                 // won't exist is when we run the tests for some module.
             }
+        }
+
+        /// @FIXME: handle dependency injection somehow
+        $this->_logger = NULL;
+        if (class_exists('Plop')) {
+            $logging =&  Plop::getInstance();
+            $reflector = new ReflectionObject($this);
+            $this->_logger = $logging->getLogger($reflector->getFileName());
+            unset($logging);
         }
     }
 
