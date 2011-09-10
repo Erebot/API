@@ -269,5 +269,32 @@ interface Erebot_Interface_URI
      *      The given $reference is not valid.
      */
     public function relative($reference);
+
+    /**
+     * Given an absolute path to some file or directory,
+     * returns an URL belonging to the "file" schema and
+     * pointing to that file/directory.
+     *
+     * \note
+     *      On Windows, network shares can be referred to
+     *      using the UNC or long UNC notation.
+     *
+     * \param string $abspath
+     *      Absolute path to the file or directory to refer to.
+     *
+     * \param bool $strict
+     *      (optional) Whether strict parsing rules apply or not.
+     *      Defaults to TRUE. When set to FALSE, '/' is treated
+     *      as a path separator even on systems where it is not
+     *      the native separator (eg. Windows).
+     *
+     * \retval Erebot_URI
+     *      An URL poiting to the same file/directory
+     *      and belonging to the "file" scheme.
+     *
+     * \throw Erebot_InvalidValueException
+     *      The given $abspath was invalid.
+     */
+    static public function fromAbsPath($abspath, $strict = TRUE);
 }
 
