@@ -105,7 +105,7 @@ interface Erebot_Interface_I18n
      *
      * \retval string
      *      The canonical form of the target locale
-     *      for this translator. 
+     *      for this translator.
      */
     public function getLocale($category);
 
@@ -148,6 +148,11 @@ interface Erebot_Interface_I18n
      *      The message, translated into the selected locale.
      */
     public function gettext($message);
+
+    /**
+     * Alias for Erebot_Interface_I18n::gettext().
+     */
+    public function _($message);
 
     /**
      * Formats a duration according to the rules
