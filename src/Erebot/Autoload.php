@@ -1,54 +1,41 @@
 <?php
+
+/**
+ * \brief
+ *      Autoloader for Erebot's classes and interfaces.
+ *
+ * This autoloader is mainly the same as the one used
+ * by PEAR2 packages, except that it does not rely on
+ * features which are specific to PHP 5.3 (eg. namespaces).
+ *
+ * The documentation of this class has also been updated
+ * to use Doxygen commands instead of phpDocumentor ones.
+ */
 class Erebot_Autoload
 {
-    /**
-     * Whether the autoload class has been spl_autoload_register-ed
-     *
-     * @var bool
-     */
+    /// Whether the autoload class has been spl_autoload_register-ed
     protected static $registered = false;
 
-    /**
-     * Array of PEAR2 autoload paths registered
-     *
-     * @var array
-     */
+    /// Array of PEAR2 autoload paths registered
     protected static $paths = array();
 
-    /**
-     * Array of classname-to-file mapping
-     *
-     * @var array
-     */
+    /// Array of classname-to-file mapping
     protected static $map = array();
 
-    /**
-     * Array of class maps loaded
-     *
-     * @var array
-     */
+    /// Array of class maps loaded
     protected static $maps = array();
 
-    /**
-     * Last classmap specified
-     *
-     * @var array
-     */
+    /// Last classmap specified
     protected static $mapfile = null;
 
-    /**
-     * Array of classes loaded automatically not in the map
-     *
-     * @var array
-     */
+    /// Array of classes loaded automatically not in the map
     protected static $unmapped = array();
 
     /**
      * Initialize the PEAR2 autoloader
      *
-     * @param string $path Directory path to register
-     *
-     * @return void
+     * \param string $path
+     *      Directory path to register
      */
     static function initialize($path = null, $mapfile = null)
     {
@@ -59,8 +46,6 @@ class Erebot_Autoload
 
     /**
      * Register the PEAR2 autoload class with spl_autoload_register
-     *
-     * @return void
      */
     protected static function register()
     {
@@ -80,9 +65,8 @@ class Erebot_Autoload
     /**
      * Add a path
      *
-     * @param string $path The directory to add to the set of PEAR2 paths
-     *
-     * @return void
+     * \param string $path
+     *      The directory to add to the set of PEAR2 paths
      */
     protected static function addPath($path)
     {
@@ -104,9 +88,8 @@ class Erebot_Autoload
     /**
      * Add a classname-to-file map
      *
-     * @param string $mapfile The filename of the classmap
-     *
-     * @return void
+     * \param string $mapfile
+     *      The filename of the classmap
      */
     protected static function addMap($mapfile)
     {
@@ -131,9 +114,12 @@ class Erebot_Autoload
     /**
      * Check if the class is already defined in a classmap
      *
-     * @param string $class The class to look for
+     * \param string $class
+     *      The class to look for
      *
-     * @return bool
+     * \retval bool
+     *      TRUE if the class is already defined,
+     *      FALSE otherwise.
      */
     protected static function isMapped($class)
     {
@@ -150,12 +136,18 @@ class Erebot_Autoload
     /**
      * Load a PEAR2 class
      *
-     * @param string $class The class to load
+     * \param string $class
+     *      The class to load
      *
-     * @return bool
+     * \retval bool
+     *      TRUE if the class could be loaded,
+     *      FALSE otherwise.
      */
     static function load($class)
     {
+        if (strpos($class, ":") !== FALSE)
+            return false;
+
         // need to check if there's a current map file specified ALSO.
         // this could be the first time writing it.
         $mapped = self::isMapped($class);
@@ -192,11 +184,11 @@ class Erebot_Autoload
             '") [Autoload]');
         $trace = $e->getTrace();
         if (isset($trace[2]) && isset($trace[2]['function']) &&
-              in_array($trace[2]['function'], array('class_exists', 'interface_exists'))) {
+            in_array($trace[2]['function'], array('class_exists', 'interface_exists'))) {
             return false;
         }
         if (isset($trace[1]) && isset($trace[1]['function']) &&
-              in_array($trace[1]['function'], array('class_exists', 'interface_exists'))) {
+            in_array($trace[1]['function'], array('class_exists', 'interface_exists'))) {
             return false;
         }
         throw $e;
@@ -205,7 +197,9 @@ class Erebot_Autoload
     /**
      * Check if the requested class was loaded from the specified path
      *
-     * @return bool
+     * \retval bool
+     *      TRUE if the class was successfully loaded,
+     *      FALSE otherwise.
      */
     protected static function loadSuccessful($class)
     {
@@ -219,10 +213,11 @@ class Erebot_Autoload
      * If possible, update the classmap file with newly-discovered
      * mapping.
      *
-     * @param string $class Class name discovered
+     * \param string $class
+     *      Class name discovered
      *
-     * @param string $origin File where class was found
-     *
+     * \param string $origin
+     *      File where class was found
      */
     protected static function updateMap($class, $origin)
     {
@@ -238,9 +233,10 @@ class Erebot_Autoload
     }
 
     /**
-     * return the array of paths PEAR2 autoload has registered
+     * Return the array of paths PEAR2 autoload has registered
      *
-     * @return array
+     * \retval array
+     *      Array of registered paths' names.
      */
     static function getPaths()
     {
@@ -249,4 +245,3 @@ class Erebot_Autoload
 }
 
 Erebot_Autoload::initialize();
-
