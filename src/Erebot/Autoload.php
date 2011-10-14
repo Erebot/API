@@ -145,8 +145,15 @@ class Erebot_Autoload
      */
     static function load($class)
     {
-        if (strpos($class, ":") !== FALSE)
-            return false;
+        /* Protects us from possible remote code inclusion due to:
+           https://bugs.php.net/bug.php?id=55475
+           We should already be safe without this check due to the
+           way this autoloader works, but this helps other autoloaders
+           that use other mechanisms and may be vulnerable. */
+        if (strpos($class, ":") !== false)
+            // Safer than returning false as it prevents
+            // other autoloaders from ever executing...
+            throw new Exception('Possible remote code injection detected');
 
         // need to check if there's a current map file specified ALSO.
         // this could be the first time writing it.
