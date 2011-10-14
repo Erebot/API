@@ -25,10 +25,10 @@ extends     Erebot_Interface_Event_Base_Generic
 {
     /**
      * Returns the source of the current message.
-     * This will generally be some user's nickname
+     * This will usually be some user's nickname
      * or the name of an IRC server.
      *
-     * \retval string
+     * \retval Erebot_Interface_Identity
      *      The source of this message.
      */
     public function getSource();

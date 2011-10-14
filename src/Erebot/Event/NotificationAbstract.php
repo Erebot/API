@@ -26,6 +26,28 @@ extends         Erebot_Event_WithSourceTextAbstract
     /// Timestamp the notification was issued at.
     protected $_timestamp;
 
+    /**
+     * Constructs a new event related to a notification.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      Connection the event originated from.
+     *
+     * \param string $source
+     *      Nickname of the IRC user this notification is about.
+     *
+     * \param string $ident
+     *      Identity of the IRC user this notification is about.
+     *
+     * \param string $host
+     *      Hostname of the IRC user this notification is about.
+     *
+     * \param DateTime $timestamp
+     *      Object that keeps track of when the notification
+     *      was issued.
+     *
+     * \param string $text
+     *      Message explaining why the notification was triggered.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $source,

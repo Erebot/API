@@ -27,6 +27,7 @@ implements      Erebot_Interface_Event_Base_Chan,
 {
     /// IRC channel this event relates to.
     protected $_chan;
+
     /// Source the event originated from.
     protected $_source;
 

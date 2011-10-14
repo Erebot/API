@@ -42,9 +42,18 @@ implements      Erebot_Interface_Event_Base_Generic
 
     /// Whether the default action should be prevented or not.
     protected $_halt;
+
     /// Connection the event originated from.
     protected $_connection;
 
+    /**
+     * Constructs a new event.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      Connection the event originated from.
+     *      This can be used later on by event handlers
+     *      to interact with the connection.
+     */
     public function __construct(Erebot_Interface_Connection $connection)
     {
         $this->_halt        = FALSE;
