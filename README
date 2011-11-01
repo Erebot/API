@@ -1,0 +1,5 @@
+API for Erebot
+
+Erebot is a modular IRC bot written in PHP.
+This package contains its API, delivered separately to make it easier to depend on a particular version of the API.
+This package is also useful for developpers because it helps reducing the number of dependencies needed to start coding on Erebot.

@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<project name="Erebot_API" description="" default="all">
+    <property name="qa.coverage.force" value="false"/>
+
+    <fileset dir="src/" id="sources">
+        <include name="**/*.php"/>
+        <exclude name="orm/**"/>
+        <exclude name="logging/**"/>
+    </fileset>
+
+    <target name="i18n" description="The API does not need any form of i18n.">
+    </target>
+
+    <target name="qa_test" description="The API does not have any tests.">
+    </target>
+
+    <target name="qa_coverage" description="The API does not need coverage information.">
+    </target>
+
+    <target name="protected_set_version">
+        <property name="xmlstarlet" value="xmlstarlet ed -P -S -N erebot=http://www.erebot.net/xmlns/erebot"/>
+
+        <!-- Set Erebot_Interface_Core::VERSION. -->
+        <exec command="sed -i &quot;s/define.*EREBOT_VERSION.*/define('EREBOT_VERSION', '${version}');/&quot; src/Erebot/Interface/Core.php" checkreturn="true"/>
+    </target>
+
+    <import file="buildenv/build.xml"/>
+</project>

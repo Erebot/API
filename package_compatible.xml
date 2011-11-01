@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package version="2.1" xmlns="http://pear.php.net/dtd/package-2.1" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0     http://pear.php.net/dtd/tasks-1.0.xsd     http://pear.php.net/dtd/package-2.1     http://pear.php.net/dtd/package-2.1.xsd">
+ <name>Erebot_API</name>
+ <channel>pear.erebot.net</channel>
+ <summary>API for Erebot
+</summary>
+ <description>
+Erebot is a modular IRC bot written in PHP.
+This package contains its API, delivered separately to make it easier to depend on a particular version of the API.
+This package is also useful for developpers because it helps reducing the number of dependencies needed to start coding on Erebot.
+</description>
+ <lead>
+  <name>François Poirotte</name>
+  <user>Clicky</user>
+  <email>clicky@erebot.net</email>
+  <active>yes</active>
+ </lead>
+ <date>2011-11-01</date>
+ <time>12:25:00</time>
+ <version>
+  <release>0.1.0</release>
+  <api>0.1.0</api>
+ </version>
+ <stability>
+  <release>alpha</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL</license>
+ <notes>
+
+</notes>
+ <contents>
+  <dir name="/">
+   <file role="php" name="php/Erebot/Utils.php"/>
+   <file role="php" name="php/Erebot/StreamWrapperBase.php"/>
+   <file role="php" name="php/Erebot/Proxy/Base.php"/>
+   <file role="php" name="php/Erebot/NotImplementedException.php"/>
+   <file role="php" name="php/Erebot/NotFoundException.php"/>
+   <file role="php" name="php/Erebot/Module/Base.php"/>
+   <file role="php" name="php/Erebot/InvalidValueException.php"/>
+   <file role="php" name="php/Erebot/Interface/URI.php"/>
+   <file role="php" name="php/Erebot/Interface/Timer.php"/>
+   <file role="php" name="php/Erebot/Interface/TextWrapper.php"/>
+   <file role="php" name="php/Erebot/Interface/Styling.php"/>
+   <file role="php" name="php/Erebot/Interface/SendingConnection.php"/>
+   <file role="php" name="php/Erebot/Interface/ReceivingConnection.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfileLoader.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/WATCH.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/UnrealIRCd.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/UniqueUserID.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/UltimateIRCd.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/STARTTLS.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/SILENCE.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/RULES.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/RFC2812.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/RFC1459.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/ReservedRFC1459.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/NumericError.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/NonGenericRFC2812.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/MAP.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/JUPE.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/ISON.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/InspIRCd.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/GLIST.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/DCCINFO.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/ConflictingRFC2812.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/CommonExtensions.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/Bounce.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/Bahamut.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/AwayLimit.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile/005.php"/>
+   <file role="php" name="php/Erebot/Interface/RawProfile.php"/>
+   <file role="php" name="php/Erebot/Interface/RawHandler.php"/>
+   <file role="php" name="php/Erebot/Interface/RateLimiter.php"/>
+   <file role="php" name="php/Erebot/Interface/Proxy/EndPoint.php"/>
+   <file role="php" name="php/Erebot/Interface/ModuleContainer.php"/>
+   <file role="php" name="php/Erebot/Interface/IrcComparator.php"/>
+   <file role="php" name="php/Erebot/Interface/Identity.php"/>
+   <file role="php" name="php/Erebot/Interface/I18n.php"/>
+   <file role="php" name="php/Erebot/Interface/EventHandler.php"/>
+   <file role="php" name="php/Erebot/Interface/EventFactory.php"/>
+   <file role="php" name="php/Erebot/Interface/EventDispatcher.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Voice.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/UserMode.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/UnNotify.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/UnExcept.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/UnBan.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Topic.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ServerCapabilities.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/RawMode.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Raw.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Quit.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Protect.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/PrivateText.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/PrivateNotice.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/PrivateCtcpReply.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/PrivateCtcp.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/PrivateAction.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Pong.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Ping.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Part.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Owner.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Op.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Notify.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Nick.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Match.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Logon.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Kill.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Kick.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Join.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Invite.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Halfop.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Exit.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Except.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Error.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Disconnect.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/DeVoice.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/DeProtect.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/DeOwner.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/DeOp.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/DeHalfop.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Connect.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ChanText.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ChanNotice.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ChanCtcpReply.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ChanCtcp.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/ChanAction.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Voice.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/TextMessage.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Text.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Target.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Source.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Protect.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Private.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Owner.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Op.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/NoticeMessage.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/MessageCapable.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Halfop.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Generic.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Except.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/CtcpReplyMessage.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/CtcpMessage.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Ctcp.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/ChanModeTaken.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/ChanModeGiven.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Chan.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/Ban.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Base/ActionMessage.php"/>
+   <file role="php" name="php/Erebot/Interface/Event/Ban.php"/>
+   <file role="php" name="php/Erebot/Interface/Core.php"/>
+   <file role="php" name="php/Erebot/Interface/ConnectionFactory.php"/>
+   <file role="php" name="php/Erebot/Interface/Connection.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Server.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Proxy.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Network.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Module.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Main.php"/>
+   <file role="php" name="php/Erebot/Interface/Config/Channel.php"/>
+   <file role="php" name="php/Erebot/Interface/Callable.php"/>
+   <file role="php" name="php/Erebot/Interface/BidirectionalConnection.php"/>
+   <file role="php" name="php/Erebot/IllegalActionException.php"/>
+   <file role="php" name="php/Erebot/Exception.php"/>
+   <file role="php" name="php/Erebot/Event/WithTextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithSourceTextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithSourceTargetTextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithSourceTargetAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithSourceCtcpAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithChanSourceTextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithChanSourceTargetTextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithChanSourceTargetAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithChanSourceCtcpAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/WithChanSourceAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/NotificationAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/ModeTakenAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/Match/TextAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/Match/CollectionAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/ChanUserModeAbstract.php"/>
+   <file role="php" name="php/Erebot/Event/Abstract.php"/>
+   <file role="php" name="php/Erebot/ErrorReportingException.php"/>
+   <file role="php" name="php/Erebot/ConnectionFailureException.php"/>
+   <file role="php" name="php/Erebot/CallableAbstract.php"/>
+   <file role="php" name="php/Erebot/Autoload.php"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.2.2</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.8</min>
+   </pearinstaller>
+   <extension>
+    <name>ctype</name>
+   </extension>
+   <extension>
+    <name>dom</name>
+   </extension>
+   <extension>
+    <name>intl</name>
+   </extension>
+   <extension>
+    <name>libxml</name>
+   </extension>
+   <extension>
+    <name>pcre</name>
+   </extension>
+   <extension>
+    <name>Reflection</name>
+   </extension>
+   <extension>
+    <name>SimpleXML</name>
+   </extension>
+   <extension>
+    <name>sockets</name>
+   </extension>
+   <extension>
+    <name>SPL</name>
+   </extension>
+   <extension>
+    <name>xml</name>
+   </extension>
+  </required>
+  <optional>
+   <extension>
+    <name>openssl</name>
+   </extension>
+   <extension>
+    <name>pcntl</name>
+   </extension>
+   <extension>
+    <name>posix</name>
+   </extension>
+  </optional>
+ </dependencies>
+ <phprelease>
+  <filelist>
+   <install name="php/Erebot/Autoload.php" as="Erebot/Autoload.php"/>
+   <install name="php/Erebot/CallableAbstract.php" as="Erebot/CallableAbstract.php"/>
+   <install name="php/Erebot/ConnectionFailureException.php" as="Erebot/ConnectionFailureException.php"/>
+   <install name="php/Erebot/ErrorReportingException.php" as="Erebot/ErrorReportingException.php"/>
+   <install name="php/Erebot/Event/Abstract.php" as="Erebot/Event/Abstract.php"/>
+   <install name="php/Erebot/Event/ChanUserModeAbstract.php" as="Erebot/Event/ChanUserModeAbstract.php"/>
+   <install name="php/Erebot/Event/Match/CollectionAbstract.php" as="Erebot/Event/Match/CollectionAbstract.php"/>
+   <install name="php/Erebot/Event/Match/TextAbstract.php" as="Erebot/Event/Match/TextAbstract.php"/>
+   <install name="php/Erebot/Event/ModeTakenAbstract.php" as="Erebot/Event/ModeTakenAbstract.php"/>
+   <install name="php/Erebot/Event/NotificationAbstract.php" as="Erebot/Event/NotificationAbstract.php"/>
+   <install name="php/Erebot/Event/WithChanSourceAbstract.php" as="Erebot/Event/WithChanSourceAbstract.php"/>
+   <install name="php/Erebot/Event/WithChanSourceCtcpAbstract.php" as="Erebot/Event/WithChanSourceCtcpAbstract.php"/>
+   <install name="php/Erebot/Event/WithChanSourceTargetAbstract.php" as="Erebot/Event/WithChanSourceTargetAbstract.php"/>
+   <install name="php/Erebot/Event/WithChanSourceTargetTextAbstract.php" as="Erebot/Event/WithChanSourceTargetTextAbstract.php"/>
+   <install name="php/Erebot/Event/WithChanSourceTextAbstract.php" as="Erebot/Event/WithChanSourceTextAbstract.php"/>
+   <install name="php/Erebot/Event/WithSourceCtcpAbstract.php" as="Erebot/Event/WithSourceCtcpAbstract.php"/>
+   <install name="php/Erebot/Event/WithSourceTargetAbstract.php" as="Erebot/Event/WithSourceTargetAbstract.php"/>
+   <install name="php/Erebot/Event/WithSourceTargetTextAbstract.php" as="Erebot/Event/WithSourceTargetTextAbstract.php"/>
+   <install name="php/Erebot/Event/WithSourceTextAbstract.php" as="Erebot/Event/WithSourceTextAbstract.php"/>
+   <install name="php/Erebot/Event/WithTextAbstract.php" as="Erebot/Event/WithTextAbstract.php"/>
+   <install name="php/Erebot/Exception.php" as="Erebot/Exception.php"/>
+   <install name="php/Erebot/IllegalActionException.php" as="Erebot/IllegalActionException.php"/>
+   <install name="php/Erebot/Interface/BidirectionalConnection.php" as="Erebot/Interface/BidirectionalConnection.php"/>
+   <install name="php/Erebot/Interface/Callable.php" as="Erebot/Interface/Callable.php"/>
+   <install name="php/Erebot/Interface/Config/Channel.php" as="Erebot/Interface/Config/Channel.php"/>
+   <install name="php/Erebot/Interface/Config/Main.php" as="Erebot/Interface/Config/Main.php"/>
+   <install name="php/Erebot/Interface/Config/Module.php" as="Erebot/Interface/Config/Module.php"/>
+   <install name="php/Erebot/Interface/Config/Network.php" as="Erebot/Interface/Config/Network.php"/>
+   <install name="php/Erebot/Interface/Config/Proxy.php" as="Erebot/Interface/Config/Proxy.php"/>
+   <install name="php/Erebot/Interface/Config/Server.php" as="Erebot/Interface/Config/Server.php"/>
+   <install name="php/Erebot/Interface/Connection.php" as="Erebot/Interface/Connection.php"/>
+   <install name="php/Erebot/Interface/ConnectionFactory.php" as="Erebot/Interface/ConnectionFactory.php"/>
+   <install name="php/Erebot/Interface/Core.php" as="Erebot/Interface/Core.php"/>
+   <install name="php/Erebot/Interface/Event/Ban.php" as="Erebot/Interface/Event/Ban.php"/>
+   <install name="php/Erebot/Interface/Event/Base/ActionMessage.php" as="Erebot/Interface/Event/Base/ActionMessage.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Ban.php" as="Erebot/Interface/Event/Base/Ban.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Chan.php" as="Erebot/Interface/Event/Base/Chan.php"/>
+   <install name="php/Erebot/Interface/Event/Base/ChanModeGiven.php" as="Erebot/Interface/Event/Base/ChanModeGiven.php"/>
+   <install name="php/Erebot/Interface/Event/Base/ChanModeTaken.php" as="Erebot/Interface/Event/Base/ChanModeTaken.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Ctcp.php" as="Erebot/Interface/Event/Base/Ctcp.php"/>
+   <install name="php/Erebot/Interface/Event/Base/CtcpMessage.php" as="Erebot/Interface/Event/Base/CtcpMessage.php"/>
+   <install name="php/Erebot/Interface/Event/Base/CtcpReplyMessage.php" as="Erebot/Interface/Event/Base/CtcpReplyMessage.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Except.php" as="Erebot/Interface/Event/Base/Except.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Generic.php" as="Erebot/Interface/Event/Base/Generic.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Halfop.php" as="Erebot/Interface/Event/Base/Halfop.php"/>
+   <install name="php/Erebot/Interface/Event/Base/MessageCapable.php" as="Erebot/Interface/Event/Base/MessageCapable.php"/>
+   <install name="php/Erebot/Interface/Event/Base/NoticeMessage.php" as="Erebot/Interface/Event/Base/NoticeMessage.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Op.php" as="Erebot/Interface/Event/Base/Op.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Owner.php" as="Erebot/Interface/Event/Base/Owner.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Private.php" as="Erebot/Interface/Event/Base/Private.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Protect.php" as="Erebot/Interface/Event/Base/Protect.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Source.php" as="Erebot/Interface/Event/Base/Source.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Target.php" as="Erebot/Interface/Event/Base/Target.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Text.php" as="Erebot/Interface/Event/Base/Text.php"/>
+   <install name="php/Erebot/Interface/Event/Base/TextMessage.php" as="Erebot/Interface/Event/Base/TextMessage.php"/>
+   <install name="php/Erebot/Interface/Event/Base/Voice.php" as="Erebot/Interface/Event/Base/Voice.php"/>
+   <install name="php/Erebot/Interface/Event/ChanAction.php" as="Erebot/Interface/Event/ChanAction.php"/>
+   <install name="php/Erebot/Interface/Event/ChanCtcp.php" as="Erebot/Interface/Event/ChanCtcp.php"/>
+   <install name="php/Erebot/Interface/Event/ChanCtcpReply.php" as="Erebot/Interface/Event/ChanCtcpReply.php"/>
+   <install name="php/Erebot/Interface/Event/ChanNotice.php" as="Erebot/Interface/Event/ChanNotice.php"/>
+   <install name="php/Erebot/Interface/Event/ChanText.php" as="Erebot/Interface/Event/ChanText.php"/>
+   <install name="php/Erebot/Interface/Event/Connect.php" as="Erebot/Interface/Event/Connect.php"/>
+   <install name="php/Erebot/Interface/Event/DeHalfop.php" as="Erebot/Interface/Event/DeHalfop.php"/>
+   <install name="php/Erebot/Interface/Event/DeOp.php" as="Erebot/Interface/Event/DeOp.php"/>
+   <install name="php/Erebot/Interface/Event/DeOwner.php" as="Erebot/Interface/Event/DeOwner.php"/>
+   <install name="php/Erebot/Interface/Event/DeProtect.php" as="Erebot/Interface/Event/DeProtect.php"/>
+   <install name="php/Erebot/Interface/Event/DeVoice.php" as="Erebot/Interface/Event/DeVoice.php"/>
+   <install name="php/Erebot/Interface/Event/Disconnect.php" as="Erebot/Interface/Event/Disconnect.php"/>
+   <install name="php/Erebot/Interface/Event/Error.php" as="Erebot/Interface/Event/Error.php"/>
+   <install name="php/Erebot/Interface/Event/Except.php" as="Erebot/Interface/Event/Except.php"/>
+   <install name="php/Erebot/Interface/Event/Exit.php" as="Erebot/Interface/Event/Exit.php"/>
+   <install name="php/Erebot/Interface/Event/Halfop.php" as="Erebot/Interface/Event/Halfop.php"/>
+   <install name="php/Erebot/Interface/Event/Invite.php" as="Erebot/Interface/Event/Invite.php"/>
+   <install name="php/Erebot/Interface/Event/Join.php" as="Erebot/Interface/Event/Join.php"/>
+   <install name="php/Erebot/Interface/Event/Kick.php" as="Erebot/Interface/Event/Kick.php"/>
+   <install name="php/Erebot/Interface/Event/Kill.php" as="Erebot/Interface/Event/Kill.php"/>
+   <install name="php/Erebot/Interface/Event/Logon.php" as="Erebot/Interface/Event/Logon.php"/>
+   <install name="php/Erebot/Interface/Event/Match.php" as="Erebot/Interface/Event/Match.php"/>
+   <install name="php/Erebot/Interface/Event/Nick.php" as="Erebot/Interface/Event/Nick.php"/>
+   <install name="php/Erebot/Interface/Event/Notify.php" as="Erebot/Interface/Event/Notify.php"/>
+   <install name="php/Erebot/Interface/Event/Op.php" as="Erebot/Interface/Event/Op.php"/>
+   <install name="php/Erebot/Interface/Event/Owner.php" as="Erebot/Interface/Event/Owner.php"/>
+   <install name="php/Erebot/Interface/Event/Part.php" as="Erebot/Interface/Event/Part.php"/>
+   <install name="php/Erebot/Interface/Event/Ping.php" as="Erebot/Interface/Event/Ping.php"/>
+   <install name="php/Erebot/Interface/Event/Pong.php" as="Erebot/Interface/Event/Pong.php"/>
+   <install name="php/Erebot/Interface/Event/PrivateAction.php" as="Erebot/Interface/Event/PrivateAction.php"/>
+   <install name="php/Erebot/Interface/Event/PrivateCtcp.php" as="Erebot/Interface/Event/PrivateCtcp.php"/>
+   <install name="php/Erebot/Interface/Event/PrivateCtcpReply.php" as="Erebot/Interface/Event/PrivateCtcpReply.php"/>
+   <install name="php/Erebot/Interface/Event/PrivateNotice.php" as="Erebot/Interface/Event/PrivateNotice.php"/>
+   <install name="php/Erebot/Interface/Event/PrivateText.php" as="Erebot/Interface/Event/PrivateText.php"/>
+   <install name="php/Erebot/Interface/Event/Protect.php" as="Erebot/Interface/Event/Protect.php"/>
+   <install name="php/Erebot/Interface/Event/Quit.php" as="Erebot/Interface/Event/Quit.php"/>
+   <install name="php/Erebot/Interface/Event/Raw.php" as="Erebot/Interface/Event/Raw.php"/>
+   <install name="php/Erebot/Interface/Event/RawMode.php" as="Erebot/Interface/Event/RawMode.php"/>
+   <install name="php/Erebot/Interface/Event/ServerCapabilities.php" as="Erebot/Interface/Event/ServerCapabilities.php"/>
+   <install name="php/Erebot/Interface/Event/Topic.php" as="Erebot/Interface/Event/Topic.php"/>
+   <install name="php/Erebot/Interface/Event/UnBan.php" as="Erebot/Interface/Event/UnBan.php"/>
+   <install name="php/Erebot/Interface/Event/UnExcept.php" as="Erebot/Interface/Event/UnExcept.php"/>
+   <install name="php/Erebot/Interface/Event/UnNotify.php" as="Erebot/Interface/Event/UnNotify.php"/>
+   <install name="php/Erebot/Interface/Event/UserMode.php" as="Erebot/Interface/Event/UserMode.php"/>
+   <install name="php/Erebot/Interface/Event/Voice.php" as="Erebot/Interface/Event/Voice.php"/>
+   <install name="php/Erebot/Interface/EventDispatcher.php" as="Erebot/Interface/EventDispatcher.php"/>
+   <install name="php/Erebot/Interface/EventFactory.php" as="Erebot/Interface/EventFactory.php"/>
+   <install name="php/Erebot/Interface/EventHandler.php" as="Erebot/Interface/EventHandler.php"/>
+   <install name="php/Erebot/Interface/I18n.php" as="Erebot/Interface/I18n.php"/>
+   <install name="php/Erebot/Interface/Identity.php" as="Erebot/Interface/Identity.php"/>
+   <install name="php/Erebot/Interface/IrcComparator.php" as="Erebot/Interface/IrcComparator.php"/>
+   <install name="php/Erebot/Interface/ModuleContainer.php" as="Erebot/Interface/ModuleContainer.php"/>
+   <install name="php/Erebot/Interface/Proxy/EndPoint.php" as="Erebot/Interface/Proxy/EndPoint.php"/>
+   <install name="php/Erebot/Interface/RateLimiter.php" as="Erebot/Interface/RateLimiter.php"/>
+   <install name="php/Erebot/Interface/RawHandler.php" as="Erebot/Interface/RawHandler.php"/>
+   <install name="php/Erebot/Interface/RawProfile.php" as="Erebot/Interface/RawProfile.php"/>
+   <install name="php/Erebot/Interface/RawProfile/005.php" as="Erebot/Interface/RawProfile/005.php"/>
+   <install name="php/Erebot/Interface/RawProfile/AwayLimit.php" as="Erebot/Interface/RawProfile/AwayLimit.php"/>
+   <install name="php/Erebot/Interface/RawProfile/Bahamut.php" as="Erebot/Interface/RawProfile/Bahamut.php"/>
+   <install name="php/Erebot/Interface/RawProfile/Bounce.php" as="Erebot/Interface/RawProfile/Bounce.php"/>
+   <install name="php/Erebot/Interface/RawProfile/CommonExtensions.php" as="Erebot/Interface/RawProfile/CommonExtensions.php"/>
+   <install name="php/Erebot/Interface/RawProfile/ConflictingRFC2812.php" as="Erebot/Interface/RawProfile/ConflictingRFC2812.php"/>
+   <install name="php/Erebot/Interface/RawProfile/DCCINFO.php" as="Erebot/Interface/RawProfile/DCCINFO.php"/>
+   <install name="php/Erebot/Interface/RawProfile/GLIST.php" as="Erebot/Interface/RawProfile/GLIST.php"/>
+   <install name="php/Erebot/Interface/RawProfile/InspIRCd.php" as="Erebot/Interface/RawProfile/InspIRCd.php"/>
+   <install name="php/Erebot/Interface/RawProfile/ISON.php" as="Erebot/Interface/RawProfile/ISON.php"/>
+   <install name="php/Erebot/Interface/RawProfile/JUPE.php" as="Erebot/Interface/RawProfile/JUPE.php"/>
+   <install name="php/Erebot/Interface/RawProfile/MAP.php" as="Erebot/Interface/RawProfile/MAP.php"/>
+   <install name="php/Erebot/Interface/RawProfile/NonGenericRFC2812.php" as="Erebot/Interface/RawProfile/NonGenericRFC2812.php"/>
+   <install name="php/Erebot/Interface/RawProfile/NumericError.php" as="Erebot/Interface/RawProfile/NumericError.php"/>
+   <install name="php/Erebot/Interface/RawProfile/ReservedRFC1459.php" as="Erebot/Interface/RawProfile/ReservedRFC1459.php"/>
+   <install name="php/Erebot/Interface/RawProfile/RFC1459.php" as="Erebot/Interface/RawProfile/RFC1459.php"/>
+   <install name="php/Erebot/Interface/RawProfile/RFC2812.php" as="Erebot/Interface/RawProfile/RFC2812.php"/>
+   <install name="php/Erebot/Interface/RawProfile/RULES.php" as="Erebot/Interface/RawProfile/RULES.php"/>
+   <install name="php/Erebot/Interface/RawProfile/SILENCE.php" as="Erebot/Interface/RawProfile/SILENCE.php"/>
+   <install name="php/Erebot/Interface/RawProfile/STARTTLS.php" as="Erebot/Interface/RawProfile/STARTTLS.php"/>
+   <install name="php/Erebot/Interface/RawProfile/UltimateIRCd.php" as="Erebot/Interface/RawProfile/UltimateIRCd.php"/>
+   <install name="php/Erebot/Interface/RawProfile/UniqueUserID.php" as="Erebot/Interface/RawProfile/UniqueUserID.php"/>
+   <install name="php/Erebot/Interface/RawProfile/UnrealIRCd.php" as="Erebot/Interface/RawProfile/UnrealIRCd.php"/>
+   <install name="php/Erebot/Interface/RawProfile/WATCH.php" as="Erebot/Interface/RawProfile/WATCH.php"/>
+   <install name="php/Erebot/Interface/RawProfileLoader.php" as="Erebot/Interface/RawProfileLoader.php"/>
+   <install name="php/Erebot/Interface/ReceivingConnection.php" as="Erebot/Interface/ReceivingConnection.php"/>
+   <install name="php/Erebot/Interface/SendingConnection.php" as="Erebot/Interface/SendingConnection.php"/>
+   <install name="php/Erebot/Interface/Styling.php" as="Erebot/Interface/Styling.php"/>
+   <install name="php/Erebot/Interface/TextWrapper.php" as="Erebot/Interface/TextWrapper.php"/>
+   <install name="php/Erebot/Interface/Timer.php" as="Erebot/Interface/Timer.php"/>
+   <install name="php/Erebot/Interface/URI.php" as="Erebot/Interface/URI.php"/>
+   <install name="php/Erebot/InvalidValueException.php" as="Erebot/InvalidValueException.php"/>
+   <install name="php/Erebot/Module/Base.php" as="Erebot/Module/Base.php"/>
+   <install name="php/Erebot/NotFoundException.php" as="Erebot/NotFoundException.php"/>
+   <install name="php/Erebot/NotImplementedException.php" as="Erebot/NotImplementedException.php"/>
+   <install name="php/Erebot/Proxy/Base.php" as="Erebot/Proxy/Base.php"/>
+   <install name="php/Erebot/StreamWrapperBase.php" as="Erebot/StreamWrapperBase.php"/>
+   <install name="php/Erebot/Utils.php" as="Erebot/Utils.php"/>
+  </filelist>
+ </phprelease>
+</package>
