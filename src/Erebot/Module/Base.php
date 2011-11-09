@@ -256,8 +256,12 @@ abstract class Erebot_Module_Base
         else if ($targets instanceof Erebot_Identity)
             $targets = (string) $targets;
         else if (!is_string($targets))
-            throw new Exception('Not a valid target');
+            throw new Exception('Not a valid target (expected a string)');
 
+        if (!Erebot_Utils::stringifiable($message))
+            throw new Exception('Not a valid message (expected a string)');
+
+        $message    = (string) $message;
         $parts      = array_map('trim', explode("\n", trim($message)));
         $message    = implode(' ', $parts);
         $marker     = '';
@@ -328,7 +332,9 @@ abstract class Erebot_Module_Base
      */
     protected function sendCommand($command)
     {
-        $this->_connection->pushLine($command);
+        if (!Erebot_Utils::stringifiable($command))
+            throw new Exception('Invalid command (not a string)');
+        $this->_connection->pushLine((string) $command);
     }
 
     /**
