@@ -202,7 +202,44 @@ class Erebot_Utils
      */
     static public function toUTF8($text, $from='iso-8859-1')
     {
-        if (self::isUTF8($text))
+        $alreadyEncoded = self::isUTF8($text);
+
+        // Special value so that double-encoded text can be decoded.
+        if ($from == '__double') {
+            if ($alreadyEncoded) {
+                // If no decoding function is available, we'll just
+                // return the double-encoded text as-is.
+                // This is better than throwing an exception anyway.
+                $res = $text;
+
+                if (function_exists('utf8_decode'))
+                    $res = utf8_decode($text);
+
+                else if (function_exists('iconv'))
+                    $res = iconv('utf-8', 'iso-8859-1//TRANSLIT', $text);
+
+                else if (function_exists('recode'))
+                    $res = recode('utf-8..iso-8859-1', $text);
+
+                else if (function_exists('mb_convert_encoding'))
+                    $res = mb_convert_encoding($text, 'iso-8859-1', 'utf-8');
+
+                else if (function_exists('html_entity_decode'))
+                    $res = html_entity_decode(
+                        htmlentities($text, ENT_QUOTES, 'utf-8'),
+                        ENT_QUOTES, 'iso-8850-1'
+                    );
+
+                // So, was it really double-encoded?
+                return (self::isUTF8($res) ? $res : $text);
+            }
+
+            // Someone tried to foul us, but we'll foul them instead.
+            // Here we blindly assume the text is in ISO-8859-1.
+            $from = 'iso-8859-1';
+        }
+
+        if ($alreadyEncoded)
             return $text;
 
         if (!strcasecmp($from, 'iso-8859-1') &&
