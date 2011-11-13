@@ -75,3 +75,4 @@ extends     ArrayAccess,
      *      first.
      */
     public function getRawByName($rawName);
+}
