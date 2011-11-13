@@ -28,7 +28,7 @@ extends     Erebot_Interface_RawProfile
      *      RPL_TRACELINK is sent by any server which handles
      *      a TRACE message and has to pass it on to another
      *      server.
-     * 
+     *
      *  \format{
      *      "Link \<version & debug level\> \<destination\>
      *      \<next server\> V\<protocol version\>
@@ -42,7 +42,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections which have not been
      *      fully established and are still attempting to connect.
-     * 
+     *
      *  \format{"Try. <class> <server>"}
      */
     const RPL_TRACECONNECTING       = 201;
@@ -52,7 +52,7 @@ extends     Erebot_Interface_RawProfile
      *      Used when tracing connections which have not been
      *      fully established and are in the process of completing
      *      the "server handshake".
-     * 
+     *
      *  \format{"H.S. <class> <server>"}
      */
     const RPL_TRACEHANDSHAKE        = 202;
@@ -61,7 +61,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections which have not been
      *      fully established and are unknown.
-     * 
+     *
      *  \format{"???? <class> [<client IP address in dot form>]"}
      */
     const RPL_TRACEUNKNOWN          = 203;
@@ -70,7 +70,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections to give information
      *      on IRC operators.
-     * 
+     *
      *  \format{"Oper <class> <nick>"}
      */
     const RPL_TRACEOPERATOR         = 204;
@@ -79,7 +79,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections to give information
      *      on (non-operator) IRC clients.
-     * 
+     *
      *  \format{"User <class> <nick>"}
      */
     const RPL_TRACEUSER             = 205;
@@ -88,7 +88,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections to give information
      *      on IRC servers.
-     * 
+     *
      *  \format{
      *      "Serv <class> <int>S <int>C <server>
      *      <nick!user|*!*>@<host|server> V<protocol version>"
@@ -100,7 +100,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections to give information
      *      on IRC services.
-     * 
+     *
      *  \format{"Service <class> <name> <type> <active type>"}
      */
     const RPL_TRACESERVICE          = 207;
@@ -110,7 +110,7 @@ extends     Erebot_Interface_RawProfile
      *      RPL_TRACENEWTYPE is to be used for any connection
      *      which does not fit in the other categories but is
      *      being displayed anyway.
-     * 
+     *
      *  \format{"<newtype> 0 <client name>"}
      */
     const RPL_TRACENEWTYPE          = 208;
@@ -119,7 +119,7 @@ extends     Erebot_Interface_RawProfile
      *  \brief
      *      Used when tracing connections to give information
      *      on a class of connections.
-     * 
+     *
      *  \format{"Class <class> <count>"}
      */
     const RPL_TRACECLASS            = 209;
@@ -355,7 +355,8 @@ extends     Erebot_Interface_RawProfile
 
     /**
      *  \brief
-     *      Reply format used by USERHOST to list replies to the query list.
+     *      Reply format used by USERHOST to list
+     *      replies to the query list.
      *
      *  \format{":*1<reply> *( " " <reply> )"}
      *
