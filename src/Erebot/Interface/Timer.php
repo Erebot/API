@@ -26,6 +26,13 @@
  */
 interface Erebot_Interface_Timer
 {
+    /**
+     * Sets the callback associated with this timer.
+     *
+     * \param Erebot_Interface_Callable $callback
+     *      This callable object will be called
+     *      whenever the timer fires.
+     */
     public function setCallback(Erebot_Interface_Callable $callback);
 
     /**
@@ -36,7 +43,19 @@ interface Erebot_Interface_Timer
      */
     public function getCallback();
 
-    public function setArgs($args);
+    /**
+     * Sets the arguments for this timer.
+     *
+     * Whenever this timer fires, its callback will be called
+     * with these arguments.
+     *
+     * \param array $args
+     *      An array containing the parameters to pass to this
+     *      timer's callback whenever it fires. The parameters
+     *      will be passed in the same order they appear in this
+     *      array.
+     */
+    public function setArgs(array $args);
 
     /**
      * Returns an array of additional arguments to pass to the callback.

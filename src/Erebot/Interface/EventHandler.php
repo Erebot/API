@@ -25,6 +25,15 @@
  */
 interface Erebot_Interface_EventHandler
 {
+    /**
+     * Sets the callback associated with this handler.
+     *
+     * \param Erebot_Interface_Callable $callback
+     *      This callable object will be called
+     *      whenever an event is received that
+     *      matches the criteria set by this event
+     *      handler's filter.
+     */
     public function setCallback(Erebot_Interface_Callable $callback);
 
     /**
