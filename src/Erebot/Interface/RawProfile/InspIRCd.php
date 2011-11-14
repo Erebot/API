@@ -38,7 +38,10 @@ extends     Erebot_Interface_RawProfile_RFC2812,
      *      number of users currently connected
      *      (globally).
      *
-     *  \format{":%d server%s and %d user%s, average %.2f users per server"}
+     *  \format{
+     *      ":<server count> server<agreement> and <user count>
+     *      user<agreement>, average <average count> users per server"
+     *  }
      *
      *  \note
      *      A "s" is automatically added to the words
