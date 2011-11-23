@@ -31,6 +31,20 @@ implements      Erebot_Interface_Event_Base_Chan,
     /// Source the event originated from.
     protected $_source;
 
+    /**
+     * Creates a new event dealing with an IRC
+     * channel and for which a source can be
+     * identified.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $chan
+     *      IRC channel this event applies to.
+     *
+     * \param string $source
+     *      Source identified for this event.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $chan,

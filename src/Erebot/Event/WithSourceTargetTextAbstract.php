@@ -27,6 +27,23 @@ implements      Erebot_Interface_Event_Base_Text
     /// Content of this event.
     protected $_text;
 
+    /**
+     * Creates a new event containing some text
+     * and for which a source and a destination
+     * (target) can be identified.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $source
+     *      Source identified for this event.
+     *
+     * \param string $target
+     *      Target identified for this event.
+     *
+     * \param string $text
+     *      Text contained in this event.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $source,
@@ -37,7 +54,7 @@ implements      Erebot_Interface_Event_Base_Text
         parent::__construct($connection, $source, $target);
         $this->_text = new Erebot_TextWrapper((string) $text);
     }
-    
+
     /// \copydoc Erebot_Interface_Event_Base_Text::getText()
     public function getText()
     {
