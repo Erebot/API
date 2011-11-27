@@ -22,10 +22,7 @@
  *
  *  This interface provides constants to format messages
  *  before they can be sent.
- *
- *  Most of the interface is the same as what the Smarty
- *  templating engine uses, so if you're familiar with
- *  Smarty, you should have no problem using it.
+ *  It also provides a method to render templates easily.
  */
 interface Erebot_Interface_Styling
 {
@@ -106,131 +103,59 @@ interface Erebot_Interface_Styling
     /// Alias for Erebot_Styling::COLOR_LIGHT_GRAY.
     const COLOR_LIGHT_GREY  = 15;
 
-
     /**
-     * Add a value to a variable which will be passed
-     * to the template as an array.
-     * Unlike Erebot_Styling::append_by_ref(),
-     * this method assigns the variable by value.
+     * Constructs a new renderer.
      *
-     * \param string $varname
-     *      Name of the array variable to set.
-     *
-     * \param mixed $var
-     *      Value to append to the array.
-     *
-     * \param mixed $merge
-     *      Whether to merge the values (TRUE)
-     *      or not (FALSE).
+     * \param Erebot_Interface_I18n $translator
+     *      A translator that can be used to improve
+     *      the rendering process.
      */
-    public function append($varname, $var, $merge = NULL);
+    public function __construct(Erebot_Interface_I18n $translator);
 
     /**
-     * Add a value to a variable which will be passed
-     * to the template as an array.
-     * Unlike Erebot_Styling::append(), this method
-     * assigns the variable by reference.
+     * Alias for Erebot_Interface_Styling::render(),
+     * compatible with internationalization tools
+     * such as xgettext.
      *
-     * \param string $varname
-     *      Name of the array variable to set.
+     * \param string $template
+     *      A template to render.
      *
-     * \param mixed $var
-     *      Value to append to the array.
-     *
-     * \param mixed $merge
-     *      Whether to merge the values (TRUE)
-     *      or not (FALSE).
-     */
-    public function append_by_ref($varname, &$var, $merge = NULL);
-
-    /**
-     * Assign a value to a variable which will be
-     * passed to the template.
-     * Unlike Erebot_Styling::assign_by_ref(), this
-     * method assigns the variable by value.
-     *
-     * \param string $name
-     *      Name of the variable to assign.
-     *
-     * \param mixed $value
-     *      Value for that variable.
-     */
-    public function assign($name, $value);
-
-    /**
-     * Assign a value to a variable which will be
-     * passed to the template.
-     * Unlike Erebot_Styling::assign(), this method
-     * assigns the variable by reference.
-     *
-     * \param string $name
-     *      Name of the variable to assign.
-     *
-     * \param mixed $value
-     *      Value for that variable, as a reference.
-     */
-    public function assign_by_ref($name, &$value);
-
-    /**
-     * Unsets any previous value assigned to
-     * the templates' variables.
-     */
-    public function clear_all_assign();
-
-    /**
-     * Unsets any previous value assigned to
-     * a given variable.
-     *
-     * \param string $varname
-     *      Name of the variable to unset.
-     */
-    public function clear_assign($varname);
-
-    /**
-     * Renders the template using assigned
-     * variables.
-     *
-     * \retval string
-     *      The formatted result for this template.
-     *
-     * \deprecated
-     *      Use Erebot_Styling::__toString() instead.
-     */
-    public function render();
-
-    /**
-     * Returns the template, rendered using the values
-     * previously assigned to its variables.
+     * \param array $vars
+     *      (optional) An array of variables that can be
+     *      used to change the way the template will be
+     *      rendered.
      *
      * \retval string
      *      The formatted result for this template.
      *
      * \note
-     *      This method is magical: it is called automatically
-     *      by PHP whenever the template is used in a string
-     *      context. Hence, you may use it like this:
-     *      <code>
-     *          var_dump((string) $tpl);
-     *      </code>
+     *      The name of this method was chosen so that
+     *      tools such as xgettext can mark the template
+     *      as being some message to translate.
+     *      If you DO NOT want this behaviour, use
+     *      Erebot_Interface_Styling::render() instead.
      */
-    public function __toString();
+    public function gettext($template, array $vars = array());
 
     /**
-     * Returns either all variables assigned to the template,
-     * or the value assigned to a particular variable.
+     * Renders a template using the given variables.
      *
-     * \param NULL|string $varname
-     *      If given, this must be the name of a variable
-     *      assigned to the template.
+     * \param string $template
+     *      A template to render.
      *
-     * \retval mixed
-     *      If $varname was given, returns the current value
-     *      assigned to the variable which goes by that name.
-     * \retval dict(string=>mixed)
-     *      Otherwise, returns all variables currently assigned
-     *      to this template, as an associative array mapping
-     *      the variables' names to their values.
+     * \param array $vars
+     *      (optional) An array of variables that can be
+     *      used to change the way the template will be
+     *      rendered.
+     *
+     * \retval string
+     *      The formatted result for this template.
+     *
+     * \note
+     *      Erebot_Interface_Styling::gettext() is preferred
+     *      as it makes external tools such as xgettext add
+     *      the template to the list of messages to translate.
      */
-    public function get_template_vars($varname = NULL);
+    public function render($template, array $vars = array());
 }
 

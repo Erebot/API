@@ -236,6 +236,9 @@ class Erebot_Autoload
     /**
      * Check if the requested class was loaded from the specified path
      *
+     * \param string $class
+     *  Name of the class or interface to test.
+     *
      * \retval bool
      *      TRUE if the class was successfully loaded,
      *      FALSE otherwise.
