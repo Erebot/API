@@ -135,7 +135,7 @@ interface Erebot_Interface_Styling
      *      If you DO NOT want this behaviour, use
      *      Erebot_Interface_Styling::render() instead.
      */
-    public function gettext($template, array $vars = array());
+    public function _($template, array $vars = array());
 
     /**
      * Renders a template using the given variables.
@@ -152,9 +152,9 @@ interface Erebot_Interface_Styling
      *      The formatted result for this template.
      *
      * \note
-     *      Erebot_Interface_Styling::gettext() is preferred
-     *      as it makes external tools such as xgettext add
-     *      the template to the list of messages to translate.
+     *      Erebot_Interface_Styling::_() is preferred as it
+     *      makes external tools such as xgettext add the
+     *      template to the list of messages to translate.
      */
     public function render($template, array $vars = array());
 }
