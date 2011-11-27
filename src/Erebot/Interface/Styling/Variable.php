@@ -34,5 +34,13 @@ interface Erebot_Interface_Styling_Variable
      *      The variable rendered as a string.
      */
     public function render(Erebot_Interface_I18n $translator);
+
+    /**
+     * Returns the value stored in this object.
+     *
+     * \retval mixed
+     *      Value stored in this object.
+     */
+    public function getValue();
 }
 
