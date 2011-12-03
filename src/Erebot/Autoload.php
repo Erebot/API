@@ -230,7 +230,13 @@ class Erebot_Autoload
             )) {
             return false;
         }
-        throw $e;
+
+        // If there are other autoload functions registered,
+        // let's try to play nicely with them...
+        // ...otherwise, we just throw an exception.
+        if (count(spl_autoload_functions()) == 1)
+            throw $e;
+        return false;
     }
 
     /**
