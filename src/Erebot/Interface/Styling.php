@@ -157,5 +157,13 @@ interface Erebot_Interface_Styling
      *      template to the list of messages to translate.
      */
     public function render($template, array $vars = array());
+
+    /**
+     * Returns the translator associated with this formatter.
+     *
+     * \retval Erebot_Interface_Styling
+     *      Translator associated with this formatter.
+     */
+    public function getTranslator();
 }
 
