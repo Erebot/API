@@ -26,7 +26,7 @@
  * associated with this reference may vary dynamically depending
  * on the raw profiles currently loaded for the connection.
  */
-class Erebot_Interface_RawReference
+interface Erebot_Interface_RawReference
 {
     /**
      * Returns the name of the raw numeric
