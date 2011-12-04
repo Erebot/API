@@ -105,6 +105,7 @@ abstract class Erebot_Module_Base
         $this->_factories   = array();
 
         $ifaces = array(
+            '!Callable'     => 'Erebot_Callable',
             '!Identity'     => 'Erebot_Identity',
             '!RawReference' => 'Erebot_RawReference',
             '!Styling'      => 'Erebot_Styling',
