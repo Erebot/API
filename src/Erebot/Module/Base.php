@@ -105,12 +105,15 @@ abstract class Erebot_Module_Base
         $this->_factories   = array();
 
         $ifaces = array(
-            '!Callable'     => 'Erebot_Callable',
-            '!EventHandler' => 'Erebot_EventHandler',
-            '!Identity'     => 'Erebot_Identity',
-            '!RawHandler'   => 'Erebot_RawHandler',
-            '!RawReference' => 'Erebot_RawReference',
-            '!Styling'      => 'Erebot_Styling',
+            '!Callable'         => 'Erebot_Callable',
+            '!EventHandler'     => 'Erebot_EventHandler',
+            '!Identity'         => 'Erebot_Identity',
+            '!RawHandler'       => 'Erebot_RawHandler',
+            '!RawReference'     => 'Erebot_RawReference',
+            '!Styling'          => 'Erebot_Styling',
+            '!Styling_Currency' => 'Erebot_Styling_Currency',
+            '!Styling_DateTime' => 'Erebot_Styling_DateTime',
+            '!Styling_Duration' => 'Erebot_Styling_Duration',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
