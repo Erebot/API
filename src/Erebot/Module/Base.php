@@ -106,7 +106,9 @@ abstract class Erebot_Module_Base
 
         $ifaces = array(
             '!Callable'     => 'Erebot_Callable',
+            '!EventHandler' => 'Erebot_EventHandler',
             '!Identity'     => 'Erebot_Identity',
+            '!RawHandler'   => 'Erebot_RawHandler',
             '!RawReference' => 'Erebot_RawReference',
             '!Styling'      => 'Erebot_Styling',
         );
