@@ -198,9 +198,11 @@ abstract class Erebot_Module_Base
 
         $iface = str_replace('!', 'Erebot_Interface_', $iface);
         if (!interface_exists($iface, TRUE))
-            throw new Erebot_InvalidValueException('No such interface');
+            throw new Erebot_InvalidValueException(
+                'No such interface ('.$iface.')'
+            );
         if (!class_exists($cls, TRUE))
-            throw new Erebot_InvalidValueException('No such class');
+            throw new Erebot_InvalidValueException('No such class ('.$cls.')');
 
         $reflector = new ReflectionClass($cls);
         if (!$reflector->isSubclassOf($iface))
@@ -216,11 +218,13 @@ abstract class Erebot_Module_Base
         if (!is_string($iface))
             throw new Erebot_InvalidValueException('Not an interface name');
 
-        $iface = str_replace('!', 'Erebot_Interface_', $iface);
-        $iface = strtolower($iface);
-        if (!isset($this->_factories[$iface]))
-            throw new Erebot_InvalidValueException('No such interface');
-        return $this->_factories[$iface];
+        $iface      = str_replace('!', 'Erebot_Interface_', $iface);
+        $ifaceKey   = strtolower($iface);
+        if (!isset($this->_factories[$ifaceKey]))
+            throw new Erebot_InvalidValueException(
+                'No such interface ('.$iface.')'
+            );
+        return $this->_factories[$ifaceKey];
     }
 
     /**
