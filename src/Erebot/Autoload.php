@@ -36,6 +36,12 @@ class Erebot_Autoload
      *
      * \param string $path
      *      Directory path to register
+     *
+     * \param string $mapfile
+     *      Path to a classname-to-file map file.
+     *
+     * \return
+     *      This method does not return anything.
      */
     static function initialize($path = null, $mapfile = null)
     {
@@ -46,6 +52,9 @@ class Erebot_Autoload
 
     /**
      * Register the PEAR2 autoload class with spl_autoload_register
+     *
+     * \return
+     *      This method does not return anything.
      */
     protected static function register()
     {
@@ -67,6 +76,9 @@ class Erebot_Autoload
      *
      * \param string $path
      *      The directory to add to the set of PEAR2 paths
+     *
+     * \return
+     *      This method does not return anything.
      */
     protected static function addPath($path)
     {
@@ -90,6 +102,9 @@ class Erebot_Autoload
      *
      * \param string $mapfile
      *      The filename of the classmap
+     *
+     * \return
+     *      This method does not return anything.
      */
     protected static function addMap($mapfile)
     {
@@ -215,11 +230,20 @@ class Erebot_Autoload
             )) {
             return false;
         }
-        throw $e;
+
+        // If there are other autoload functions registered,
+        // let's try to play nicely with them...
+        // ...otherwise, we just throw an exception.
+        if (count(spl_autoload_functions()) == 1)
+            throw $e;
+        return false;
     }
 
     /**
      * Check if the requested class was loaded from the specified path
+     *
+     * \param string $class
+     *  Name of the class or interface to test.
      *
      * \retval bool
      *      TRUE if the class was successfully loaded,
@@ -243,6 +267,9 @@ class Erebot_Autoload
      *
      * \param string $origin
      *      File where class was found
+     *
+     * \return
+     *      This method does not return anything.
      */
     protected static function updateMap($class, $origin)
     {

@@ -153,18 +153,5 @@ interface Erebot_Interface_I18n
      * Alias for Erebot_Interface_I18n::gettext().
      */
     public function _($message);
-
-    /**
-     * Formats a duration according to the rules
-     * of the current locale.
-     *
-     * \param int $duration
-     *      The duration to format, given in seconds.
-     *
-     * \retval string
-     *      A representation of the duration according to
-     *      the rules of the current locale.
-     */
-    public function formatDuration($duration);
 }
 

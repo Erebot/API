@@ -105,8 +105,15 @@ abstract class Erebot_Module_Base
         $this->_factories   = array();
 
         $ifaces = array(
-            '!Styling'  => 'Erebot_Styling',
-            '!Identity' => 'Erebot_Identity',
+            '!Callable'         => 'Erebot_Callable',
+            '!EventHandler'     => 'Erebot_EventHandler',
+            '!Identity'         => 'Erebot_Identity',
+            '!RawHandler'       => 'Erebot_RawHandler',
+            '!RawReference'     => 'Erebot_RawReference',
+            '!Styling'          => 'Erebot_Styling',
+            '!Styling_Currency' => 'Erebot_Styling_Currency',
+            '!Styling_DateTime' => 'Erebot_Styling_DateTime',
+            '!Styling_Duration' => 'Erebot_Styling_Duration',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
@@ -196,9 +203,11 @@ abstract class Erebot_Module_Base
 
         $iface = str_replace('!', 'Erebot_Interface_', $iface);
         if (!interface_exists($iface, TRUE))
-            throw new Erebot_InvalidValueException('No such interface');
+            throw new Erebot_InvalidValueException(
+                'No such interface ('.$iface.')'
+            );
         if (!class_exists($cls, TRUE))
-            throw new Erebot_InvalidValueException('No such class');
+            throw new Erebot_InvalidValueException('No such class ('.$cls.')');
 
         $reflector = new ReflectionClass($cls);
         if (!$reflector->isSubclassOf($iface))
@@ -214,11 +223,13 @@ abstract class Erebot_Module_Base
         if (!is_string($iface))
             throw new Erebot_InvalidValueException('Not an interface name');
 
-        $iface = str_replace('!', 'Erebot_Interface_', $iface);
-        $iface = strtolower($iface);
-        if (!isset($this->_factories[$iface]))
-            throw new Erebot_InvalidValueException('No such interface');
-        return $this->_factories[$iface];
+        $iface      = str_replace('!', 'Erebot_Interface_', $iface);
+        $ifaceKey   = strtolower($iface);
+        if (!isset($this->_factories[$ifaceKey]))
+            throw new Erebot_InvalidValueException(
+                'No such interface ('.$iface.')'
+            );
+        return $this->_factories[$ifaceKey];
     }
 
     /**
@@ -302,10 +313,21 @@ abstract class Erebot_Module_Base
             $this->_connection->pushLine($prefix.$msg.$marker);
     }
 
+    /**
+     * Quotes a CTCP message.
+     *
+     * \param string $message
+     *      Message to quote.
+     *
+     * \retval string
+     *      Quoted version of the message.
+     *
+     * \see
+     *      http://www.irchelp.org/irchelp/rfc/ctcpspec.html
+     *      describes the quoting algorithm used.
+     */
     static protected function _ctcpQuote($message)
     {
-        // Apply quoting.
-        // See http://www.irchelp.org/irchelp/rfc/ctcpspec.html
         // First comes low-level quoting.
         $quoting = array(
             "\000"  => "\0200",
@@ -532,20 +554,20 @@ abstract class Erebot_Module_Base
     }
 
     /**
-     * Returns the appropriate translator for the given channel.
+     * Returns the appropriate formatter for the given channel.
      *
      * \param NULL|FALSE|string $chan
-     *      The channel for which a translator must be returned.
-     *      If $chan is NULL, the hierarchy of configurations is
-     *      traversed to find the most appropriate translator.
-     *      If $chan is FALSE, a translator using the bot's main
-     *      language is returned (this is the same as using
-     *      <tt>$this->_translator</tt>).
+     *      The channel for which a formatter must be returned.
+     *      If $chan is NULL, the hierarchy of configurations
+     *      is traversed to find the most appropriate formatter.
+     *      If $chan is FALSE, a formatter is built using the
+     *      bot's main translator.
      */
-    protected function getTranslator($chan)
+    protected function getFormatter($chan)
     {
+        $cls = $this->getFactory('!Styling');
         if ($chan === FALSE)
-            return $this->_translator;
+            return new $cls($this->_translator);
 
         else if ($chan !== NULL) {
             $config = $this->_connection->getConfig($chan);
@@ -553,7 +575,7 @@ abstract class Erebot_Module_Base
                 // Passing $this to get_class() is necessary to retrieve
                 // the instance's class instead of the code's definition
                 // class (Erebot_Module_Base).
-                return $config->getTranslator(get_class($this));
+                return new $cls($config->getTranslator(get_class($this)));
             }
             catch (Erebot_Exception $e) {
             // The channel lacked a specific config. Use the cascade.
@@ -566,7 +588,7 @@ abstract class Erebot_Module_Base
             // Passing $this to get_class() is necessary to retrieve
             // the instance's class instead of the code's definition
             // class (Erebot_Module_Base).
-            return $config->getTranslator(get_class($this));
+            return new $cls($config->getTranslator(get_class($this)));
         }
         catch (Erebot_Exception $e) {
             // The channel lacked a specific config. Use the cascade.
@@ -574,12 +596,24 @@ abstract class Erebot_Module_Base
         unset($config);
 
         $config = $this->_connection->getConfig(NULL);
-        return $config->getTranslator(get_class());
+        return new $cls($config->getTranslator(get_class($this)));
     }
 
+    /**
+     * This method is a simple shortcut to create references
+     * to raw messages.
+     *
+     * \param $rawName
+     *      Name of the raw message for which a reference
+     *      must be returned.
+     *
+     * \retval Erebot_Interface_RawReference
+     *      A raw reference.
+     */
     public function getRawRef($rawName)
     {
-        return new Erebot_RawReference($this->_connection, $rawName);
+        $cls = $this->getFactory('!RawReference');
+        return new $cls($this->_connection, $rawName);
     }
 }
 

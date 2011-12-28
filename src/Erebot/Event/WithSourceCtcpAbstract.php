@@ -27,7 +27,22 @@ implements      Erebot_Interface_Event_Base_Ctcp
 {
     /// The type of CTCP message represented by this event.
     protected $_ctcpType;
-    
+
+    /**
+     * Creates a new event representing a CTCP message.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $source
+     *      Source identified for this event.
+     *
+     * \param string $ctcpType
+     *      Type of CTCP message being represented.
+     *
+     * \param string $text
+     *      Text contained in this CTCP message.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $source,

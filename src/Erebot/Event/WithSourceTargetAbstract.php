@@ -30,6 +30,19 @@ implements      Erebot_Interface_Event_Base_Source,
     /// Target of the event (usually the bot).
     protected $_target;
 
+    /**
+     * Creates a new event for which a source
+     *  and a destination (target) can be identified.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $source
+     *      Source identified for this event.
+     *
+     * \param string $target
+     *      Target identified for this event.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $source,
@@ -40,7 +53,7 @@ implements      Erebot_Interface_Event_Base_Source,
         $this->_source = new Erebot_Identity($source);
         $this->_target = $target;
     }
-    
+
     /// \copydoc Erebot_Interface_Event_Base_Source::getSource()
     public function getSource()
     {

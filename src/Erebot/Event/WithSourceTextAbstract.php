@@ -26,7 +26,20 @@ implements      Erebot_Interface_Event_Base_Source
 {
     /// Source the event originated from.
     protected $_source;
-    
+
+    /**
+     * Creates a new event containing some text
+     * and for which a source can be identified.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $source
+     *      Source identified for this event.
+     *
+     * \param string $text
+     *      Text contained in this event.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $source,

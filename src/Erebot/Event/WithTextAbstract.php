@@ -27,6 +27,15 @@ implements      Erebot_Interface_Event_Base_Text
     /// Content of this event.
     protected $_text;
 
+    /**
+     * Creates a new event containing some text.
+     *
+     * \param Erebot_Interface_Connection $connection
+     *      The connection this event came from.
+     *
+     * \param string $text
+     *      Text contained in this event.
+     */
     public function __construct(
         Erebot_Interface_Connection $connection,
                                     $text

@@ -16,18 +16,17 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-interface   Erebot_Interface_RawProfile_UniqueUserID
-extends     Erebot_Interface_RawProfile
+/**
+ * \brief
+ *      Interface for a date and/or time embedded in a template.
+ */
+interface   Erebot_Interface_Styling_DateTime
+extends     Erebot_Interface_Styling_Variable
 {
-    /**
-     *  \brief
-     *      Sent on connect by some IRC servers
-     *      to notify the newly-connected user
-     *      about his unique user ID.
-     *
-     *  \format{"<UUID> :your unique ID"}
-     */
-    const RPL_YOURID                =  42;
-    const RPL_YOURUUID              =  42;
+    public function getDateType();
+
+    public function getTimeType();
+
+    public function getTimeZone();
 }
 

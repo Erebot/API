@@ -16,18 +16,31 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-interface   Erebot_Interface_RawProfile_UniqueUserID
-extends     Erebot_Interface_RawProfile
+/**
+ * \brief
+ *      Interface for a typed variable to use
+ *      in a template.
+ */
+interface Erebot_Interface_Styling_Variable
 {
     /**
-     *  \brief
-     *      Sent on connect by some IRC servers
-     *      to notify the newly-connected user
-     *      about his unique user ID.
+     * Renders the content of this variable.
      *
-     *  \format{"<UUID> :your unique ID"}
+     * \param Erebot_Interface_I18n $translator
+     *      A translator that can be used to change the rendering
+     *      depending on the target locale.
+     *
+     * \retval string
+     *      The variable rendered as a string.
      */
-    const RPL_YOURID                =  42;
-    const RPL_YOURUUID              =  42;
+    public function render(Erebot_Interface_I18n $translator);
+
+    /**
+     * Returns the value stored in this object.
+     *
+     * \retval mixed
+     *      Value stored in this object.
+     */
+    public function getValue();
 }
 

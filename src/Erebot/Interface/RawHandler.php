@@ -25,6 +25,13 @@
  */
 interface Erebot_Interface_RawHandler
 {
+    /**
+     * Sets the raw numeric code associated with this handler.
+     *
+     * \param int|Erebot_RawReference $raw
+     *      New raw numeric code to assign to this handler,
+     *      or a reference to it.
+     */
     public function setRaw($raw);
 
     /**
@@ -35,6 +42,13 @@ interface Erebot_Interface_RawHandler
      */
     public function getRaw();
 
+    /**
+     * Sets the callback function/method associated with
+     * this handler.
+     *
+     * \param Erebot_Interface_Callable $callback
+     *      New callable associated with this handler.
+     */
     public function setCallback(Erebot_Interface_Callable $callback);
 
     /**
