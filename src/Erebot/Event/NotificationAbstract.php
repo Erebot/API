@@ -57,7 +57,8 @@ extends         Erebot_Event_WithSourceTextAbstract
                                     $text
     )
     {
-        $source .= '!'.$ident.'@'.$host;
+        if ($ident !== NULL && $host !== NULL)
+            $source .= '!'.$ident.'@'.$host;
         parent::__construct($connection, $source, $text);
         $this->_timestamp   = $timestamp;
     }
