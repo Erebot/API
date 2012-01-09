@@ -22,6 +22,12 @@
  */
 interface Erebot_Interface_Identity
 {
+    /// Use an IPv6 mapped IPv4 representation (eg. "::ffff:127.0.0.1").
+    const CANON_IPV4    = 4;
+
+    /// Use a pure IPv6 representation (eg. "::ffff:7f00:1").
+    const CANON_IPV6    = 6;
+
     /**
      * Returns the nickname of the user
      * represented by this identity.
@@ -54,14 +60,24 @@ interface Erebot_Interface_Identity
      * Returns the host of the user
      * represented by this identity.
      *
+     * \param opaque $c10n
+     *      Either Erebot_Interface_Identity::CANON_IPV4 or
+     *      Erebot_Interface_Identity::CANON_IPV6, indicating
+     *      the type of IP canonicalization to use.
+     *
      * \retval string
      *      This user's hostname or NULL if unavailable.
      */
-    public function getHost();
+    public function getHost($c10n);
 
     /**
      * Returns a mask which can later be used
      * to match against this user.
+     *
+     * \param opaque $c10n
+     *      Either Erebot_Interface_Identity::CANON_IPV4 or
+     *      Erebot_Interface_Identity::CANON_IPV6, indicating
+     *      the type of IP canonicalization to use.
      *
      * \retval string
      *      A mask matching against this user.
@@ -72,7 +88,7 @@ interface Erebot_Interface_Identity
      *      masks (eg. "foo!*@*") if not enough information
      *      is known.
      */
-    public function getMask();
+    public function getMask($c10n);
 
     /**
      * This method works like Erebot_Interface_Identity::getNick(),
