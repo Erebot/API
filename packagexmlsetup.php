@@ -33,7 +33,6 @@ foreach (array($package, $compatible) as $obj) {
     $obj->stability['api'] = 'stable';
     $obj->license['name'] = 'GPL';
     $obj->license['uri'] = 'http://www.gnu.org/licenses/gpl-3.0.txt';
-    $obj->license['filesource'] = 'LICENSE';
 
     // Add dependencies on extensions.
     foreach ($exts as $req => $data)
