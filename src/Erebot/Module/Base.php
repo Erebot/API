@@ -85,8 +85,14 @@ abstract class Erebot_Module_Base
     /**
      * This method is called whenever the module
      * should be unloaded.
+     *
+     * You may redefine this method to do whatever
+     * you need to do to remove any bits of your
+     * module's existence (eg. clean up memory, etc.).
      */
-    abstract protected function _unload();
+    protected function _unload()
+    {
+    }
 
     /**
      * Constructor for modules.
