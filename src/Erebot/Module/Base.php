@@ -531,7 +531,7 @@ abstract class Erebot_Module_Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param callback $callback
+     * \param Erebot_Interface_Callback $callback
      *      The callback to register as the help method
      *      for this module.
      *
@@ -546,7 +546,7 @@ abstract class Erebot_Module_Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod($callback)
+    protected function registerHelpMethod(Erebot_Interface_Callback $callback)
     {
         try {
             $helper = $this->_connection->getModule(
