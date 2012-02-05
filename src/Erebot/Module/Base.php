@@ -569,6 +569,9 @@ abstract class Erebot_Module_Base
      *      is traversed to find the most appropriate formatter.
      *      If $chan is FALSE, a formatter is built using the
      *      bot's main translator.
+     *
+     * \retval Erebot_Interface_Styling
+     *      A formatter for the given channel.
      */
     protected function getFormatter($chan)
     {
