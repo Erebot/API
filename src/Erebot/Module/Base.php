@@ -120,6 +120,7 @@ abstract class Erebot_Module_Base
             '!Styling_Currency' => 'Erebot_Styling_Currency',
             '!Styling_DateTime' => 'Erebot_Styling_DateTime',
             '!Styling_Duration' => 'Erebot_Styling_Duration',
+            '!TextWraper'       => 'Erebot_TextWrapper',
             '!Timer'            => 'Erebot_Timer',
         );
         foreach ($ifaces as $iface => $cls) {
