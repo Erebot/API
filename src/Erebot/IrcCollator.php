@@ -54,6 +54,6 @@ implements      Erebot_Interface_IrcCollator
         return self::_normalizeNick($nick).$suffix;
     }
 
-    abstract static protected function _normalizeNick($nick);
+    static protected function _normalizeNick($nick);
 }
 
