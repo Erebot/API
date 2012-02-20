@@ -20,7 +20,7 @@ abstract class  Erebot_IrcCollator
 implements      Erebot_Interface_IrcCollator
 {
     /// \copydoc Erebot_Interface_IrcCollator::compare()
-    static public function compare($a, $b)
+    public function compare($a, $b)
     {
         return strcmp(
             $this->normalizeNick($a),
@@ -29,7 +29,7 @@ implements      Erebot_Interface_IrcCollator
     }
 
     /// \copydoc Erebot_Interface_IrcCollator::limitedCompare()
-    static public function limitedCompare($a, $b, $len)
+    public function limitedCompare($a, $b, $len)
     {
         return strncmp(
             $this->normalizeNick($a),
@@ -39,7 +39,7 @@ implements      Erebot_Interface_IrcCollator
     }
 
     /// \copydoc Erebot_Interface_IrcCollator::normalizeNick()
-    static public function normalizeNick($nick)
+    public function normalizeNick($nick)
     {
         $pos = strpos($nick, '!');
         $suffix = '';
@@ -51,10 +51,10 @@ implements      Erebot_Interface_IrcCollator
                     $this->_bot->gettext('Not a valid mask')
                 );
         }
-        return self::_normalizeNick($nick).$suffix;
+        return $this->_normalizeNick($nick).$suffix;
     }
 
-    static protected function _normalizeNick($nick)
+    protected function _normalizeNick($nick)
     {
         throw new Erebot_NotImplementedException();
     }

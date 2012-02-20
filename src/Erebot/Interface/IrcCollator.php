@@ -42,7 +42,7 @@ interface Erebot_Interface_IrcCollator
      *      $a is found, respectively, to be less than, to match,
      *      or be greater than $b.
      */
-    static public function compare($a, $b);
+    public function compare($a, $b);
 
     /**
      * Compares two string in a case-insensitive fashion
@@ -64,7 +64,7 @@ interface Erebot_Interface_IrcCollator
      *      to be less than, to match, or be greater than the first
      *      $len bytes of $b.
      */
-    static public function limitedCompare($a, $b, $len);
+    public function limitedCompare($a, $b, $len);
 
     /**
      * Normalize (canonicalize) some IRC nickname.
@@ -86,6 +86,6 @@ interface Erebot_Interface_IrcCollator
      *      Make sure you use the same collation when comparing
      *      two nicknames or the result may be unpredictable.
      */
-    static public function normalizeNick($nick);
+    public function normalizeNick($nick);
 }
 
