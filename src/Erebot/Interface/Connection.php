@@ -102,5 +102,21 @@ interface Erebot_Interface_Connection
      *      An instance of the core class (Erebot).
      */
     public function getBot();
+
+    /**
+     * Sets the collator associated with this connection.
+     *
+     * \param Erebot_Interface_IrcCollator $collator
+     *      The new collator to use.
+     */
+    public function setCollator(Erebot_Interface_IrcCollator $collator);
+
+    /**
+     * Returns the collator associated with this connection.
+     *
+     * \retval Erebot_Interface_IrcCollator
+     *      The collator currently in use for this connection.
+     */
+    public function getCollator();
 }
 
