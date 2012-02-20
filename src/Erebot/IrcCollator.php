@@ -22,7 +22,7 @@ implements      Erebot_Interface_IrcCollator
     /// \copydoc Erebot_Interface_IrcCollator::compare()
     static public function compare($a, $b)
     {
-        return strncmp(
+        return strcmp(
             $this->normalizeNick($a),
             $this->normalizeNick($b)
         );
@@ -31,7 +31,7 @@ implements      Erebot_Interface_IrcCollator
     /// \copydoc Erebot_Interface_IrcCollator::limitedCompare()
     static public function limitedCompare($a, $b, $len)
     {
-        return strcmp(
+        return strncmp(
             $this->normalizeNick($a),
             $this->normalizeNick($b),
             $len
