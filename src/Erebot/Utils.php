@@ -197,7 +197,7 @@ class Erebot_Utils
      *      This method tries different technics to convert
      *      the text. If despite its best efforts, it still
      *      fails, you may consider installing one of PHP's
-     *      extension for "Human Language and Character 
+     *      extension for "Human Language and Character
      *      Encoding Support".
      */
     static public function toUTF8($text, $from='iso-8859-1')
@@ -315,7 +315,7 @@ class Erebot_Utils
             catch (ReflectionException $e) {
             }
         }
-            
+
         throw new Erebot_NotFoundException('No such thing');
     }
 
@@ -337,6 +337,96 @@ class Erebot_Utils
         if (is_object($item) && method_exists($item, '__toString'))
             return TRUE;
         return FALSE;
+    }
+
+    /**
+     * Return human readable sizes
+     *
+     * @author      Aidan Lister <aidan@php.net>
+     * @version     1.3.0
+     * @link        http://aidanlister.com/2004/04/human-readable-file-sizes/
+     * @param       int     $size        size in bytes
+     * @param       string  $max         maximum unit
+     * @param       string  $system      'si' for SI, 'bi' for binary suffixes
+     * @param       string  $retstring   return string format
+     */
+    static public function humanSize(
+        $size,
+        $max        = null,
+        $system     = 'si',
+        $retstring  = '%01.2f %s'
+    )
+    {
+        // Pick units
+        $systems = array();
+        $systems['si']['suffix'] = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
+        $systems['si']['size']   = 1000;
+        $systems['bi']['suffix'] = array('B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB');
+        $systems['bi']['size']   = 1024;
+        $sys = isset($systems[$system]) ? $systems[$system] : $systems['si'];
+
+        // Max unit to display
+        $depth = count($sys['suffix']) - 1;
+        if ($max && false !== $d = array_search($max, $sys['suffix'])) {
+            $depth = $d;
+        }
+
+        // Loop
+        $i = 0;
+        while ($size >= $sys['size'] && $i < $depth) {
+            $size /= $sys['size'];
+            $i++;
+        }
+
+        return sprintf($retstring, $size, $sys['suffix'][$i]);
+    }
+
+    /**
+     * Does the opposite à Erebot_Utils::humanSize.
+     * That is, this method takes some size expressed
+     * in a human-friendly fashion and returns the
+     * actual size.
+     *
+     * \param string $humanSize
+     *      User-friendly size.
+     *
+     * \retval mixed
+     *      The actual size as an integer or NULL
+     *      if the size could not be determined.
+     */
+    static public function parseHumanSize($humanSize)
+    {
+        $size       = (float) str_replace(",", ".", $humanSize);
+        $suffix     = (string) substr(
+            $humanSize,
+            strspn($humanSize, "1234567890.,+-")
+        );
+        $suffix     = trim($suffix);
+        $exponents  = array_flip(array('', 'K', 'M', 'G', 'T', 'P'));
+        $base       = 1000;
+
+        switch (strlen($suffix)) {
+            case 0:
+                return NULL;
+
+            case 1:
+                $exp = 0;
+                break;
+
+            case 3:
+                // 3 chars? We MUST be using SI units then.
+                if ($suffix[1] != 'i')
+                    return NULL;
+                $suffix = $suffix[0].$suffix[1];
+                $base   = 1024;
+                // We don't break on purpose.
+
+            case 2:
+                if (!isset($exponents[$suffix[0]]))
+                    return NULL;
+                $exp = $exponents[$suffix[0]];
+        }
+        return (int) ($size * pow($base, $exp));
     }
 }
 
