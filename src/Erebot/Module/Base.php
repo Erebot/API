@@ -120,6 +120,7 @@ abstract class Erebot_Module_Base
             '!Styling_Currency' => 'Erebot_Styling_Currency',
             '!Styling_DateTime' => 'Erebot_Styling_DateTime',
             '!Styling_Duration' => 'Erebot_Styling_Duration',
+            '!TextWrapper'      => 'Erebot_TextWrapper',
             '!Timer'            => 'Erebot_Timer',
         );
         foreach ($ifaces as $iface => $cls) {
@@ -531,7 +532,7 @@ abstract class Erebot_Module_Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param callback $callback
+     * \param Erebot_Interface_Callable $callback
      *      The callback to register as the help method
      *      for this module.
      *
@@ -546,7 +547,7 @@ abstract class Erebot_Module_Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod($callback)
+    protected function registerHelpMethod(Erebot_Interface_Callable $callback)
     {
         try {
             $helper = $this->_connection->getModule(
@@ -569,6 +570,9 @@ abstract class Erebot_Module_Base
      *      is traversed to find the most appropriate formatter.
      *      If $chan is FALSE, a formatter is built using the
      *      bot's main translator.
+     *
+     * \retval Erebot_Interface_Styling
+     *      A formatter for the given channel.
      */
     protected function getFormatter($chan)
     {
