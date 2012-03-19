@@ -19,9 +19,10 @@
 /**
  * \brief
  *      Interface for a class that can be used
- *      to create events.
+ *      to parse incoming messages from an IRC server
+ *      and create events as necessary.
  */
-interface Erebot_Interface_EventFactory
+interface Erebot_Interface_IrcParser
 {
     /**
      * Returns the mapping of interface names
@@ -110,4 +111,7 @@ interface Erebot_Interface_EventFactory
      *      The name of the interface to use is case-insensitive.
      */
     public function makeEvent($iface /* , ... */);
+
+    public function parseLine($line);
 }
+
