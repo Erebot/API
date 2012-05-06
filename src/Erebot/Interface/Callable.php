@@ -131,4 +131,14 @@ interface Erebot_Interface_Callable
      * \see Erebot_Interface_Callable::getRepresentation()
      */
     public function __toString();
+
+    /**
+     * Get a reflection objets for the function/method/object
+     * represented by this callable.
+     *
+     * \retval Reflector
+     *      Reflection object for this callable's inner
+     *      PHP callback.
+     */
+    public function getReflector();
 }
