@@ -16,23 +16,18 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/**
- * \brief
- *      Interface for a connection that sends data.
- */
-interface   Erebot_Interface_SendingConnection
-extends     Erebot_Interface_Connection
+interface   Erebot_Interface_IrcConnection
+extends     Erebot_Interface_ModuleContainer,
+            Erebot_Interface_EventDispatcher,
+            Erebot_Interface_BidirectionalConnection,
+            Erebot_Interface_Collated
 {
-    /**
-     * Sends a single line of data from the outgoing FIFO
-     * to the underlying socket.
-     *
-     * This method is misnamed, because it acts on a FIFO
-     * rather than on raw data.
-     * This method can be called multiple times (such as
-     * in a loop) to send all lines in the outgoing FIFO.
-     * This is done so that a throttling policy may be put
-     * in place if needed (eg. for an anti-flood system).
-     */
-    public function write();
+    public function getRawProfileLoader();
+
+    public function setRawProfileLoader(
+        Erebot_Interface_RawProfileLoader $loader
+    );
+
+    public function isChannel($chan);
 }
+

@@ -317,8 +317,9 @@ abstract class Erebot_Module_Base
                 TRUE
             )
         );
+        $io = $this->_connection->getIO();
         foreach ($messages as $msg)
-            $this->_connection->pushLine($prefix.$msg.$marker);
+            $io->push($prefix.$msg.$marker);
     }
 
     /**
@@ -364,7 +365,7 @@ abstract class Erebot_Module_Base
     {
         if (!Erebot_Utils::stringifiable($command))
             throw new Exception('Invalid command (not a string)');
-        $this->_connection->pushLine((string) $command);
+        $this->_connection->getIO()->push((string) $command);
     }
 
     /**

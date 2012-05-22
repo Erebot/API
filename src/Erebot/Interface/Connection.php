@@ -102,5 +102,7 @@ interface Erebot_Interface_Connection
      *      An instance of the core class (Erebot).
      */
     public function getBot();
+
+    public function getIO();
 }
 

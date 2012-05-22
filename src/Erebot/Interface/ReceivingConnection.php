@@ -24,18 +24,6 @@ interface   Erebot_Interface_ReceivingConnection
 extends     Erebot_Interface_Connection
 {
     /**
-     * Returns a boolean indicating whether the incoming FIFO
-     * is empty or not.
-     *
-     * \retval TRUE
-     *      The FIFO for incoming messages is empty.
-     *
-     * \retval FALSE
-     *      The FIFO for incoming messages is NOT empty.
-     */
-    public function emptyReadQueue();
-
-    /**
      * Processes data from the incoming buffer.
      *
      * Once this method has been called, all lines awaiting
@@ -46,12 +34,12 @@ extends     Erebot_Interface_Connection
      * This is done so that a throttling policy may be put
      * in place if needed (eg. for an anti-flood system).
      */
-    public function processIncomingData();
+    public function read();
 
     /**
      * Processes all lines in the incoming FIFO.
      * This method will dispatch the proper events/raws
      * for each line in the FIFO.
      */
-    public function processQueuedData();
+    public function process();
 }
