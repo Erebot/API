@@ -18,12 +18,21 @@
 
 /**
  * \brief
- *      Interface for a kill.
+ *      Interface for a text wrapper that makes it
+ *      easier to manipulate text that comes from
+ *      an IRC server.
  */
-interface   Erebot_Interface_Event_Kill
-extends     Erebot_Interface_Event_Base_Source,
-            Erebot_Interface_Event_Base_Target,
-            Erebot_Interface_Event_Base_Text
+interface   Erebot_Interface_IrcTextWrapper
+extends     Countable,
+            ArrayAccess,
+            Iterator
 {
+    /**
+     * Returns the wrapped text.
+     *
+     * \retval string
+     *      The text wrapped by this instance.
+     */
+    public function __toString();
 }
 
