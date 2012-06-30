@@ -32,8 +32,10 @@ abstract class Erebot_Module_Base
     /// The translator to use for messages coming from this instance.
     protected $_translator;
 
+    /// Factories to use for this module.
     protected $_factories;
 
+    /// A logger for this module's messages.
     protected $_logger;
 
 
@@ -189,6 +191,10 @@ abstract class Erebot_Module_Base
         $this->_reload($flags);
     }
 
+    /**
+     * This method is called when unloading
+     * the module. It simply calls $this->_unload.
+     */
     final public function unload()
     {
         return $this->_unload();
@@ -204,6 +210,23 @@ abstract class Erebot_Module_Base
         // By default, we do nothing.
     }
 
+    /**
+     * Set the factory for the given interface.
+     *
+     * \param string $iface
+     *      Name of the interface to act upon.
+     *
+     * \param string $cls
+     *      Name of the class that acts as
+     *      a factory for that interface.
+     *      If must implement that interface.
+     *
+     * \note
+     *      As a special shortcut, an exclamation
+     *      point (!) in the interface's name will
+     *      automatically be replaced with the text
+     *      "Erebot_Interface_".
+     */
     public function setFactory($iface, $cls)
     {
         if (!is_string($iface))
@@ -226,6 +249,25 @@ abstract class Erebot_Module_Base
         $this->_factories[$iface] = $cls;
     }
 
+    /**
+     * Return the name of the class to use
+     * to create instances with the given
+     * interface.
+     *
+     * \param string $iface
+     *      Name of the interface for which
+     *      the factory must be returned.
+     *
+     * \retval string
+     *      Name of the class that acts as
+     *      a factory for that interface.
+     *
+     * \note
+     *      As a special shortcut, an exclamation
+     *      point (!) in the interface's name will
+     *      automatically be replaced with the text
+     *      "Erebot_Interface_".
+     */
     public function getFactory($iface)
     {
         if (!is_string($iface))
