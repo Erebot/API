@@ -23,10 +23,42 @@
 interface   Erebot_Interface_Styling_DateTime
 extends     Erebot_Interface_Styling_Variable
 {
+    /**
+     * Returns the type of rendering used
+     * for dates.
+     *
+     * \retval opaque
+     *      The type of rendering used for dates.
+     *      This is one of the constants defined in
+     *      http://php.net/manual/en/class.intldateformatter.php
+     */
     public function getDateType();
 
+    /**
+     * Returns the type of rendering used
+     * for times.
+     *
+     * \retval opaque
+     *      The type of rendering used for dates.
+     *      This is one of the constants defined in
+     *      http://php.net/manual/en/class.intldateformatter.php
+     */
     public function getTimeType();
 
+    /**
+     * Returns the timezone used to format values.
+     *
+     * \retval string
+     *      The name of the timezone used to format
+     *      dates and times (eg. "Europe/Paris").
+     *
+     * \retval NULL
+     *      NULL is returned in case no timezone
+     *      was specified during this object's
+     *      creation. In that case, the current
+     *      timezone of the system is used to
+     *      render dates/times.
+     */
     public function getTimeZone();
 }
 

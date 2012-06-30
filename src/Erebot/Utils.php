@@ -340,15 +340,16 @@ class Erebot_Utils
     }
 
     /**
-     * Return human readable sizes
+     * Return human readable sizes.
      *
      * @author      Aidan Lister <aidan@php.net>
      * @version     1.3.0
-     * @link        http://aidanlister.com/2004/04/human-readable-file-sizes/
+     * @see         http://aidanlister.com/2004/04/human-readable-file-sizes/
      * @param       int     $size        size in bytes
      * @param       string  $max         maximum unit
      * @param       string  $system      'si' for SI, 'bi' for binary suffixes
      * @param       string  $retstring   return string format
+     * @retval      string  The given size, in a human readable format.
      */
     static public function humanSize(
         $size,

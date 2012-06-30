@@ -23,6 +23,20 @@
 interface   Erebot_Interface_Styling_Currency
 extends     Erebot_Interface_Styling_Variable
 {
+    /**
+     * Returns the currency the amount
+     * is expressed in.
+     *
+     * \retval string
+     *      The name of the currency used
+     *      to express the amount.
+     *
+     * \retval NULL
+     *      NULL is returned in case no currency
+     *      was given at construction, meaning
+     *      that the currency will automatically
+     *      be selected at runtime.
+     */
     public function getCurrency();
 }
 
