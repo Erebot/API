@@ -7,7 +7,9 @@
  * \see
  *      http://php.net/IteratorAggregate
  */
-interface Iterator {
+interface IteratorAggregate
+extends   Traversable
+{
     /**
      * Retrieve an external iterator.
      *
