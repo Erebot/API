@@ -200,16 +200,6 @@ abstract class Erebot_Module_Base
         return $this->_unload();
     }
 
-    public function install()
-    {
-        // By default, we do nothing.
-    }
-
-    public function uninstall()
-    {
-        // By default, we do nothing.
-    }
-
     /**
      * Set the factory for the given interface.
      *
