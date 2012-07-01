@@ -93,22 +93,15 @@ interface Erebot_Interface_IrcParser
      *      Name of the interface describing
      *      the type of event to create.
      *
+     * \retval Erebot_Event_Abstract
+     *      The event that was produced.
+     *      This will be an instance implementing
+     *      the given interface and a subclass of
+     *      Erebot_Event_Abstract.
+     *
      * \note
      *      You may pass additional parameters to this method.
      *      They will be passed as is to the event's constructor.
-     *
-     * \note
-     *      It is not necessary to pass "$this" explicitely
-     *      as the first additional parameter to this method,
-     *      this factory already takes care of adding it
-     *      automatically as all event types require it.
-     *
-     * \note
-     *      This method can also use the same shortcuts as
-     *      Erebot_Connection::getEventClass().
-     *
-     * \note
-     *      The name of the interface to use is case-insensitive.
      */
     public function makeEvent($iface /* , ... */);
 
