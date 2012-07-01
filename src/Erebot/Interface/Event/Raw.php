@@ -228,10 +228,6 @@ extends     Erebot_Interface_Event_Base_Generic,
      * \retval int
      *      The raw numeric code of this message.
      *
-     * \see
-     *      You may compare the value returned by this method with one
-     *      of the constants of the Erebot_Interface_Event_Raw interface.
-     *
      * \note
      *      Multiple constants may point to the same code
      *      as the same code may have different interpretations

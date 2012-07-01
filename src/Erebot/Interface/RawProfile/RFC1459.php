@@ -17,6 +17,9 @@
 */
 
 /**
+ * \brief
+ *      A raw profile for events defined in RFC 1459.
+ *
  * \see
  *      RFC 1459 (http://www.faqs.org/rfcs/rfc1459.html)
  */
@@ -532,7 +535,7 @@ extends     Erebot_Interface_RawProfile
      *      attempted INVITE message was successful and is
      *      being passed onto the end client.
      *
-     *  \format{"<channel> <nick>"}
+     *  \format{"<nick> <channel>"}
      */
     const RPL_INVITING              = 341;
 

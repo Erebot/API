@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that support
+ *      the concept of Unique User ID.
+ */
 interface   Erebot_Interface_RawProfile_UniqueUserID
 extends     Erebot_Interface_RawProfile
 {
@@ -28,6 +33,7 @@ extends     Erebot_Interface_RawProfile
      *  \format{"<UUID> :your unique ID"}
      */
     const RPL_YOURID                =  42;
+    /// Alias for Erebot_Interface_RawProfile_UniqueUserID::RPL_YOURID
     const RPL_YOURUUID              =  42;
 }
 

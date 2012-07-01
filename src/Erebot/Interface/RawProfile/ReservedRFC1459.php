@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      A raw profile containing the "reserved" codes
+ *      defined in RFC 1459.
+ */
 interface   Erebot_Interface_RawProfile_ReservedRFC1459
 extends     Erebot_Interface_RawProfile
 {

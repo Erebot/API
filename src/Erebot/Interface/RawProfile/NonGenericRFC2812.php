@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for numeric codes that were currently
+ *      in use at the time RFC 2812 was written but were considered to be non-generic features.
+ */
 interface   Erebot_Interface_RawProfile_NonGenericRFC2812
 extends     Erebot_Interface_RawProfile
 {

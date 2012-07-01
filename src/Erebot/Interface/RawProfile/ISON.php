@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that support
+ *      the ISON command.
+ */
 interface   Erebot_Interface_RawProfile_ISON
 extends     Erebot_Interface_RawProfile
 {

@@ -18,10 +18,7 @@
 
 /**
  * \brief
- *      Interface for IRC(S) connections.
- *
- * This interface provides the necessary methods
- * to handle an IRC(S) connection.
+ *      Interface for connections.
  */
 interface Erebot_Interface_Connection
 {
@@ -103,6 +100,17 @@ interface Erebot_Interface_Connection
      */
     public function getBot();
 
+    /**
+     * Returns the object used to handle I/O (input/output)
+     * with this connection.
+     *
+     * \note
+     *      Do not use this object directly unless you know
+     *      what you're doing. Instead, use the methods from
+     *      the appropriate interfaces:
+     *      Erebot_Interface_SendingConnection for writing and
+     *      Erebot_Interface_ReceivingConnection for reading.
+     */
     public function getIO();
 }
 

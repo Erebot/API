@@ -16,6 +16,10 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for UnrealIRCd servers.
+ */
 interface   Erebot_Interface_RawProfile_UnrealIRCd
 extends     Erebot_Interface_RawProfile_RFC2812,
             Erebot_Interface_RawProfile_NumericError,

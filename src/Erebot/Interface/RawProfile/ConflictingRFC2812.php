@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      A raw profile for features defined in RFC 2812
+ *      that conflict with widespread usage.
+ */
 interface   Erebot_Interface_RawProfile_ConflictingRFC2812
 extends     Erebot_Interface_RawProfile
 {
@@ -26,6 +31,7 @@ extends     Erebot_Interface_RawProfile
      *  \format{"Try server <server name>\, port <port number>"}
      */
     const RPL_BOUNCE                =   5;
+    /// Alias for Erebot_Interface_RawProfile_ConflictingRFC2812::RPL_BOUNCE
     const RPL_REDIR                 =   5;
 }
 

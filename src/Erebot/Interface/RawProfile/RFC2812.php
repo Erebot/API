@@ -17,6 +17,9 @@
 */
 
 /**
+ * \brief
+ *      A raw profile for events defined in RFC 2812.
+ *
  * \see
  *      RFC 2812 (http://www.faqs.org/rfcs/rfc2812.html)
  */
@@ -188,12 +191,12 @@ extends     Erebot_Interface_RawProfile_RFC1459
     const ERR_BADMASK               = 415;
 
     /**
-     *  \TODO
+     * \brief
+     *      Returned by a server in response to a LIST or NAMES
+     *      message to indicate the result contains too many
+     *      items to be returned to the client.
      *
-     *  \note
-     *      Although this type of raw message is cited in RFC 2812,
-     *      there is no associated numeric code. The value here
-     *      seems to be the one used by at least IRCnet.
+     * \format{"<channel> :Output too long (try locally)"}
      */
     const ERR_TOOMANYMATCHES        = 416;
 

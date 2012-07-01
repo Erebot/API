@@ -16,6 +16,13 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      An abstract class that provides an IRC collation.
+ *
+ * Using subclasses of this class, you can compare two
+ * IRC nicknames.
+ */
 abstract class  Erebot_IrcCollator
 implements      Erebot_Interface_IrcCollator
 {
@@ -54,6 +61,12 @@ implements      Erebot_Interface_IrcCollator
         return $this->_normalizeNick($nick).$suffix;
     }
 
+    /**
+     * \copydoc Erebot_Interface_IrcCollator::normalizeNick()
+     *
+     * \note
+     *      This method must be redefined in subclasses.
+     */
     protected function _normalizeNick($nick)
     {
         throw new Erebot_NotImplementedException();

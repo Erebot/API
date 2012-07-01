@@ -16,6 +16,20 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      A raw profile for the bounce/redirection mechanism
+ *      proposed in RFC 2812.
+ *
+ * \note
+ *      The codes defined here are the newly adopted ones,
+ *      as those proposed in the RFC conflicted with other
+ *      common usages (namely, the RPL_ISUPPORT event).
+ *
+ * \see
+ *      Erebot_Interface_RawProfile_ConflictingRFC2812
+ *      for the original (conflicting) codes.
+ */
 interface   Erebot_Interface_RawProfile_Bounce
 extends     Erebot_Interface_RawProfile
 {

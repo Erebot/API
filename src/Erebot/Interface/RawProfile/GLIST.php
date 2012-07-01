@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that support
+ *      the GLIST command.
+ */
 interface   Erebot_Interface_RawProfile_GLIST
 extends     Erebot_Interface_RawProfile
 {

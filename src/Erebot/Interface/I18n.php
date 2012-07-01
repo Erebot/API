@@ -150,7 +150,10 @@ interface Erebot_Interface_I18n
     public function gettext($message);
 
     /**
-     * Alias for Erebot_Interface_I18n::gettext().
+     * \copydoc Erebot_Interface_I18n::gettext()
+     *
+     * \note
+     *      This method is an alias for Erebot_Interface_I18n::gettext().
      */
     public function _($message);
 }

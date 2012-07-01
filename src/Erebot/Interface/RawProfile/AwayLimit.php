@@ -16,6 +16,18 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that may impose
+ *      a limit on how many AWAY commands can be
+ *      issued over a certain period of time.
+ *
+ * \note
+ *      Currently, only some versions of Bahamut
+ *      seem to include this feature. This raw
+ *      profile is kept separate though as some
+ *      older versions do not support it.
+ */
 interface   Erebot_Interface_RawProfile_AwayLimit
 extends     Erebot_Interface_RawProfile
 {

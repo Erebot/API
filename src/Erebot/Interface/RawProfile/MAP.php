@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that support
+ *      the MAP command.
+ */
 interface   Erebot_Interface_RawProfile_MAP
 extends     Erebot_Interface_RawProfile
 {

@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for servers that support
+ *      the WATCH command.
+ */
 interface   Erebot_Interface_RawProfile_WATCH
 extends     Erebot_Interface_RawProfile
 {
@@ -25,12 +30,18 @@ extends     Erebot_Interface_RawProfile
     const ERR_TOOMANYWATCH          = 512;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent when someone on your watch list logs online.
+     *
+     *  \format{"<nick> <ident> <host> <timestamp> :logged online"}
      */
     const RPL_LOGON                 = 600;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent when someone on your watch list logs offline.
+     *
+     *  \format{"<nick> <ident> <host> <timestamp> :logged offline"}
      */
     const RPL_LOGOFF                = 601;
 
@@ -45,12 +56,20 @@ extends     Erebot_Interface_RawProfile
     const RPL_WATCHSTAT             = 603;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent after a nick has been added to your watch list
+     *      and that person is currently online.
+     *
+     *  \format{"<nick> <ident> <host> <timestamp> :is online"}
      */
     const RPL_NOWON                 = 604;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent after a nick has been added to your watch list
+     *      and that person is currently offline.
+     *
+     *  \format{"<nick> * * 0 :is offline"}
      */
     const RPL_NOWOFF                = 605;
 

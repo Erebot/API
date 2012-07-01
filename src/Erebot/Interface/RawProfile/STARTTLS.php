@@ -17,6 +17,10 @@
 */
 
 /**
+ * \brief
+ *      Raw profile for servers that support
+ *      the STARTTLS command.
+ *
  * \see
  *      InspIRCd's wiki on the STARTTLS feature
  *      (http://wiki.inspircd.org/STARTTLS_Documentation)
@@ -39,6 +43,7 @@ extends     Erebot_Interface_RawProfile
      *      the client.
      */
     const RPL_STARTTLSOK            = 670;
+    /// Alias for Erebot_Interface_RawProfile_STARTTLS::RPL_STARTTLSOK.
     const RPL_STARTTLS              = 670;
 
     /**
@@ -56,5 +61,6 @@ extends     Erebot_Interface_RawProfile
      *      entirely.
      */
     const ERR_STARTTLSFAIL          = 691;
-    const ERR_STARTTLS              = 691;
+     /// Alias for Erebot_Interface_RawProfile_STARTTLS::ERR_STARTTLSFAIL.
+   const ERR_STARTTLS              = 691;
 }

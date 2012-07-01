@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for extensions to the IRC protocol
+ *      that are widely implemented across IRC servers.
+ */
 interface   Erebot_Interface_RawProfile_CommonExtensions
 extends     Erebot_Interface_RawProfile
 {

@@ -16,6 +16,11 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Raw profile for IRC servers that support
+ *      raw 005 ("ISUPPORT" or "PROTOCTL").
+ */
 interface   Erebot_Interface_RawProfile_005
 extends     Erebot_Interface_RawProfile
 {

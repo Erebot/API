@@ -16,9 +16,27 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Interface for the "ServerCapabilities" event.
+ *
+ * \note
+ *      This event is special in the sense that Erebot's
+ *      core does not emit it. Instead, a module is required
+ *      (Erebot_Module_ServerCapabilities) to receive such
+ *      an event.
+ */
 interface   Erebot_Interface_Event_ServerCapabilities
 extends     Erebot_Interface_Event_Base_Generic
 {
+    /**
+     * Returns the module associated with this event.
+     *
+     * \retval Erebot_Module_ServerCapabilities
+     *      The module associated with this event.
+     *      It can be used to determine what the
+     *      current IRC server is capable of.
+     */
     public function getModule();
 }
 
