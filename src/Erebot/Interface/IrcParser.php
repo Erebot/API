@@ -93,11 +93,11 @@ interface Erebot_Interface_IrcParser
      *      Name of the interface describing
      *      the type of event to create.
      *
-     * \retval Erebot_Event_Abstract
+     * \retval Erebot_Interface_Event_Base_Generic
      *      The event that was produced.
      *      This will be an instance implementing
      *      the given interface and a subclass of
-     *      Erebot_Event_Abstract.
+     *      Erebot_Interface_Event_Base_Generic.
      *
      * \note
      *      You may pass additional parameters to this method.
