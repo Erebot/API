@@ -108,14 +108,14 @@ interface Erebot_Interface_IrcParser
     /**
      * Parses a single message from an IRC server.
      *
-     * \param string $line
+     * \param string $msg
      *      A single IRC message to parse, with the
      *      trailing "\r\n" sequence already removed.
      *
      * \note
-     *      This method is responsible for creating events
-     *      corresponding to the message as needed.
+     *      Events/raws are dispatched as necessary
+     *      by this method.
      */
-    public function parseLine($line);
+    public function parseLine($msg);
 }
 
