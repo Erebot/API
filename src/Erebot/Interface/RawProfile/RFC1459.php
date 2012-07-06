@@ -120,15 +120,6 @@ extends     Erebot_Interface_RawProfile
 
     /**
      *  \brief
-     *      Used when tracing connections to give information
-     *      on a class of connections.
-     *
-     *  \format{"Class <class> <count>"}
-     */
-    const RPL_TRACECLASS            = 209;
-
-    /**
-     *  \brief
      *      Reports statistics on a connection.
      *
      *  \format{
@@ -159,37 +150,57 @@ extends     Erebot_Interface_RawProfile
     const RPL_STATSCOMMANDS         = 212;
 
     /**
-     *  \TODO
-     *  "C <address> * <server> <port> <class>"
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through C-lines (connect).
      *
      *  \note
-     *      The "*" is treated as a litteral, not some
-     *      wildcard character.
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSCLINE            = 213;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through N-lines (accept connection).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSNLINE            = 214;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through I-lines (allow).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSILINE            = 215;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through K-lines (ban user).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSKLINE            = 216;
 
     /**
-     *  \TODO
-     */
-    const RPL_STATSQLINE            = 217;
-
-    /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through Y-lines (class).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSYLINE            = 218;
 
@@ -211,7 +222,13 @@ extends     Erebot_Interface_RawProfile
     const RPL_UMODEIS               = 221;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through L-lines (leaf).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSLLINE            = 241;
 
@@ -225,15 +242,23 @@ extends     Erebot_Interface_RawProfile
 
     /**
      *  \brief
-     *      Reports the allowed hosts from where
-     *      users may become IRC operators.
+     *      This numeric is used for every entry configured
+     *      through O-lines (oper).
      *
-     *  \format{"O <hostmask> * <name>"}
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSOLINE            = 243;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through H-lines (hub).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSHLINE            = 244;
 
@@ -404,7 +429,12 @@ extends     Erebot_Interface_RawProfile
     const RPL_WHOISUSER             = 311;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent in response to a WHOIS or WHOWAS,
+     *      indicating the IRC server the target user
+     *      was connected to.
+     *
+     *  \format{"<user> <server> :<other information>"}
      */
     const RPL_WHOISSERVER           = 312;
 
@@ -427,12 +457,16 @@ extends     Erebot_Interface_RawProfile
     const RPL_WHOWASUSER            = 314;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Marks the end of the results to a WHO.
+     *
+     *  \format{"<mask> :End of /WHO list."}
      */
     const RPL_ENDOFWHO              = 315;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Redundant and not needed but reserved.
      */
     const RPL_WHOISCHANOP           = 316;
 
@@ -504,7 +538,12 @@ extends     Erebot_Interface_RawProfile
     const RPL_LISTEND               = 323;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent in response to a MODE command or upon joining
+     *      an IRC channel, containing the modes that are in
+     *      effect on that IRC channel.
+     *
+     *  \format{"<channel> <modes> <parameters>"}
      */
     const RPL_CHANNELMODEIS         = 324;
 
@@ -517,6 +556,8 @@ extends     Erebot_Interface_RawProfile
      *  \format{"<channel> :No topic is set"}
      */
     const RPL_NOTOPIC               = 331;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC1459::RPL_NOTOPIC.
     const RPL_NOTOPICSET            = 331;
 
     /**
@@ -565,24 +606,44 @@ extends     Erebot_Interface_RawProfile
     const RPL_VERSION               = 351;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent back for every user that matches the criteria
+     *      for the current WHO command.
+     *
+     *  \format{"<channel> <user name> <hostname> <server>
+                 <nick> <status> :<hops> <realname>"}
      */
     const RPL_WHOREPLY              = 352;
 
     /**
-     * Alias for Erebot_Interface_Event_Raw::RPL_NAMEREPLY,
-     * which is often mispelled in documentation.
+     *  \brief
+     *      This numeric is used in response to a NAMES command
+     *      or upon joining a channel and contains the nicknames
+     *      of users currently in the channel with their status.
+     *
+     * \format{"<channel prefix><channel> :<status><nick>( <status <nick>)*"}
      */
     const RPL_NAMREPLY              = 353;
-    const RPL_NAMEREPLY             = 353;
+
+    /// Alias for Erebot_Interface_Event_Raw::RPL_NAMREPLY.
+    const RPL_NAMEREPLY             = 'RPL_NAMREPLY';
 
     /**
-     *  \TODO
+     *  \brief
+     *      Sent in response to a LINKS command for every server
+     *      currently linked to this one that matches a given mask.
+     *
+     *  \note
+     *      The format for this numeric changes depending
+     *      on the implementation.
      */
     const RPL_LINKS                 = 364;
 
     /**
-     *  \TODO
+     *  \brief
+     *      Marks the end of the links for this server.
+     *
+     *  \format{"<mask> :End of /LINKS list."}
      */
     const RPL_ENDOFLINKS            = 365;
 
@@ -623,11 +684,6 @@ extends     Erebot_Interface_RawProfile
     /**
      *  \TODO
      */
-    const RPL_INFOSTART             = 373;
-
-    /**
-     *  \TODO
-     */
     const RPL_ENDOFINFO             = 374;
 
     /**
@@ -649,7 +705,9 @@ extends     Erebot_Interface_RawProfile
      *  \format{":You are now an IRC operator"}
      */
     const RPL_YOUREOPER             = 381;
-    const RPL_YOUAREOPER            = 381;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC1459::RPL_YOUREOPER.
+    const RPL_YOUAREOPER            = 'RPL_YOUREOPER';
 
     /**
      *  \brief
@@ -989,7 +1047,9 @@ extends     Erebot_Interface_RawProfile
      *  \format{":Unauthorized command (already registered)"}
      */
     const ERR_ALREADYREGISTRED      = 462;
-    const ERR_ALREADYREGISTERED     = 462;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC1459::ERR_ALREADYREGISTRED.
+    const ERR_ALREADYREGISTERED     = 'ERR_ALREADYREGISTRED';
 
     /**
      *  \brief
@@ -1079,11 +1139,6 @@ extends     Erebot_Interface_RawProfile
     const ERR_BADCHANNELKEY         = 475;
 
     /**
-     *  \TODO
-     */
-    const ERR_BADCHANMASK           = 476;
-
-    /**
      *  \brief
      *      Any command requiring operator privileges to operate
      *      will return this error to indicate the attempt was
@@ -1103,7 +1158,9 @@ extends     Erebot_Interface_RawProfile
      *  \format{"<channel> :You're not channel operator"}
      */
     const ERR_CHANOPRIVSNEEDED      = 482;
-    const ERR_CHANOPPRIVSNEEDED     = 482;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC1459::ERR_CHANOPRIVSNEEDED.
+    const ERR_CHANOPPRIVSNEEDED     = 'ERR_CHANOPRIVSNEEDED';
 
     /**
      *  \brief

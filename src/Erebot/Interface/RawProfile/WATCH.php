@@ -25,7 +25,12 @@ interface   Erebot_Interface_RawProfile_WATCH
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      The server will send this numeric back to you
+     *      if you try to add someone to your watch list
+     *      and the list is already full.
+     *
+     * \format{"<mask> :Maximum size for WATCH-list is <limit> entries"}
      */
     const ERR_TOOMANYWATCH          = 512;
 
@@ -46,12 +51,20 @@ extends     Erebot_Interface_RawProfile
     const RPL_LOGOFF                = 601;
 
     /**
-     *  \TODO
+     * \brief
+     *      Sent by the server after it receives a request
+     *      to remove someone from the watch list.
+     *
+     * \format{"<nick> <ident> <host> <timestamp> :stopped watching"}
      */
     const RPL_WATCHOFF              = 602;
 
     /**
-     *  \TODO
+     * \brief
+     *      Displays how many people are on your watch list
+     *      and how many have added you to their watch list.
+     *
+     * \format{":You have <mine> and are on <others> WATCH entries"}
      */
     const RPL_WATCHSTAT             = 603;
 
@@ -74,12 +87,19 @@ extends     Erebot_Interface_RawProfile
     const RPL_NOWOFF                = 605;
 
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent back for every entry in your
+     *      watch list when the WATCH s or WATCH S command is used.
+     *
+     * \format{":<nick>"}
      */
     const RPL_WATCHLIST             = 606;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of a WATCH command.
+     *
+     * \format{":End of WATCH <command>"}
      */
     const RPL_ENDOFWATCHLIST        = 607;
 }

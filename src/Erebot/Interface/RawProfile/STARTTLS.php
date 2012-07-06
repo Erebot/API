@@ -43,8 +43,9 @@ extends     Erebot_Interface_RawProfile
      *      the client.
      */
     const RPL_STARTTLSOK            = 670;
+
     /// Alias for Erebot_Interface_RawProfile_STARTTLS::RPL_STARTTLSOK.
-    const RPL_STARTTLS              = 670;
+    const RPL_STARTTLS              = 'RPL_STARTTLSOK';
 
     /**
      *  \brief
@@ -61,6 +62,7 @@ extends     Erebot_Interface_RawProfile
      *      entirely.
      */
     const ERR_STARTTLSFAIL          = 691;
+
      /// Alias for Erebot_Interface_RawProfile_STARTTLS::ERR_STARTTLSFAIL.
-   const ERR_STARTTLS              = 691;
+   const ERR_STARTTLS               = 'ERR_STARTTLSFAIL';
 }

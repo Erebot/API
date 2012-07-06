@@ -116,7 +116,7 @@ extends     Erebot_Interface_RawProfile_RFC2812,
     const ERR_DELAYREJOIN           = 495;
 
     /// Alias for Erebot_Interface_RawProfile_InspIRCd::ERR_DELAYREJOIN.
-    const ERR_KICKNOREJOIN          = 495;
+    const ERR_KICKNOREJOIN          = 'ERR_DELAYREJOIN';
 
     /**
      *  \brief
@@ -186,7 +186,7 @@ extends     Erebot_Interface_RawProfile_RFC2812,
     const ERR_WORDFILTERED          = 936;
 
     /// Alias for Erebot_Interface_RawProfile_InspIRCd::ERR_WORDFILTERED.
-    const ERR_NOSWEAR               = 936;
+    const ERR_NOSWEAR               = 'ERR_WORDFILTERED';
 
     /**
      *  \brief

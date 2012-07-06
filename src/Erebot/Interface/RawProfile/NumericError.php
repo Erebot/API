@@ -43,8 +43,8 @@ extends     Erebot_Interface_RawProfile
     const ERR_NUMERIC_ERR           = 999;
 
     /// Alias for Erebot_Interface_RawProfile_NumericError::ERR_NUMERIC_ERR
-    const ERR_NUMERICERR            = 999;
+    const ERR_NUMERICERR            = 'ERR_NUMERIC_ERR';
 
     /// Alias for Erebot_Interface_RawProfile_NumericError::ERR_NUMERIC_ERR
-    const ERR_LAST_ERR_MSG          = 999;
+    const ERR_LAST_ERR_MSG          = 'ERR_NUMERIC_ERR';
 }

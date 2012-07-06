@@ -41,7 +41,9 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  \format{"Your host is <servername>\, running version <ver>"}
      */
     const RPL_YOURHOST              =   2;
-    const RPL_YOURHOSTIS            =   2;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC2812::RPL_YOURHOST.
+    const RPL_YOURHOSTIS            =   'RPL_YOURHOST';
 
     /**
      *  \brief
@@ -50,7 +52,9 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  \format{"This server was created <date>"}
      */
     const RPL_CREATED               =   3;
-    const RPL_SERVERCREATED         =   3;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC2812::RPL_CREATED.
+    const RPL_SERVERCREATED         =   'RPL_CREATED';
 
     /**
      *  \brief
@@ -62,7 +66,9 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  }
      */
     const RPL_MYINFO                =   4;
-    const RPL_SERVERVERSION         =   4;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC2812::RPL_MYINFO.
+    const RPL_SERVERVERSION         =   'RPL_MYINFO';
 
     /**
      *  \brief
@@ -71,10 +77,31 @@ extends     Erebot_Interface_RawProfile_RFC1459
     const RPL_TRACERECONNECT        = 210;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through B-lines (bounces).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSBLINE            = 220;
 
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through V-lines (deny version).
+     *
+     *  \note
+     *      A deny version list is used to prevent linking
+     *      to another IRC server depending on the version
+     *      and compile flags for the IRCd used by that
+     *      server.
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSVLINE            = 227;
 
     /**
@@ -85,7 +112,9 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  \format{"<server name> <version & debug level> :End of TRACE"}
      */
     const RPL_TRACEEND              = 262;
-    const RPL_ENDOFTRACE            = 262;
+
+    /// Alias for Erebot_Interface_RawProfile_RFC2812::RPL_TRACEEND.
+    const RPL_ENDOFTRACE            = 'RPL_TRACEEND';
 
     /**
      *  \brief
@@ -100,7 +129,8 @@ extends     Erebot_Interface_RawProfile_RFC1459
     /**
      *  \brief
      *      Mostly an alias for
-     *      Erebot_Interface_Event_Raw_RFC2812::RPL_TRYAGAIN.
+     *      Erebot_Interface_Event_Raw_RFC2812::RPL_TRYAGAIN,
+     *      except the text is worded slightly differently.
      *
      *  \format{
      *      "<command> :Server load is temporarily too heavy.
@@ -108,9 +138,8 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  }
      *
      *  \note
-     *      This is mostly the same as
-     *      Erebot_Interface_Event_Raw_RFC2812::RPL_TRYAGAIN
-     *      except the text is worded slightly differently.
+     *      For the purpose of this implementation, it is defined as
+     *      an alias for Erebot_Interface_Event_Raw_RFC2812::RPL_TRYAGAIN.
      *
      *  \note
      *      Although the name and the text imply that it is the server's load
@@ -119,49 +148,89 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *      For example, if you attempt too many STATS requests in a short
      *      period of time, you will get this error. 
      */
-    const RPL_LOAD2HI               = 263;
+    const RPL_LOAD2HI               = 'RPL_TRYAGAIN';
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through D-lines (deny link).
+     *
+     * \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSDLINE            = 275;
 
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is used to indicate the creator
+     *      of a local IRC channel.
+     *
+     * \format{"<channel> <creator>"}
      */
     const RPL_UNIQOPIS              = 325;
 
     /**
-     *  \TODO
+     * \brief
+     *      The numeric is sent for every entry on the invite list
+     *      for a channel when the invite list has been requested.
+     *
+     * \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_INVITELIST            = 346;
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_INVITELIST.
-    const RPL_INVEXLIST             = 346;
+    const RPL_INVEXLIST             = 'RPL_INVITELIST';
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the invite list.
+     *
+     * \format{":End of /INVITE list."}
+     * \format{":End of Invite list"}
+     * \format{"<channel> :End of Channel Invite List"}
+     *
+     * \note
+     *      The exact format for this numeric depends
+     *      on the implementation.
      */
     const RPL_ENDOFINVITELIST       = 347;
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_ENDOFINVITELIST.
-    const RPL_ENDOFINVEXLIST        = 347;
+    const RPL_ENDOFINVEXLIST        = 'RPL_ENDOFINVITELIST';
 
     /**
-     *  \TODO
+     * \brief
+     *      Sent by the server in response to a MODE #channel +e
+     *      command for every entry currently in the ban exception
+     *      list.
+     *
+     * \format{"<channel> <nick>!<ident>@<host>"}
+     * \format{"<channel> <nick>!<ident>@<host> <who> <when>"}
      */
     const RPL_EXCEPTLIST            = 348;
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_EXCEPTLIST.
-    const RPL_EXLIST                = 348;
+    const RPL_EXLIST                = 'RPL_EXCEPTLIST';
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_EXCEPTLIST.
-    const RPL_EXEMPTLIST            = 348;
+    const RPL_EXEMPTLIST            = 'RPL_EXCEPTLIST';
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the exception list for a channel.
+     *
+     * \format{"<channel> :End of Channel Exception List"}
      */
     const RPL_ENDOFEXCEPTLIST       = 349;
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_ENDOFEXCEPTLIST.
-    const RPL_ENDOFEXLIST           = 349;
+    const RPL_ENDOFEXLIST           = 'RPL_ENDOFEXCEPTLIST';
+
     ///  Alias for Erebot_Interface_Event_Raw_RFC2812::RPL_ENDOFEXCEPTLIST.
-    const RPL_ENDOFEXEMPTLIST       = 349;
+    const RPL_ENDOFEXEMPTLIST       = 'RPL_ENDOFEXCEPTLIST';
 
     /**
      *  \brief
@@ -253,5 +322,4 @@ extends     Erebot_Interface_RawProfile_RFC1459
      *  \format{":You're not the original channel operator"}
      */
     const ERR_UNIQOPPRIVSNEEDED     = 485;
-
 }

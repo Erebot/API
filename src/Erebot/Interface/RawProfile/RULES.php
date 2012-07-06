@@ -24,14 +24,44 @@
 interface   Erebot_Interface_RawProfile_RULES
 extends     Erebot_Interface_RawProfile
 {
+    /**
+     * \brief
+     *      This numeric is sent to you for every
+     *      rule in use on this server.
+     *
+     * \format{":- <rule>"}
+     */
     const RPL_RULES                 = 232;
 
+    /**
+     * \brief
+     *      Marks the start of the server rules.
+     *
+     * \format{":- <server> Server Rules - "}
+     */
     const RPL_RULESTART             = 308;
-    const RPL_RULESSTART            = 308;
 
+    /// Alias for Erebot_Interface_RawProfile_RULES::RPL_RULESTART.
+    const RPL_RULESSTART            = 'RPL_RULESTART';
+
+    /**
+     * \brief
+     *      Marks the end of the server rules.
+     *
+     * \format{":End of RULES command."}
+     */
     const RPL_ENDOFRULES            = 309;
-    const RPL_RULESEND              = 309;
 
+    /// Alias for Erebot_Interface_RawProfile_RULES::RPL_ENDOFRULES.
+    const RPL_RULESEND              = 'RPL_ENDOFRULES';
+
+    /**
+     * \brief
+     *      Sent to indicate that the server does not
+     *      have any rules defined.
+     *
+     * \format{":RULES File is missing"}
+     */
     const ERR_NORULES               = 434;
 }
 

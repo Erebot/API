@@ -40,10 +40,20 @@ extends     Erebot_Interface_RawProfile
     const RPL_GLOBALUSERS           = 266;
 
     const RPL_CREATIONTIME          = 329;
-    const RPL_CHANNELCREATED        = 329;
+
+    /**
+     * Alias for
+     * Erebot_Interface_RawProfile_CommonExtensions::RPL_CREATIONTIME.
+     */
+    const RPL_CHANNELCREATED        = 'RPL_CREATIONTIME';
 
     const RPL_TOPICWHOTIME          = 333;
-    const RPL_TOPICTIME             = 333;
+
+    /**
+     * Alias for
+     * Erebot_Interface_RawProfile_CommonExtensions::RPL_TOPICWHOTIME.
+     */
+    const RPL_TOPICTIME             = 'RPL_TOPICWHOTIME';
 
     /**
      *  \TODO

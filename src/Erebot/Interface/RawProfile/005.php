@@ -19,15 +19,22 @@
 /**
  * \brief
  *      Raw profile for IRC servers that support
- *      raw 005 ("ISUPPORT" or "PROTOCTL").
+ *      numeric 005 (RPL_ISUPPORT).
  */
 interface   Erebot_Interface_RawProfile_005
 extends     Erebot_Interface_RawProfile
 {
-    /// Specific commands/options supported by the server.
+    /**
+     * \brief
+     *      Gives information of the specific commands/options
+     *      supported by the server.
+     *
+     * \format{"<features+> :are supported by this server"}
+     *
+     * \note
+     *      This numeric conflicts with the one defined in RFC 2812
+     *      for Erebot_Interface_RawProfile_Bounce::RPL_BOUNCE.
+     */
     const RPL_ISUPPORT              =   5;
-
-    /// Active PROTOcol ConTroL flags (obsolete).
-    const RPL_PROTOCTL              =   5;
 }
 

@@ -24,7 +24,24 @@
 interface   Erebot_Interface_RawProfile_ReservedRFC1459
 extends     Erebot_Interface_RawProfile
 {
+    /**
+     *  \brief
+     *      Used when tracing connections to give information
+     *      on a class of connections.
+     *
+     *  \format{"Class <class> <count>"}
+     */
     const RPL_TRACECLASS            = 209;
+
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through Q-lines (ban nick).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSQLINE            = 217;
 
     /**
@@ -79,6 +96,9 @@ extends     Erebot_Interface_RawProfile
     const RPL_CLOSEEND              = 363;
 
 
+    /**
+     *  \TODO
+     */
     const RPL_INFOSTART             = 373;
 
     /**
@@ -88,12 +108,31 @@ extends     Erebot_Interface_RawProfile
 
 
     /**
-     *  \brief
-     *      Sent by a server to a user to inform that access to the
-     *      server will soon be denied.
+     * \brief
+     *      Sent by a server to a user to inform him/her
+     *      that access to the server will soon be denied.
+     *
+     * \format{""}
      */
     const ERR_YOUWILLBEBANNED       = 466;
 
+    /**
+     * \brief
+     *      This numeric is sent back to you if you specify
+     *      an invalid mask for a channel.
+     *
+     * \format{"<chan mask> :Bad Channel Mask"}
+     */
     const ERR_BADCHANMASK           = 476;
+
+    /**
+     * \brief
+     *      This numeric is not used anymore.
+     *
+     * \note
+     *      InspIRCd defines numeric 492 as ERR_NOCTCPALLOWED.
+     *
+     * \see Erebot_Interface_RawProfile_InspIRCd::ERR_NOCTCPALLOWED.
+     */
     const ERR_NOSERVICEHOST         = 492;
 }

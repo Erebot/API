@@ -25,17 +25,37 @@ interface   Erebot_Interface_RawProfile_MAP
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      Sent as a response to a MAP command,
+     *      with information on the network's map.
+     *
+     * \note
+     *      Unfortunately, the format of this numeric
+     *      changes heavily depending on the IRCd.
      */
     const RPL_MAP                   =   6;
 
-    /// Alias for Erebot_Interface_Event_Raw::RPL_MAP.
+    /**
+     * \brief
+     *      Sent as a response to a MAP command,
+     *      to indicate that the network contains
+     *      more servers than what was displayed.
+     *
+     * \note
+     *      Unfortunately, the format of this numeric
+     *      changes heavily depending on the IRCd.
+     */
     const RPL_MAPMORE               =   6;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the network's map.
+     *
+     * \format{":End of /MAP"}
      */
     const RPL_MAPEND                =   7;
-    const RPL_ENDMAP                =   7;
+
+    /// Alias for Erebot_Interface_RawProfile_MAP::RPL_MAPEND.
+    const RPL_ENDMAP                =   'RPL_MAPEND';
 }
 

@@ -26,7 +26,8 @@ extends     Erebot_Interface_RawProfile
 {
     /**
      *  \brief
-     *      Reply format used by ISON to list replies to the query list.
+     *      Reply format used by ISON to list replies
+     *      to the query list.
      *
      *  \format{":*1<nick> *( " " <nick> )"}
      */

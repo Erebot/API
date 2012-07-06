@@ -62,7 +62,9 @@ extends     Erebot_Interface_RawProfile
      */
     const RPL_CLOSEEND              = 363;
 
-
+    /**
+     *  \TODO
+     */
     const RPL_INFOSTART             = 373;
 
     /**
@@ -71,42 +73,108 @@ extends     Erebot_Interface_RawProfile
     const RPL_MYPORTIS              = 384;
 
     /**
-     *  \TODO
-     *  "C <address> * <server> <port> <class>"
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through C-lines (connect).
      *
      *  \note
-     *      The "*" is treated as a litteral, not some
-     *      wildcard character.
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSCLINE            = 213;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through N-lines (accept connection).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSNLINE            = 214;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through I-lines (allow).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSILINE            = 215;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through K-lines (ban user).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSKLINE            = 216;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through Q-lines (ban nick).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSQLINE            = 217;
 
     /**
-     *  \TODO
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through Y-lines (class).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
      */
     const RPL_STATSYLINE            = 218;
 
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through V-lines (deny version).
+     *
+     *  \note
+     *      A deny version list is used to prevent linking
+     *      to another IRC server depending on the version
+     *      and compile flags for the IRCd used by that
+     *      server.
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSVLINE            = 240;
+
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through L-lines (leaf).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSLLINE            = 241;
+
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through H-lines (hub).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSHLINE            = 244;
 
     /**
@@ -115,8 +183,37 @@ extends     Erebot_Interface_RawProfile
     const RPL_STATSSLINE            = 245;
 
     const RPL_STATSPING             = 246;
+
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through B-lines (bounces).
+     *
+     *  \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSBLINE            = 247;
+
+    /**
+     *  \brief
+     *      This numeric is used for every entry configured
+     *      through D-lines (deny link).
+     *
+     * \note
+     *      The format for this numeric is highly dependent
+     *      on the implementation.
+     */
     const RPL_STATSDLINE            = 250;
 
+    /**
+     * \brief
+     *      This numeric is not used anymore.
+     *
+     * \note
+     *      InspIRCd defines numeric 492 as ERR_NOCTCPALLOWED.
+     *
+     * \see Erebot_Interface_RawProfile_InspIRCd::ERR_NOCTCPALLOWED.
+     */
     const ERR_NOSERVICEHOST         = 492;
 }

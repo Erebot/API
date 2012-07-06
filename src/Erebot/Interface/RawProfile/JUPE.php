@@ -25,12 +25,19 @@ interface   Erebot_Interface_RawProfile_JUPE
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is used to display information
+     *      about an entry in the JUPE list.
+     *
+     * \format{"<server> <expire> <local> <active> :<reason>"}
      */
-    const RPL_JUPE                  = 282;
+    const RPL_JUPELIST              = 282;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the JUPE list.
+     *
+     * \format{":End of Jupe List"}
      */
     const RPL_ENDOFJUPELIST         = 283;
 }

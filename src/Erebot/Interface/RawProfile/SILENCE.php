@@ -25,17 +25,30 @@ interface   Erebot_Interface_RawProfile_SILENCE
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent in reply to a SILENCE
+     *      command with no argument for each entry in
+     *      your silence list.
+     *
+     * \format{"<mask>"}
      */
     const RPL_SILELIST              = 271;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the silence list.
+     *
+     * \format{":End of Silence List"}
      */
     const RPL_ENDOFSILELIST         = 272;
 
     /**
-     *  \TODO
+     * \brief
+     *      This error is sent back when you try to add
+     *      someone to your silence list and the list is
+     *      already full.
+     *
+     * \format{"<mask> :Your silence list is full"}
      */
     const ERR_SILELISTFULL          = 511;
 }

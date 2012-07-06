@@ -25,27 +25,54 @@ interface   Erebot_Interface_RawProfile_DCCINFO
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent to you if you try to add
+     *      someone to your DCC allow list and the list
+     *      is already full.
+     *
+     * \format{"<peer> :Your dcc allow list is full.
+                Maximum size is <limit> entries"}
      */
     const ERR_TOOMANYDCC            = 514;
 
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent back to you after every command
+     *      to add or remove some user from your DCC allow list.
+     *
+     * \note
+     *      The message changes depending of the type of action
+     *      that occurred (user addition or user removal).
+     *
+     * \format{":<peer> has been added to your DCC allow list"}
+     * \format{":<peer> has been removed from your DCC allow list"}
      */
     const RPL_DCCSTATUS             = 617;
 
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent in response to a DCCALLOW LIST command
+     *      for every person that is currently present in your DCC allow
+     *      list.
+     *
+     * \format{":<peer>"}
      */
     const RPL_DCCLIST               = 618;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of either the DCCALLOW HELP command
+     *      or the DCCALLOW LIST command.
+     *
+     * \format{":End of DCCALLOW help"}
+     * \format{":End of DCCALLOW list"}
      */
     const RPL_ENDOFDCCLIST          = 619;
 
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent as a reply to several commands
+     *      dealing with the DCCALLOW list.
      */
     const RPL_DCCINFO               = 620;
 }

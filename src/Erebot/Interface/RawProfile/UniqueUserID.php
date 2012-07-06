@@ -33,7 +33,8 @@ extends     Erebot_Interface_RawProfile
      *  \format{"<UUID> :your unique ID"}
      */
     const RPL_YOURID                =  42;
+
     /// Alias for Erebot_Interface_RawProfile_UniqueUserID::RPL_YOURID
-    const RPL_YOURUUID              =  42;
+    const RPL_YOURUUID              =  'RPL_YOURID';
 }
 

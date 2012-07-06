@@ -25,12 +25,22 @@ interface   Erebot_Interface_RawProfile_GLIST
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is used to display information
+     *      about an entry in the G-line list.
+     *
+     * \format{"<user> <expire> <last modification> <lifetime>
+     *          <local> <flags> :<reason>"}
+     * \format{"<user>@<host> <expire> <last modification> <lifetime>
+     *          <local> <flags> :<reason>"}
      */
     const RPL_GLIST                 = 280;
 
     /**
-     *  \TODO
+     * \brief
+     *      Marks the end of the G-line list.
+     *
+     * \format{":End of G-line List"}
      */
     const RPL_ENDOFGLIST            = 281;
 }

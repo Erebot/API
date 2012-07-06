@@ -28,14 +28,41 @@ extends     Erebot_Interface_RawProfile_RFC2812,
             Erebot_Interface_RawProfile_DCCINFO
 {
     /**
-     *  \TODO
+     * \brief
+     *      Reply to a R(egexp) WHO command.
      */
     const RPL_RWHOREPLY             = 354;
-    const ERR_DESYNC                = 484;
+
+    /**
+     * \brief
+     *      Returned to a user trying to send a message
+     *      to a service without specifying the proper
+     *      hostname (ie. "/msg nickserv ..." instead
+     *      of "/msg nickserv@services.dal.net ...").
+     *
+     * \note
+     *      This numeric is used in an attempt to protect
+     *      users against abuse by other users changing
+     *      their nick to "NickServ" etc. after a netsplit.
+     *
+     * \note
+     *      Whether this numeric is used or not when
+     *      a message is received without a hostname
+     *      depends on the server's configuration.
+     *
+     * \format{":Error! \"/msg %s\" is no longer supported.
+                Use \"/msg %s@%s\" or \"/%s\" instead."}
+     */
     const ERR_MSGSERVICES           = 487;
 
     /**
-     *  \TODO
+     * \brief
+     *      Returned to a user trying to send a message
+     *      to a person they share no common channel with
+     *      and user mode +C is enabled for that person.
+     *
+     * \format{":You cannot message that person because you
+     *          do not share a common channel with them."}
      */
     const ERR_NOSHAREDCHAN          = 493;
 }

@@ -32,7 +32,12 @@ interface   Erebot_Interface_RawProfile_AwayLimit
 extends     Erebot_Interface_RawProfile
 {
     /**
-     *  \TODO
+     * \brief
+     *      This numeric is sent by the IRC server
+     *      when two many AWAY commands have been
+     *      issued by the user in a few seconds.
+     *
+     * \format{":Too Many aways - Flood Protection activated"}
      */
     const ERR_TOOMANYAWAY           = 429;
 }

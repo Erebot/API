@@ -33,7 +33,22 @@
 interface   Erebot_Interface_RawProfile_Bounce
 extends     Erebot_Interface_RawProfile
 {
+    /**
+     * \brief
+     *      Sent during connection to point the connecting user
+     *      to another server that may be used to reduce lag.
+     *
+     * \format{"<server> <port> :Please use this Server/Port instead"}
+     *
+     * \note
+     *      This raw is defined as numeric 005 by RFC 2812,
+     *      but this usage is widely ignored by existing
+     *      implementations as it conflicts with the definition
+     *      of Erebot_Interface_RawProfile_005::RPL_ISUPPORT.
+     */
     const RPL_BOUNCE                =  10;
-    const RPL_REDIR                 =  10;
+
+    /// Alias for Erebot_Interface_RawProfile_Bounce::RPL_BOUNCE.
+    const RPL_REDIR                 =  'RPL_BOUNCE';
 }
 
