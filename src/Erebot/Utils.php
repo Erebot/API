@@ -407,25 +407,28 @@ class Erebot_Utils
         $base       = 1000;
 
         switch (strlen($suffix)) {
-            case 0:
+            case 0:{
                 return NULL;
+            }
 
             case 1:
                 $exp = 0;
                 break;
 
-            case 3:
+            case 3:{
                 // 3 chars? We MUST be using SI units then.
                 if ($suffix[1] != 'i')
                     return NULL;
                 $suffix = $suffix[0].$suffix[1];
                 $base   = 1024;
                 // We don't break on purpose.
+            }
 
-            case 2:
+            case 2:{
                 if (!isset($exponents[$suffix[0]]))
                     return NULL;
                 $exp = $exponents[$suffix[0]];
+            }
         }
         return (int) ($size * pow($base, $exp));
     }
