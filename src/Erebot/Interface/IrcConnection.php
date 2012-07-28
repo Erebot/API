@@ -31,26 +31,22 @@ extends     Erebot_Interface_ModuleContainer,
             Erebot_Interface_Collated
 {
     /**
-     * Returns the raw profile loader associated with
+     * Returns the numeric profile associated with
      * this connection.
      *
-     * \retval Erebot_Interface_RawProfileLoader
-     *      The raw profile loader associated with this
+     * \retval Erebot_NumericProfile_Base
+     *      The numeric profile associated with this
      *      connection.
      */
-    public function getRawProfileLoader();
+    public function getNumericProfile();
 
     /**
-     * Sets the new raw profile loader to use for this
-     * connection.
+     * Sets the new numeric profile for this connection.
      *
-     * \param Erebot_Interface_RawProfileLoader $loader
-     *      New raw profile loader to use for this
-     *      connection.
+     * \param Erebot_NumericProfile_Base $profile
+     *      The new numeric profile to use for this connection.
      */
-    public function setRawProfileLoader(
-        Erebot_Interface_RawProfileLoader $loader
-    );
+    public function setNumericProfile(Erebot_NumericProfile_Base $profile);
 
     /**
      * Determines if the given string is a valid channel name or not.
