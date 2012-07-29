@@ -16,6 +16,16 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/**
+ * \brief
+ *      Abstract class that serves as a base to create
+ *      a numeric profile for an IRCd server.
+ *
+ * \note
+ *      Several constants are defined by this class,
+ *      that match common aliases found in IRC server
+ *      softwares.
+ */
 abstract class  Erebot_NumericProfile_Base
 implements      ArrayAccess
 {

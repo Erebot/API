@@ -27,7 +27,7 @@
  *      informative about what Erebot supports, not about
  *      what may actually be used in real life applications.
  */
-class   Erebot_Interface_Numerics
+interface Erebot_Interface_Numerics
 {
     /**
      * \brief
@@ -42,8 +42,14 @@ class   Erebot_Interface_Numerics
      */
     const RPL_ISUPPORT              = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSCLONE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISTEXT             = NULL;
 
     /**
@@ -52,6 +58,9 @@ class   Erebot_Interface_Numerics
      */
     const RPL_RWHOREPLY             = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NOCTRLSONCHAN         = NULL;
 
     /**
@@ -95,26 +104,59 @@ class   Erebot_Interface_Numerics
      */
     const ERR_OWNMODE               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSCONN             = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_LOCALUSERS            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_GLOBALUSERS           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_CREATIONTIME          = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_TOPICWHOTIME          = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_BANNICKCHANGE         = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_SERVICESDOWN          = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_ONLYSERVERSCANCHANGE  = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NEEDREGGEDNICK        = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NONONREG              = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_LISTSYNTAX            = NULL;
 
     /**
@@ -338,23 +380,47 @@ class   Erebot_Interface_Numerics
      */
     const RPL_MAPEND                = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_SERVICEINFO           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFSERVICES         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_SERVICE               = NULL;
 
     /// Dummy reply number. Not used.
     const RPL_NONE                  = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_KILLDONE              = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_CLOSING               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_CLOSEEND              = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_INFOSTART             = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_MYPORTIS              = NULL;
 
     /**
@@ -462,8 +528,14 @@ class   Erebot_Interface_Numerics
      */
     const RPL_STATSHLINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSSLINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSPING             = NULL;
 
     /**
@@ -1090,10 +1162,19 @@ class   Erebot_Interface_Numerics
      */
     const RPL_ENDOFLINKS            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFNAMES            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_BANLIST               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFBANLIST          = NULL;
 
     /**
@@ -1105,14 +1186,29 @@ class   Erebot_Interface_Numerics
      */
     const RPL_ENDOFWHOWAS           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_INFO                  = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_MOTD                  = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFINFO             = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_MOTDSTART             = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFMOTD             = NULL;
 
     /**
@@ -1149,12 +1245,24 @@ class   Erebot_Interface_Numerics
      */
     const RPL_TIME                  = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_USERSSTART            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_USERS                 = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFUSERS            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_NOUSERS               = NULL;
 
     /**
@@ -1808,30 +1916,89 @@ class   Erebot_Interface_Numerics
      */
     const ERR_UNIQOPPRIVSNEEDED     = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_NMODEIS               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSZLINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NOCOLORSONCHAN        = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_SERVERONLY            = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_DESYNC                = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_SSLCLIENTSONLY        = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISSERVICES         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_SETTINGS              = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFSETTINGS         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_IRCOPS                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFIRCOPS           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_OPERMOTDSTART         = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_OPERMOTD              = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFOPERMOTD         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOHOST               = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_EXEMPTLISTFULL        = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NOOPERMOTD            = NULL;
 
     /**
@@ -1844,69 +2011,294 @@ class   Erebot_Interface_Numerics
      */
     const RPL_YOURID                = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_SNOMASK               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_REMOTEISUPPORT        = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSHELP             = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSOLDNLINE         = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_SQLINE                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSTLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSBANVER           = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSSPAMF            = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSEXCEPTTKL        = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_STATSXLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPHDR               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPOP                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPTLR               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPHLP               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPFWD               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_HELPIGN               = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_TEXT                  = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISHELPOP           = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_WHOISSPECIAL          = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_WHOISBOT              = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_USERIP                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_QLIST                 = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFQLIST            = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ALIST                 = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_ENDOFALIST            = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_SERVICECONFUSED       = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NONICKCHANGE          = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_HOSTILENAME           = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NOHIDING              = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NOTFORHALFOPS         = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_LINKSET               = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_LINKCHANNEL           = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_LINKFAIL              = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_CANNOTKNOCK           = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_ATTACKDENY            = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_KILLDENY              = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NOTFORUSERS           = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_HTMDISABLED           = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_SECUREONLYCHAN        = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_CHANOWNPRIVNEEDED     = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_TOOMANYJOINS          = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_DISABLED              = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_NOINVITE              = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_ADMONLY               = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_OPERSPVERIFY          = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_REAWAY                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_GONEAWAY              = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_NOTAWAY               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_CLEARWATCH            = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_NOWISAWAY             = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_DUMPING               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_DUMPRPL               = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_EODUMP                = NULL;
+
+    /**
+     *  \TODO
+     */
     const RPL_SPAMCMDFWD            = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_CANNOTDOCOMMAND       = NULL;
+
+    /**
+     *  \TODO
+     */
     const ERR_CANNOTCHANGECHANMODE  = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_INVALIDUSERNAME       = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_ISCHANSERVICE         = NULL;
 
     /// Alias for Erebot_Interface_Numerics::ERR_ALREADYREGISTRED.
@@ -1915,6 +2307,9 @@ class   Erebot_Interface_Numerics
     /// Alias for Erebot_Interface_Numerics::ERR_NONICKCHANGE.
     const ERR_CANTCHANGENICK        = 'ERR_NONICKCHANGE';
 
+    /**
+     *  \TODO
+     */
     const ERR_CANTJOINOPERSONLY     = 'ERR_OPERONLY';
 
     /// Alias for Erebot_Interface_Numerics::ERR_CHANOPRIVSNEEDED.
@@ -1926,15 +2321,27 @@ class   Erebot_Interface_Numerics
     /// Alias for Erebot_Interface_Numerics::ERR_NUMERIC_ERR.
     const ERR_LAST_ERR_MSG          = 'ERR_NUMERIC_ERR';
 
+    /**
+     *  \TODO
+     */
     const ERR_NCHANGETOOFAST        = 'ERR_NICKTOOFAST';
 
+    /**
+     *  \TODO
+     */
     const ERR_NEEDPONG              = 'ERR_BADPING';
 
+    /**
+     *  \TODO
+     */
     const ERR_NOCTCP                = 'ERR_NOCTCPALLOWED';
 
     /// Alias for Erebot_Interface_Numerics::ERR_WORDFILTERED.
     const ERR_NOSWEAR               = 'ERR_WORDFILTERED';
 
+    /**
+     *  \TODO
+     */
     const ERR_NOTSSLCLIENT          = 'ERR_NOSSL';
 
     /// Alias for Erebot_Interface_Numerics::ERR_NUMERIC_ERR.
@@ -1944,6 +2351,7 @@ class   Erebot_Interface_Numerics
     const ERR_STARTTLS              = 'ERR_STARTTLSFAIL';
 
     // Misspelled in Bahamut.
+    /// Alias for Erebot_Interface_Numerics::ERR_TARGETTOOFAST.
     const ERR_TARGETTOFAST          = 'ERR_TARGETTOOFAST';
 
     /// Alias for Erebot_Interface_Numerics::RPL_CREATIONTIME.
@@ -1973,6 +2381,9 @@ class   Erebot_Interface_Numerics
     ///  Alias for Erebot_Interface_Numerics::RPL_INVITELIST.
     const RPL_INVEXLIST             = 'RPL_INVITELIST';
 
+    /**
+     *  \TODO
+     */
     const RPL_LISTSYNTAX            = 'RPL_COMMANDSYNTAX';
 
     /**
@@ -2018,6 +2429,9 @@ class   Erebot_Interface_Numerics
     /// Alias for Erebot_Interface_Numerics::RPL_TOPICWHOTIME.
     const RPL_TOPICTIME             = 'RPL_TOPICWHOTIME';
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISSECURE           = 'RPL_USINGSSL';
 
     /// Alias for Erebot_Interface_Numerics::RPL_YOUREOPER.
@@ -2029,56 +2443,129 @@ class   Erebot_Interface_Numerics
     /// Alias for Erebot_Interface_Numerics::RPL_YOURID.
     const RPL_YOURUUID              = 'RPL_YOURID';
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSFLINE            = NULL;  // UltimateIRCd
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSCOUNT            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSGLINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSULINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSDEBUG            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_USINGSSL              = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISREGNICK          = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISADMIN            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISSADMIN           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISSVCMSG           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_COMMANDSYNTAX         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISACTUALLY         = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_WHOISHOST             = NULL;
 
-    const RPL_WHOISMODES            = NULL;  // UnrealIRCd
+    /**
+     *  \TODO
+     */
+    const RPL_WHOISMODES            = NULL;
 
-    const ERR_BANONCHAN             = NULL;
-
+    /**
+     *  \TODO
+     */
     const ERR_NICKTOOFAST           = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_TARGETTOOFAST         = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_BADCHANNAME           = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_CHANBANREASON         = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NOSSL                 = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_NOCTCPALLOWED         = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_GHOSTEDCLIENT         = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_BADPING               = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_OPERONLY              = NULL;  // UnrealIRCd
 
+    /**
+     *  \TODO
+     */
     const ERR_WHOSYNTAX             = NULL;
 
+    /**
+     *  \TODO
+     */
     const ERR_WHOLIMEXCEED          = NULL;
 
     /**
@@ -2102,10 +2589,19 @@ class   Erebot_Interface_Numerics
      */
     const RPL_WHOISCHANOP           = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_SAVENICK              = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSPLINE            = NULL;
 
+    /**
+     *  \TODO
+     */
     const RPL_STATSELINE            = NULL;
 
     /**
@@ -2387,5 +2883,504 @@ class   Erebot_Interface_Numerics
      * \format{":End of WATCH <command>"}
      */
     const RPL_ENDOFWATCHLIST        = NULL;
+
+    ##############################################
+    ############## TO BE SORTED OUT ##############
+    ##############################################
+
+    /**
+     *  \TODO
+     */
+    const ERR_ACCEPTEXIST           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_ACCEPTFULL            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_ACCEPTNOT             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BADEXPIRE             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BADFEATVALUE          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BADLOGSYS             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BADLOGTYPE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BADLOGVALUE           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_BANONCHAN             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_CHANOPEN              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_CHANSECURED           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_DONTCHEAT             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_ERRONEOUSNICKNAME     = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_HELPNOTFOUND          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_INPUTTOOLONG          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_INVALIDCAPCMD         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_INVALIDKEY            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_ISOPERLCHAN           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_KNOCKDISABLED         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_KNOCKONCHAN           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_LASTERROR             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_LONGMASK              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_MASKTOOWIDE           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOFEATURE             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOMANAGER             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOPRIVS               = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOSUCHGLINE           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOSUCHJUPE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOTLOWEROPLEVEL       = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_NOTMANAGER            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_OPERONLYCHAN          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_QUARANTINED           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_QUERYTOOLONG          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_SERVICENAMEINUSE      = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_SSLONLYCHAN           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_STATSKLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_TOOMANYKNOCK          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_TOOMANYUSERS          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_UNIQOPRIVSNEEDED      = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_UNKNOWNCAPCMD         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_UPASSNOTSET           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_UPASS_SAME_APASS      = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_UPASSSET              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_USERNOTONSERV         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_VOICENEEDED           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const ERR_WRONGPONG             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ACCEPTLIST            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_APASSWARN_CLEAR       = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_APASSWARN_SECRET      = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_APASSWARN_SET         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_DELNAMREPLY           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ENDOFACCEPT           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ENDOFHELP             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ENDOFMODLIST          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ENDOFOMOTD            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ENDOFREOPLIST         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ETRACE                = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ETRACEEND             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ETRACEFULL            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ETRACE_FULL           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_FEATURE               = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_HELLO                 = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_HELPSTART             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_HELPTXT               = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_HOSTHIDDEN            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ISCAPTURED            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ISSUEDINVITE          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_ISUNCAPTURED          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_KNOCK                 = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_KNOCKDLVR             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_LISTUSAGE             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_MAPSTART              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_MODLIST               = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_NOTESTLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_NOTOPERANYMORE        = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_OMOTD                 = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_OMOTDSTART            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_PRIVS                 = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_PROTOCTL              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_REOPLIST              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_RSACHALLENGE          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_SNOMASKIS             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_SQLINE_NICK           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSALINE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSDEFINE           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSENGINE           = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSIAUTH            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSJLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSRLINE            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_STATSVERBOSE          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TARGNOTIFY            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TARGUMODEG            = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TESTLINE              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TESTMASK              = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TOPIC_WHO_TIME        = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_TRACECAPTURED         = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_UMODEGMSG             = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_WHOISACCOUNT          = NULL;
+
+    /**
+     *  \TODO
+     */
+    const RPL_WHOSPCRPL             = NULL;
 }
 
