@@ -229,14 +229,14 @@ implements      ArrayAccess
         if (!is_string($offset))
             throw new Erebot_InvalidValueException('Not a valid name');
 
-        $seen       = array();
-        $rawName    = strtoupper($offset);
-        while (!in_array($rawName, $seen)) {
-            $seen[] = $rawName;
+        $seen   = array();
+        $name   = strtoupper($offset);
+        while (!in_array($name, $seen)) {
+            $seen[] = $name;
 
-            if (!$this->_reflector->hasConstant($rawName))
+            if (!$this->_reflector->hasConstant($name))
                 return NULL;
-            $constValue = $this->_reflector->getConstant($rawName);
+            $constValue = $this->_reflector->getConstant($name);
 
             if (is_int($constValue) &&
                 $constValue > 0 &&
@@ -245,7 +245,7 @@ implements      ArrayAccess
             }
 
             if (is_string($constValue)) {
-                $rawName = strtoupper($constValue);
+                $name = strtoupper($constValue);
                 continue;
             }
 

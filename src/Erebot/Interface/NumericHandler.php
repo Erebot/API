@@ -18,29 +18,30 @@
 
 /**
  * \brief
- *      Interface for raw message handlers.
+ *      Interface for numeric message handlers.
  *
  * This interface provides the necessary methods to handle
- * a raw numeric message from an IRC server.
+ * a numeric message from an IRC server.
  */
-interface Erebot_Interface_RawHandler
+interface Erebot_Interface_NumericHandler
 {
     /**
-     * Sets the raw numeric code associated with this handler.
+     * Sets the numeric code associated with this handler.
      *
-     * \param int|Erebot_RawReference $raw
-     *      New raw numeric code to assign to this handler,
+     * \param int|Erebot_NumericReference $numeric
+     *      New numeric code to assign to this handler,
      *      or a reference to it.
      */
-    public function setRaw($raw);
+    public function setNumeric($numeric);
 
     /**
-     * Returns the raw numeric code associated with this handler.
+     * Returns the numeric code associated with this handler.
      *
-     * \retval int|Erebot_RawReference
-     *      The raw numeric code for this handler, or a reference to it.
+     * \retval int|Erebot_NumericReference
+     *      The numeric code for this handler,
+     *      or a reference to it.
      */
-    public function getRaw();
+    public function getNumeric();
 
     /**
      * Sets the callback function/method associated with
@@ -61,16 +62,16 @@ interface Erebot_Interface_RawHandler
     public function getCallback();
 
     /**
-     * Given a raw message, this methods tries to handle it.
+     * Given a numeric message, this methods tries to handle it.
      *
-     * \param Erebot_Interface_Event_Raw $raw
-     *      The raw message to try to handle.
+     * \param Erebot_Interface_Event_Numeric $numeric
+     *      The numeric message to try to handle.
      *
      * \note
      *      It is the implementation's duty to make any appropriate
      *      checks on the message and take any action depending on
      *      the result of those checks.
      */
-    public function handleRaw(Erebot_Interface_Event_Raw $raw);
+    public function handleNumeric(Erebot_Interface_Event_Numeric $numeric);
 }
 

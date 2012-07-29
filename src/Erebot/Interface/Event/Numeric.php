@@ -18,29 +18,29 @@
 
 /**
  * \brief
- *      Interface to represent a raw numeric message.
+ *      Interface to represent a numeric message.
  *
  * This interface provides the necessary methods
- * to represent a raw numeric message from an IRC server.
+ * to represent a numeric message from an IRC server.
  */
-interface   Erebot_Interface_Event_Raw
+interface   Erebot_Interface_Event_Numeric
 extends     Erebot_Interface_Event_Base_Generic,
             Erebot_Interface_Event_Base_Source,
             Erebot_Interface_Event_Base_Target,
             Erebot_Interface_Event_Base_Text
 {
     /**
-     * Returns the raw numeric code associated with
+     * Returns the numeric code associated with
      * the current message.
      *
      * \retval int
-     *      The raw numeric code of this message.
+     *      The numeric code of this message.
      *
      * \note
      *      Multiple constants may point to the same code
      *      as the same code may have different interpretations
      *      depending on the server (IRCd) where it is used.
      */
-    public function getRaw();
+    public function getCode();
 }
 

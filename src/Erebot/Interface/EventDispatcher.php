@@ -24,24 +24,26 @@
 interface Erebot_Interface_EventDispatcher
 {
     /**
-     * Registers a raw handler on this connection.
+     * Registers a numeric handler on this connection.
      *
-     * \param Erebot_Interface_RawHandler $handler
+     * \param Erebot_Interface_NumericHandler $handler
      *      The handler to register.
      */
-    public function addRawHandler(Erebot_Interface_RawHandler $handler);
+    public function addNumericHandler(Erebot_Interface_NumericHandler $handler);
 
     /**
-     * Unregisters a raw handler on this connection.
+     * Unregisters a numeric handler on this connection.
      *
-     * \param Erebot_Interface_RawHandler $handler
+     * \param Erebot_Interface_NumericHandler $handler
      *      The handler to unregister.
      *
      * \throw Erebot_NotFoundException
      *      Thrown when the given handler could not be found,
      *      such as when it was not registered on this connection.
      */
-    public function removeRawHandler(Erebot_Interface_RawHandler $handler);
+    public function removeNumericHandler(
+        Erebot_Interface_NumericHandler $handler
+    );
 
     /**
      * Registers an event handler on this connection.
@@ -71,9 +73,9 @@ interface Erebot_Interface_EventDispatcher
      *      An event to dispatch.
      *
      * \note
-     *      For the purposes of this method, raw messages (objects
-     *      implementing the Erebot_Interface_Event_Raw interface)
-     *      are also considered to be "events".
+     *      For the purposes of this method, numeric messages (objects
+     *      implementing the Erebot_Interface_Event_Numeric interface)
+     *      are considered "events" too.
      */
     public function dispatch(Erebot_Interface_Event_Base_Generic $event);
 }

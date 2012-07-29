@@ -113,7 +113,7 @@ interface Erebot_Interface_IrcParser
      *      trailing "\r\n" sequence already removed.
      *
      * \note
-     *      Events/raws are dispatched as necessary
+     *      Events are dispatched as necessary
      *      by this method.
      */
     public function parseLine($msg);

@@ -116,8 +116,8 @@ abstract class Erebot_Module_Base
             '!Callable'         => 'Erebot_Callable',
             '!EventHandler'     => 'Erebot_EventHandler',
             '!Identity'         => 'Erebot_Identity',
-            '!RawHandler'       => 'Erebot_RawHandler',
-            '!RawReference'     => 'Erebot_RawReference',
+            '!NumericHandler'   => 'Erebot_NumericHandler',
+            '!NumericReference' => 'Erebot_NumericReference',
             '!Styling'          => 'Erebot_Styling',
             '!Styling_Currency' => 'Erebot_Styling_Currency',
             '!Styling_DateTime' => 'Erebot_Styling_DateTime',
@@ -645,19 +645,19 @@ abstract class Erebot_Module_Base
 
     /**
      * This method is a simple shortcut to create references
-     * to raw messages.
+     * to numeric messages.
      *
-     * \param $rawName
-     *      Name of the raw message for which a reference
-     *      must be returned.
+     * \param $name
+     *      Name of the numeric message for which a reference
+     *      must be returned (eg. "RPL_WELCOME").
      *
-     * \retval Erebot_Interface_RawReference
-     *      A raw reference.
+     * \retval Erebot_Interface_NumericReference
+     *      A numeric reference.
      */
-    public function getRawRef($rawName)
+    public function getNumRef($name)
     {
-        $cls = $this->getFactory('!RawReference');
-        return new $cls($this->_connection, $rawName);
+        $cls = $this->getFactory('!NumericReference');
+        return new $cls($this->_connection, $name);
     }
 }
 

@@ -38,7 +38,7 @@ extends     Erebot_Interface_Connection
 
     /**
      * Processes all lines in the incoming FIFO.
-     * This method will dispatch the proper events/raws
+     * This method will dispatch the proper events
      * for each line in the FIFO.
      */
     public function process();
