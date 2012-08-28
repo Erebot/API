@@ -1354,7 +1354,7 @@ interface Erebot_Interface_Numerics
      *      Sent by a server to a user to inform him/her
      *      that access to the server will soon be denied.
      *
-     * \format{}
+     * \format
      *
      * \note
      *      An empty string is sent by the IRC server as the message
