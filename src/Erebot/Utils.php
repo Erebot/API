@@ -454,6 +454,9 @@ class Erebot_Utils
      * \retval string
      *      Full path to the resource.
      *
+     * \throw Exception
+     *      The resource could not be found.
+     *
      * \warning
      *      Don't try to pass a value to the \a $root parameter
      *      unless you know exactly what you are doing!
@@ -466,6 +469,8 @@ class Erebot_Utils
             $erebotRoot = $root;
         if ($erebotRoot === NULL)
             $erebotRoot = dirname(__FILE__);
+        if ($component === NULL)
+            return;
 
         if (substr($resource, 0, strlen(DIRECTORY_SEPARATOR)) ==
             DIRECTORY_SEPARATOR) {
@@ -514,7 +519,10 @@ class Erebot_Utils
             $base .=    DIRECTORY_SEPARATOR . 'pear.erebot.net' .
                         DIRECTORY_SEPARATOR . $component;
         }
-        return $base . DIRECTORY_SEPARATOR . $resource;
+        $path = $base . DIRECTORY_SEPARATOR . $resource;
+        if (!file_exists($path))
+            throw new Exception("'$resource' not found for $component");
+        return $path;
     }
 }
 
