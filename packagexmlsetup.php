@@ -28,6 +28,16 @@ $exts = array(
 // This only applies to Pyrus (PEAR2).
 $package->dependencies['required']->pearinstaller->min = '2.0.0a3';
 
+$data_dir = array(
+    'tasks:replace' => array(
+        'attribs' => array(
+            'from'  => '@data_dir@',
+            'to'    => 'data_dir',
+            'type'  => 'pear-config'
+        )
+    )
+);
+
 foreach (array($package, $compatible) as $obj) {
     $obj->dependencies['required']->php->min = '5.2.2';
     $obj->stability['api'] = 'stable';
@@ -38,5 +48,23 @@ foreach (array($package, $compatible) as $obj) {
     foreach ($exts as $req => $data)
         foreach ($data as $ext)
             $obj->dependencies[$req]->extension[$ext]->save();
+
+    // FIXME: $package needs the original filenames,
+    // while $compatible wants the logical filenames.
+    if ($obj === $compatible) {
+        $scriptDir  = 'script';
+        $srcDir     = 'php';
+        $docDir     = 'doc';
+    }
+    else {
+        $scriptDir  = 'scripts';
+        $srcDir     = 'src';
+        $docDir     = 'docs';
+    }
+
+    $obj->files["$srcDir/Erebot/Utils.php"] = array_merge_recursive(
+        $obj->files["$srcDir/Erebot/Utils.php"]->getArrayCopy(),
+        $data_dir
+    );
 }
 

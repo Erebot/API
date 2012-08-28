@@ -432,5 +432,89 @@ class Erebot_Utils
         }
         return (int) ($size * pow($base, $exp));
     }
+
+    /**
+     * Returns the path to a resource file located in
+     * the "data/" folder for a module of Erebot.
+     *
+     * \param string $component
+     *      Component the resource belongs to
+     *      (eg. "Erebot" or a module name).
+     *
+     * \param string $resource
+     *      Path to the resource inside that component,
+     *      relative to that component's "data/" folder.
+     *
+     * \param string $root
+     *      (optional) Root folder for Erebot.
+     *      You should not pass any value for this parameter,
+     *      as Erebot already passes the correct value during
+     *      its initialization phase.
+     *
+     * \retval string
+     *      Full path to the resource.
+     *
+     * \warning
+     *      Don't try to pass a value to the \a $root parameter
+     *      unless you know exactly what you are doing!
+     */
+    static public function getResourcePath($component, $resource, $root=NULL)
+    {
+        static $erebotRoot = NULL;
+        $base = '@data_dir@';
+        if ($root !== NULL)
+            $erebotRoot = $root;
+        if ($erebotRoot === NULL)
+            $erebotRoot = dirname(__FILE__);
+
+        if (substr($resource, 0, strlen(DIRECTORY_SEPARATOR)) ==
+            DIRECTORY_SEPARATOR) {
+            $resource = (string) substr($resource, strlen(DIRECTORY_SEPARATOR));
+        }
+
+        // Running from a clone or a PHP archive (.phar).
+        if ($base == '@'.'data_dir'.'@') {
+            $base = $erebotRoot . DIRECTORY_SEPARATOR;
+
+            // We're running from a .phar.
+            if (!strncmp($erebotRoot, 'phar://', 7)) {
+                /* Erebot's stub creates a constant "Erebot_PHARS"
+                 * containing a serialized array with the paths
+                 * to the .phar archives for each component. */
+
+                // Use a cache instead of unserializing the array every time.
+                static $phars = NULL;
+                if ($phars === NULL)
+                    $phars = unserialize(constant('Erebot_PHARS'));
+
+                // Try each one of these paths in turn until either
+                // the resource has been found of there are no paths
+                // left to try, which then raises an Exception (see below).
+                foreach ($phars[$component] as $path) {
+                    $path .=    'data' .
+                                DIRECTORY_SEPARATOR . 'pear.erebot.net' .
+                                DIRECTORY_SEPARATOR . $component .
+                                DIRECTORY_SEPARATOR . $resource;
+                    if (file_exists($path))
+                        return $path;
+                }
+                throw new Exception("'$resource' not found for $component");
+            }
+
+            // We're running from a clone.
+            $base  .=   ($component == 'Erebot')
+                        ? 'data'
+                        : 'vendor' .
+                            DIRECTORY_SEPARATOR . $component .
+                            DIRECTORY_SEPARATOR . 'data'
+                        ;
+        }
+
+        else {
+            $base .=    DIRECTORY_SEPARATOR . 'pear.erebot.net' .
+                        DIRECTORY_SEPARATOR . $component;
+        }
+        return $base . DIRECTORY_SEPARATOR . $resource;
+    }
 }
 
