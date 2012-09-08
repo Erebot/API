@@ -490,12 +490,12 @@ class Erebot_Utils
                 // Use a cache instead of unserializing the array every time.
                 static $phars = NULL;
                 if ($phars === NULL)
-                    $phars = unserialize(constant('Erebot_PHARS'));
+                    $phars = unserialize(Erebot_PHARS);
 
                 // Try each one of these paths in turn until either
                 // the resource has been found of there are no paths
                 // left to try, which then raises an Exception (see below).
-                foreach ($phars[$component] as $path) {
+                foreach ($phars[$component]['paths'] as $path) {
                     $path .=    'data' .
                                 DIRECTORY_SEPARATOR . 'pear.erebot.net' .
                                 DIRECTORY_SEPARATOR . $component .
