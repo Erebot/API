@@ -1,0 +1,7 @@
+API for Erebot
+--------------
+
+This package contains the API for Erebot.
+It is distributed separately as it makes it easier for modules to depend
+on that package (eg. for testing purposes) than to require the whole Erebot
+suite.
