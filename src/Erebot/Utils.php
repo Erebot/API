@@ -493,7 +493,8 @@ class Erebot_Utils
             // the resource has been found of there are no paths
             // left to try, which then raises an Exception (see below).
             foreach ($phars[$component]['paths'] as $path) {
-                $path .=    'data' .
+                $path =     dirname($path) .
+                            DIRECTORY_SEPARATOR . 'data' .
                             DIRECTORY_SEPARATOR . 'pear.erebot.net' .
                             DIRECTORY_SEPARATOR . $component .
                             DIRECTORY_SEPARATOR . $resource;
