@@ -298,4 +298,3 @@ class Erebot_Autoload
     }
 }
 
-Erebot_Autoload::initialize();
