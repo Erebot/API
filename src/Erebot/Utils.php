@@ -1,6 +1,8 @@
 <?php
 /*
-    This file is part of Erebot.
+    This file is part of Erebot, a modular IRC bot written in PHP.
+
+    Copyright © 2010 François Poirotte
 
     Erebot is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -464,7 +466,6 @@ class Erebot_Utils
     static public function getResourcePath($component, $resource, $root=NULL)
     {
         static $erebotRoot = NULL;
-        $base = '@data_dir@';
         if ($root !== NULL)
             $erebotRoot = $root;
         if ($erebotRoot === NULL)
@@ -477,52 +478,80 @@ class Erebot_Utils
             $resource = (string) substr($resource, strlen(DIRECTORY_SEPARATOR));
         }
 
-        // Running from a clone or a PHP archive (.phar).
-        if ($base == '@'.'data_dir'.'@') {
-            $base = $erebotRoot . DIRECTORY_SEPARATOR;
+        // Try .phar layout.
+        if (!strncmp($erebotRoot, 'phar://', 7)) {
+            /* Erebot's stub creates a constant "Erebot_PHARS"
+             * containing a serialized array with the paths
+             * to the .phar archives for each component. */
 
-            // We're running from a .phar.
-            if (!strncmp($erebotRoot, 'phar://', 7)) {
-                /* Erebot's stub creates a constant "Erebot_PHARS"
-                 * containing a serialized array with the paths
-                 * to the .phar archives for each component. */
+            // Use a cache instead of unserializing the array every time.
+            static $phars = NULL;
+            if ($phars === NULL)
+                $phars = unserialize(Erebot_PHARS);
 
-                // Use a cache instead of unserializing the array every time.
-                static $phars = NULL;
-                if ($phars === NULL)
-                    $phars = unserialize(Erebot_PHARS);
-
-                // Try each one of these paths in turn until either
-                // the resource has been found of there are no paths
-                // left to try, which then raises an Exception (see below).
-                foreach ($phars[$component]['paths'] as $path) {
-                    $path .=    'data' .
-                                DIRECTORY_SEPARATOR . 'pear.erebot.net' .
-                                DIRECTORY_SEPARATOR . $component .
-                                DIRECTORY_SEPARATOR . $resource;
-                    if (file_exists($path))
-                        return $path;
-                }
-                throw new Exception("'$resource' not found for $component");
-            }
-
-            // We're running from a clone.
-            $base  .=   ($component == 'Erebot')
-                        ? 'data'
-                        : 'vendor' .
+            // Try each one of these paths in turn until either
+            // the resource has been found of there are no paths
+            // left to try, which then raises an Exception (see below).
+            foreach ($phars[$component]['paths'] as $path) {
+                $path .=    'data' .
+                            DIRECTORY_SEPARATOR . 'pear.erebot.net' .
                             DIRECTORY_SEPARATOR . $component .
-                            DIRECTORY_SEPARATOR . 'data'
-                        ;
+                            DIRECTORY_SEPARATOR . $resource;
+                if (file_exists($path))
+                    return $path;
+            }
+            throw new Exception("'$resource' not found for $component");
         }
 
-        else {
-            $base .=    DIRECTORY_SEPARATOR . 'pear.erebot.net' .
-                        DIRECTORY_SEPARATOR . $component;
+        // Try a standard clone layout.
+        $path = $erebotRoot . DIRECTORY_SEPARATOR . (
+            ($component == 'Erebot')
+            ? 'data'
+            : 'vendor' .
+                DIRECTORY_SEPARATOR . $component .
+                DIRECTORY_SEPARATOR . 'data'
+        );
+        $path .= DIRECTORY_SEPARATOR . $resource;
+        if (file_exists($path)) {
+            return $path;
         }
-        $path = $base . DIRECTORY_SEPARATOR . $resource;
-        if (!file_exists($path))
-            throw new Exception("'$resource' not found for $component");
-        return $path;
+
+        // Try PEAR installation.
+        @include_once('PEAR/Config.php');
+        if (class_exists('PEAR_Config')) {
+            $pearConfig = @PEAR_Config::singleton();
+            if (!($pearConfig instanceof PEAR_Error)) {
+                $phpDir = $pearConfig->get('php_dir');
+                if (substr($phpDir, 0, strlen(DIRECTORY_SEPARATOR)) ==
+                    DIRECTORY_SEPARATOR) {
+                    $phpDir = (string) substr($phpDir, strlen(DIRECTORY_SEPARATOR));
+                }
+                if ($phpDir == dirname(dirname(__FILE__))) {
+                    $path = $pearConfig->get('data_dir') .
+                            DIRECTORY_SEPARATOR . $component .
+                            DIRECTORY_SEPARATOR . $resource;
+                }
+
+                if (file_exists($path)) {
+                    return $path;
+                }
+            }
+        }
+
+        // Try Pyrus layout.
+        if (basename(dirname(dirname(__FILE__))) == 'php') {
+            $path = dirname(dirname(dirname(__FILE__))) .
+                    DIRECTORY_SEPARATOR . 'data' .
+                    DIRECTORY_SEPARATOR . 'pear.erebot.net' .
+                    DIRECTORY_SEPARATOR . $component .
+                    DIRECTORY_SEPARATOR . $resource;
+
+            if (file_exists($path)) {
+                return $path;
+            }
+        }
+
+        throw new Exception("'$resource' not found for $component");
     }
 }
 
