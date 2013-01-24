@@ -25,23 +25,7 @@
         }
     ],
     "require": {
-        "php": ">=5.2.2",
-        "ext-ctype": "*",
-        "ext-dom": "*",
-        "ext-intl": "*",
-        "ext-libxml": "*",
-        "ext-pcre": "*",
-        "ext-Reflection": "*",
-        "ext-SimpleXML": "*",
-        "ext-sockets": "*",
-        "ext-SPL": "*",
-        "ext-XML": "*",
-        "erebot/erebot-api": "*"
-    },
-    "suggest": {
-        "ext-openssl": "*",
-        "ext-pcntl": "*",
-        "ext-posix": "*"
+        "php": ">=5.2.2"
     },
     "autoload": {
         "psr-0": {
