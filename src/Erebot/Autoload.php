@@ -174,7 +174,7 @@ class Erebot_Autoload
         // this could be the first time writing it.
         $mapped = self::isMapped($class);
         if ($mapped) {
-            require self::$_map[$class];
+            require_once self::$_map[$class];
             if (!self::loadSuccessful($class)) {
                 // record this failure & keep going, we may still find it
                 self::$_unmapped[] = $class;
@@ -190,7 +190,7 @@ class Erebot_Autoload
         ) . '.php';
         foreach (self::$_paths as $path) {
             if (file_exists($path . DIRECTORY_SEPARATOR . $file)) {
-                require $path . DIRECTORY_SEPARATOR . $file;
+                require_once $path . DIRECTORY_SEPARATOR . $file;
                 if (!self::loadSuccessful($class)) {
                     throw new Exception(
                         'Class ' . $class . ' was not present in ' .
