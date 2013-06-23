@@ -24,5 +24,5 @@
         <exec command="sed -i &quot;s/define.*EREBOT_VERSION.*/define('EREBOT_VERSION', '${version}');/&quot; src/Erebot/Interface/Core.php" checkreturn="true"/>
     </target>
 
-    <import file="buildenv/build.xml"/>
+    <import file="vendor/erebot/buildenv/build.xml"/>
 </project>

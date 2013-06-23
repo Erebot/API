@@ -18,8 +18,17 @@
         "irc": "irc://irc.iiens.net/Erebot",
         "source": "https://github.com/Erebot/Erebot_API"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://packages.erebot.net"
+        }
+    ],
     "require": {
         "php": ">=5.2.2"
+    },
+    "require-dev": {
+        "erebot/buildenv": "dev-master"
     },
     "autoload": {
         "psr-0": {

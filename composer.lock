@@ -1,0 +1,72 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+    ],
+    "hash": "fa02c887544ca0672d7a71e9d014a87d",
+    "packages": [
+
+    ],
+    "packages-dev": [
+        {
+            "name": "erebot/buildenv",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Erebot/Erebot_Buildenv.git",
+                "reference": "1854137d9de69829cda65a5f5820d3c4e8cbd36f"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://packages.erebot.net:943/composer/erebot-buildenv-1854137d9de69829cda65a5f5820d3c4e8cbd36f-zip-97db71.tar",
+                "reference": "dev-master",
+                "shasum": "6bd84411b5efb90b41ad47291feecea05ae947f6"
+            },
+            "require": {
+                "php": ">=5.2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "François Poirotte",
+                    "email": "clicky@erebot.net",
+                    "role": "lead"
+                }
+            ],
+            "description": "Build environment for the Erebot project",
+            "homepage": "https://github.com/Erebot/Erebot_Buildenv",
+            "keywords": [
+                "Erebot"
+            ],
+            "support": {
+                "email": "erebot@erebot.net",
+                "issues": "https://github.com/Erebot/Erebot_Buildenv/issues",
+                "wiki": "http://erebot.github.com/Erebot/",
+                "irc": "irc://irc.iiens.net/Erebot",
+                "source": "https://github.com/Erebot/Erebot_Buildenv"
+            },
+            "time": "2013-06-23 14:23:10"
+        }
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "erebot/buildenv": 20
+    },
+    "platform": {
+        "php": ">=5.2.2"
+    },
+    "platform-dev": [
+
+    ]
+}
