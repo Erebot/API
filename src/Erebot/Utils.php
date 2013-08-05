@@ -24,23 +24,6 @@
  */
 class Erebot_Utils
 {
-    /// Do not strip anything from the text.
-    const STRIP_NONE        = 0x00;
-    /// Strip (mIRC/pIRCh) colors from the text.
-    const STRIP_COLORS      = 0x01;
-    /// Strip the bold attribute from the text.
-    const STRIP_BOLD        = 0x02;
-    /// Strip the underline attribute from the text.
-    const STRIP_UNDERLINE   = 0x04;
-    /// Strip the reverse attribute from the text.
-    const STRIP_REVERSE     = 0x08;
-    /// Strip the reset control character from the text.
-    const STRIP_RESET       = 0x10;
-    /// Strip extended colors from the text.
-    const STRIP_EXT_COLORS  = 0x20;
-    /// Strip all forms of styles from the text.
-    const STRIP_ALL         = 0xFF;
-
     /// Return the value of a constant.
     const VSTATIC_CONST     = 0x01;
 
@@ -77,73 +60,6 @@ class Erebot_Utils
         $bt     = debug_backtrace();
         $caller = isset($bt[2]['object']) ? $bt[2]['object'] : NULL;
         return $caller;
-    }
-
-    /**
-     * Strips IRC styles from a text.
-     *
-     * \param string $text
-     *      The text from which styles must be stripped.
-     *
-     * \param int $strip
-     *      A bitwise OR of the codes of the styles we want to strip.
-     *      The default is to strip all forms of styles from the text.
-     *      See also the Erebot_Utils::STRIP_* constants.
-     *
-     * \retval string
-     *      The text with all the styles specified in $strip stripped.
-     */
-    static public function stripCodes($text, $strip = self::STRIP_ALL)
-    {
-        if (!is_int($strip))
-            throw new Erebot_InvalidValueException("Invalid stripping flags");
-
-        if ($strip & self::STRIP_BOLD)
-            $text = str_replace("\002", '', $text);
-
-        if ($strip & self::STRIP_COLORS)
-            $text = preg_replace(
-                "/\003(?:[0-9]{1,2}(?:,[0-9]{1,2})?)?/",
-                '', $text
-            );
-
-        /// @TODO strip extended colors.
-
-        if ($strip & self::STRIP_RESET)
-            $text = str_replace("\017", '', $text);
-
-        if ($strip & self::STRIP_REVERSE)
-            $text = str_replace("\026", '', $text);
-
-        if ($strip & self::STRIP_UNDERLINE)
-            $text = str_replace("\037", '', $text);
-
-        return $text;
-    }
-
-    /**
-     * Given some user's full IRC identity (nick!ident\@host),
-     * this methods extracts and returns that user's nickname.
-     *
-     * \param string $source
-     *      Some user's full IRC identity (as "nick!ident\@host").
-     *
-     * \retval string
-     *      The nickname of the user represented by that identity.
-     *
-     * \note
-     *      This method will still work as expected if given
-     *      only a nickname to work with. Therefore, it is safe
-     *      to call this method with the result of a previous
-     *      invocation. Thus, the following snippet:
-     *      Erebot_Utils::extractNick(Erebot_Utils::extractNick('foo!bar\@baz'));
-     *      will return "foo" as expected.
-     */
-    static public function extractNick($source)
-    {
-        if (strpos($source, '!') === FALSE)
-            return $source;
-        return substr($source, 0, strpos($source, '!'));
     }
 
     /**
@@ -385,7 +301,7 @@ class Erebot_Utils
     }
 
     /**
-     * Does the opposite à Erebot_Utils::humanSize.
+     * Does the opposite of Erebot_Utils::humanSize.
      * That is, this method takes some size expressed
      * in a human-friendly fashion and returns the
      * actual size.
@@ -433,126 +349,6 @@ class Erebot_Utils
             }
         }
         return (int) ($size * pow($base, $exp));
-    }
-
-    /**
-     * Returns the path to a resource file located in
-     * the "data/" folder for a module of Erebot.
-     *
-     * \param string $component
-     *      Component the resource belongs to
-     *      (eg. "Erebot" or a module name).
-     *
-     * \param string $resource
-     *      Path to the resource inside that component,
-     *      relative to that component's "data/" folder.
-     *
-     * \param string $root
-     *      (optional) Root folder for Erebot.
-     *      You should not pass any value for this parameter,
-     *      as Erebot already passes the correct value during
-     *      its initialization phase.
-     *
-     * \retval string
-     *      Full path to the resource.
-     *
-     * \throw Exception
-     *      The resource could not be found.
-     *
-     * \warning
-     *      Don't try to pass a value to the \a $root parameter
-     *      unless you know exactly what you are doing!
-     */
-    static public function getResourcePath($component, $resource, $root=NULL)
-    {
-        static $erebotRoot = NULL;
-        if ($root !== NULL)
-            $erebotRoot = $root;
-        if ($erebotRoot === NULL)
-            $erebotRoot = dirname(__FILE__);
-        if ($component === NULL)
-            return;
-
-        if (substr($resource, 0, strlen(DIRECTORY_SEPARATOR)) ==
-            DIRECTORY_SEPARATOR) {
-            $resource = (string) substr($resource, strlen(DIRECTORY_SEPARATOR));
-        }
-
-        // Try .phar layout.
-        if (!strncmp($erebotRoot, 'phar://', 7)) {
-            /* Erebot's stub creates a constant "Erebot_PHARS"
-             * containing a serialized array with the paths
-             * to the .phar archives for each component. */
-
-            // Use a cache instead of unserializing the array every time.
-            static $phars = NULL;
-            if ($phars === NULL)
-                $phars = unserialize(Erebot_PHARS);
-
-            // Try each one of these paths in turn until either
-            // the resource has been found of there are no paths
-            // left to try, which then raises an Exception (see below).
-            foreach ($phars[$component]['paths'] as $path) {
-                $path =     dirname($path) .
-                            DIRECTORY_SEPARATOR . 'data' .
-                            DIRECTORY_SEPARATOR . 'pear.erebot.net' .
-                            DIRECTORY_SEPARATOR . $component .
-                            DIRECTORY_SEPARATOR . $resource;
-                if (file_exists($path))
-                    return $path;
-            }
-            throw new Exception("'$resource' not found for $component");
-        }
-
-        // Try a standard clone layout.
-        $path = $erebotRoot . DIRECTORY_SEPARATOR . (
-            ($component == 'Erebot')
-            ? 'data'
-            : 'vendor' .
-                DIRECTORY_SEPARATOR . $component .
-                DIRECTORY_SEPARATOR . 'data'
-        );
-        $path .= DIRECTORY_SEPARATOR . $resource;
-        if (file_exists($path)) {
-            return $path;
-        }
-
-        // Try PEAR installation.
-        @include_once('PEAR/Config.php');
-        if (class_exists('PEAR_Config')) {
-            $pearConfig = @PEAR_Config::singleton();
-            if (!($pearConfig instanceof PEAR_Error)) {
-                $phpDir = $pearConfig->get('php_dir');
-                if (substr($phpDir, 0, strlen(DIRECTORY_SEPARATOR)) ==
-                    DIRECTORY_SEPARATOR) {
-                    $phpDir = (string) substr($phpDir, strlen(DIRECTORY_SEPARATOR));
-                }
-                if ($phpDir == dirname(dirname(__FILE__))) {
-                    $path = $pearConfig->get('data_dir') .
-                            DIRECTORY_SEPARATOR . $component .
-                            DIRECTORY_SEPARATOR . $resource;
-                }
-
-                if (file_exists($path)) {
-                    return $path;
-                }
-            }
-        }
-
-        // Try Pyrus layout.
-        if (basename(dirname(dirname(__FILE__))) == 'php') {
-            $path = dirname(dirname(dirname(__FILE__))) .
-                    DIRECTORY_SEPARATOR . 'data' .
-                    DIRECTORY_SEPARATOR . 'pear.erebot.net' .
-                    DIRECTORY_SEPARATOR . $component .
-                    DIRECTORY_SEPARATOR . $resource;
-
-            if (file_exists($path)) {
-                return $path;
-            }
-        }
-
-        throw new Exception("'$resource' not found for $component");
     }
 }
 
