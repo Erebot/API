@@ -3,14 +3,14 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "dc3590a7c2f361226d1039e880de1abe",
+    "hash": "397168bc0b2d117c9c8284f0ddc6dc31",
     "packages": [
 
     ],
     "packages-dev": [
         {
             "name": "erebot/buildenv",
-            "version": "dev-master",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Erebot_Buildenv.git",
@@ -116,9 +116,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "erebot/buildenv": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.2.2"
     },
