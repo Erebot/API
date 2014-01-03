@@ -22,7 +22,7 @@
         "php": ">=5.2.2"
     },
     "require-dev": {
-        "erebot/buildenv": "~1.0.0"
+        "erebot/buildenv": "~1.1"
     },
     "autoload": {
         "psr-0": {
