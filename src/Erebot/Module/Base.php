@@ -187,10 +187,16 @@ abstract class Erebot_Module_Base
         $this->_connection  = $connection;
         $serverCfg          = $this->_connection->getConfig(NULL);
         $this->_mainCfg     = $serverCfg->getMainCfg();
+
         // Passing $this to get_class() is necessary to retrieve the instance's
         // class instead of the code's definition class (Erebot_Module_Base).
         $this->_translator  = $this->_mainCfg->getTranslator(get_class($this));
         $this->_reload($flags);
+
+        if ($this instanceof Erebot_Interface_HelpEnabled) {
+            $cls = $this->getFactory('!Callable');
+            $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
+        }
     }
 
     /**
