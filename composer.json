@@ -28,8 +28,8 @@
         "erebot/buildenv": "~1.1"
     },
     "autoload": {
-        "psr-0": {
-            "Erebot": "src/"
+        "psr-4": {
+            "Erebot\\": "src/"
         }
     },
     "extra": {
