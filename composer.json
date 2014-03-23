@@ -1,5 +1,6 @@
 {
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "name": "erebot/api",
     "description": "API for the Erebot project",
     "keywords": ["Erebot", "IRC", "bot"],
@@ -20,7 +21,7 @@
         "source": "https://github.com/Erebot/Erebot_API"
     },
     "require": {
-        "php": ">=5.2.2"
+        "php": ">=5.3.0"
     },
     "require-dev": {
         "erebot/buildenv": "~1.1"
