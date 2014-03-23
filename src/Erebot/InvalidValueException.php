@@ -18,13 +18,13 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown when an invalid value has been passed
  *      to a function or method.
  */
-class   Erebot_InvalidValueException
-extends Erebot_Exception
+class InvalidValueException extends \Erebot\Exception
 {
 }
-

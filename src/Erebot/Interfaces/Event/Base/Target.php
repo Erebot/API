@@ -1,0 +1,38 @@
+<?php
+/*
+    This file is part of Erebot, a modular IRC bot written in PHP.
+
+    Copyright © 2010 François Poirotte
+
+    Erebot is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Erebot is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+namespace Erebot\Interfaces\Event\Base;
+
+/**
+ * \brief
+ *      Interface for an event which has a target.
+ */
+interface Target extends \Erebot\Interfaces\Event\Base\Generic
+{
+    /**
+     * Returns the target of the current message.
+     * This will generally be the bot's nickname
+     * or some other user's nickname.
+     *
+     * \retval string
+     *      The target of this message.
+     */
+    public function getTarget();
+}

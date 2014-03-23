@@ -18,23 +18,24 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract CTCP Event which applies to a channel
  *      and contains some text.
  */
-abstract class  Erebot_Event_WithChanSourceCtcpAbstract
-extends         Erebot_Event_WithChanSourceTextAbstract
-implements      Erebot_Interface_Event_Base_Ctcp
+abstract class WithChanSourceCtcpAbstract extends \Erebot\Event\WithChanSourceTextAbstract implements
+    \Erebot\Interfaces\Event\Base\Ctcp
 {
     /// The type of CTCP message represented by this event.
-    protected $_ctcpType;
+    protected $ctcpType;
 
     /**
      * Creates a new event dealing with a CTCP
      * message addressed to an IRC channel.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $chan
@@ -50,21 +51,18 @@ implements      Erebot_Interface_Event_Base_Ctcp
      *      Text contained in this event.
      */
     public function __construct(
-        Erebot_Interface_Connection $connection,
-                                    $chan,
-                                    $source,
-                                    $ctcpType,
-                                    $text
-    )
-    {
+        \Erebot\Interfaces\Connection $connection,
+        $chan,
+        $source,
+        $ctcpType,
+        $text
+    ) {
         parent::__construct($connection, $chan, $source, $text);
-        $this->_ctcpType = $ctcpType;
+        $this->ctcpType = $ctcpType;
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Ctcp::getCtcpType()
     public function getCtcpType()
     {
-        return $this->_ctcpType;
+        return $this->ctcpType;
     }
 }
-

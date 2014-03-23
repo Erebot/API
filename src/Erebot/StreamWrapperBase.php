@@ -18,13 +18,16 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+// @codingStandardsIgnoreFile
+namespace Erebot;
+
 /**
  * \brief
  *      Abstract class for a minimal PHP stream wrapper.
  */
-abstract class Erebot_StreamWrapperBase
+abstract class StreamWrapperBase
 {
-    /// If path is relative, search for the resource using the include_path. 
+    /// If path is relative, search for the resource using the include_path.
     const STREAM_USE_PATH = STREAM_USE_PATH;
 
     /**
@@ -54,7 +57,7 @@ abstract class Erebot_StreamWrapperBase
     /**
      * \brief
      *      Whether to report errors in
-     *      Erebot_StreamWrapperBase::url_stat() or not.
+     *      Erebot::StreamWrapperBase::url_stat() or not.
      *
      * If this flag is set, the wrapper should not raise any errors.
      * If this flag is not set, it is responsible for reporting errors
@@ -76,7 +79,7 @@ abstract class Erebot_StreamWrapperBase
      *      Constructs a new instance of this stream wrapper.
      *
      * This method is called when opening the stream wrapper,
-     * right before Erebot_StreamWrapperBase::stream_open().
+     * right before Erebot::StreamWrapperBase::stream_open().
      */
     public function __construct()
     {
@@ -99,9 +102,9 @@ abstract class Erebot_StreamWrapperBase
      * This method is called in response to feof(). 
      *
      * \retval bool
-     *      Returns TRUE if the read/write position is at the end
+     *      \b true if the read/write position is at the end
      *      of the stream and if no more data is available to be read,
-     *      or FALSE otherwise.
+     *      or \b false otherwise.
      */
     abstract public function stream_eof();
 
@@ -124,12 +127,12 @@ abstract class Erebot_StreamWrapperBase
      *
      * \param string $openedPath
      *      If the path is opened successfully, and
-     *      Erebot_StreamWrapperBase::STREAM_USE_PATH
+     *      Erebot::StreamWrapperBase::STREAM_USE_PATH
      *      is set in $options, $opened_path should be set to the full
      *      path of the file/resource that was actually opened.
      *
      * \retval bool
-     *      Returns TRUE on success or FALSE on failure.
+     *      \b true on success or \b false on failure.
      *
      * \note
      *      The URL can be broken apart with parse_url(). Note that
@@ -154,8 +157,8 @@ abstract class Erebot_StreamWrapperBase
      *      If there are less than count bytes available, returns as many
      *      as are available.
      *
-     * \retval FALSE
-     *      If no more data is available, FALSE should be returned.
+     * \retval false
+     *      If no more data is available, \b false should be returned.
      *
      * \attention
      *      Remember to update the read/write position of the stream
@@ -166,13 +169,13 @@ abstract class Erebot_StreamWrapperBase
      *      no more data is available for reading.
      *
      * \note
-     *      Erebot_StreamWrapperBase::stream_eof() is called directly
-     *      after calling Erebot_StreamWrapperBase::stream_read() to check
+     *      Erebot::StreamWrapperBase::stream_eof() is called directly
+     *      after calling Erebot::StreamWrapperBase::stream_read() to check
      *      if EOF has been reached. If not implemented, EOF is assumed.
      */
     public function stream_read($count)
     {
-        return FALSE;
+        return false;
     }
 
     /**
@@ -186,27 +189,29 @@ abstract class Erebot_StreamWrapperBase
      *
      * \param int $whence
      *      How the seek is to be interpreted. One of:
-     *      -   Erebot_StreamWrapperBase::SEEK_SET
-     *      -   Erebot_StreamWrapperBase::SEEK_CUR
-     *      -   Erebot_StreamWrapperBase::SEEK_END
+     *      -   Erebot::StreamWrapperBase::SEEK_SET
+     *      -   Erebot::StreamWrapperBase::SEEK_CUR
+     *      -   Erebot::StreamWrapperBase::SEEK_END
      *
      * \retval bool
-     *      Returns TRUE if the position was updated, FALSE otherwise.
+     *      \b true if the position was updated,
+     *      \b false otherwise.
      *
      * \attention
      *      The read/write position of the stream should be updated
      *      according to the $offset and $whence.
      *
      * \note
-     *      Upon success, Erebot_StreamWrapperBase::stream_tell()
+     *      Upon success, Erebot::StreamWrapperBase::stream_tell()
      *      is called directly after calling
-     *      Erebot_StreamWrapperBase::stream_seek().
-     *      If Erebot_StreamWrapperBase::stream_tell() fails,
-     *      the return value to the caller function will be set to FALSE.
+     *      Erebot::StreamWrapperBase::stream_seek().
+     *      If Erebot::StreamWrapperBase::stream_tell() fails,
+     *      the return value to the caller function will be set
+     *      to \b false.
      */
     public function stream_seek($offset, $whence)
     {
-        return FALSE;
+        return false;
     }
 
     /**
@@ -253,8 +258,8 @@ abstract class Erebot_StreamWrapperBase
      * \param int $flags
      *      Holds additional flags set by the streams API.
      *      It can hold one or more of the following values OR'd together:
-     *      -   Erebot_StreamWrapperBase::STREAM_URL_STAT_LINK
-     *      -   Erebot_StreamWrapperBase::STREAM_URL_STAT_QUIET
+     *      -   Erebot::StreamWrapperBase::STREAM_URL_STAT_LINK
+     *      -   Erebot::StreamWrapperBase::STREAM_URL_STAT_QUIET
      *
      * \see
      *      http://php.net/manual/en/streamwrapper.url-stat.php for a
@@ -265,4 +270,3 @@ abstract class Erebot_StreamWrapperBase
         return array();
     }
 }
-

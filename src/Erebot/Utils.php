@@ -18,11 +18,13 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      Utility methods for Erebot.
  */
-class Erebot_Utils
+class Utils
 {
     /// Return the value of a constant.
     const VSTATIC_CONST     = 0x01;
@@ -32,13 +34,13 @@ class Erebot_Utils
 
     /**
      * Returns the object (if any) associated with the method
-     * that called the method which called Erebot_Utils::getCallerObject().
+     * that called the method which called Erebot::Utils::getCallerObject().
      *
      * Consider the following example:
      * \code
      *      class Foo {
      *          public function bar() {
-     *              var_dump(Erebot_Utils::getCallerObject());
+     *              var_dump(\\Erebot\\Utils::getCallerObject());
      *          }
      *      }
      *      class Bar {
@@ -53,12 +55,12 @@ class Erebot_Utils
      *
      * \retval object
      *      The caller object of the method which called
-     *      Erebot_Utils::getCallerObject().
+     *      Erebot::Utils::getCallerObject().
      */
-    static public function getCallerObject()
+    public static function getCallerObject()
     {
         $bt     = debug_backtrace();
-        $caller = isset($bt[2]['object']) ? $bt[2]['object'] : NULL;
+        $caller = isset($bt[2]['object']) ? $bt[2]['object'] : null;
         return $caller;
     }
 
@@ -69,13 +71,13 @@ class Erebot_Utils
      * \param string $text
      *      Some text to test for UTF-8 correctness.
      *
-     * \retval TRUE
+     * \retval true
      *      The $text contains a valid UTF-8 sequence.
      *
-     * \retval FALSE
+     * \retval false
      *      The $text is not a valid UTF-8 sequence.
      */
-    static public function isUTF8($text)
+    public static function isUTF8($text)
     {
         // From http://w3.org/International/questions/qa-forms-utf-8.html
         // Pointed out by bitseeker on http://php.net/utf8_encode
@@ -89,7 +91,8 @@ class Erebot_Utils
                 |  \xF0[\x90-\xBF][\x80-\xBF]{2}     # planes 1-3
                 | [\xF1-\xF3][\x80-\xBF]{3}          # planes 4-15
                 |  \xF4[\x80-\x8F][\x80-\xBF]{2}     # plane 16
-            )*$%SDxs', $text
+            )*$%SDxs',
+            $text
         );
     }
 
@@ -99,14 +102,14 @@ class Erebot_Utils
      * \param string $text
      *      The text to convert into a UTF-8 sequence.
      *
-     * \param NULL|string $from
+     * \param null|string $from
      *      (optional) The encoding currently used by $text.
      *      A default of "iso-8859-1" is assumed.
      *
      * \retval string
      *      The original text, converted into UTF-8.
      *
-     * \throw Erebot_NotImplementedException
+     * \throw Erebot::NotImplementedException
      *      Raised if no method could be found to convert
      *      the text. See also the notes for information on
      *      how to avoid this exception being raised.
@@ -118,7 +121,7 @@ class Erebot_Utils
      *      extension for "Human Language and Character
      *      Encoding Support".
      */
-    static public function toUTF8($text, $from='iso-8859-1')
+    public static function toUTF8($text, $from = 'iso-8859-1')
     {
         $alreadyEncoded = self::isUTF8($text);
 
@@ -130,23 +133,21 @@ class Erebot_Utils
                 // This is better than throwing an exception anyway.
                 $res = $text;
 
-                if (function_exists('utf8_decode'))
+                if (function_exists('utf8_decode')) {
                     $res = utf8_decode($text);
-
-                else if (function_exists('iconv'))
+                } elseif (function_exists('iconv')) {
                     $res = iconv('utf-8', 'iso-8859-1//TRANSLIT', $text);
-
-                else if (function_exists('recode'))
+                } elseif (function_exists('recode')) {
                     $res = recode('utf-8..iso-8859-1', $text);
-
-                else if (function_exists('mb_convert_encoding'))
+                } elseif (function_exists('mb_convert_encoding')) {
                     $res = mb_convert_encoding($text, 'iso-8859-1', 'utf-8');
-
-                else if (function_exists('html_entity_decode'))
+                } elseif (function_exists('html_entity_decode')) {
                     $res = html_entity_decode(
                         htmlentities($text, ENT_QUOTES, 'utf-8'),
-                        ENT_QUOTES, 'iso-8850-1'
+                        ENT_QUOTES,
+                        'iso-8850-1'
                     );
+                }
 
                 // So, was it really double-encoded?
                 return (self::isUTF8($res) ? $res : $text);
@@ -157,29 +158,36 @@ class Erebot_Utils
             $from = 'iso-8859-1';
         }
 
-        if ($alreadyEncoded)
+        if ($alreadyEncoded) {
             return $text;
+        }
 
         if (!strcasecmp($from, 'iso-8859-1') &&
-            function_exists('utf8_encode'))
+            function_exists('utf8_encode')) {
             return utf8_encode($text);
+        }
 
-        if (function_exists('iconv'))
+        if (function_exists('iconv')) {
             return iconv($from, 'UTF-8//TRANSLIT', $text);
+        }
 
-        if (function_exists('recode'))
+        if (function_exists('recode')) {
             return recode($from.'..utf-8', $text);
+        }
 
-        if (function_exists('mb_convert_encoding'))
+        if (function_exists('mb_convert_encoding')) {
             return mb_convert_encoding($text, 'UTF-8', $from);
+        }
 
-        if (function_exists('html_entity_decode'))
+        if (function_exists('html_entity_decode')) {
             return html_entity_decode(
                 htmlentities($text, ENT_QUOTES, $from),
-                ENT_QUOTES, 'UTF-8'
+                ENT_QUOTES,
+                'UTF-8'
             );
+        }
 
-        throw new Erebot_NotImplementedException('No way to convert to UTF-8');
+        throw new \Erebot\NotImplementedException('No way to convert to UTF-8');
     }
 
     /**
@@ -195,33 +203,32 @@ class Erebot_Utils
      * \param opaque $source
      *      (optional) The kind of static data to look for (either
      *      a constant or a static variable).
-     *      Use Erebot_Utils::VSTATIC_CONST or Erebot_Utils::VSTATIC_VAR
+     *      Use Erebot::Utils::VSTATIC_CONST or Erebot::Utils::VSTATIC_VAR
      *      to select a specific source of data.
      *      The default is to look for a constant (same as if $source
-     *      had been set to Erebot_Utils::VSTATIC_CONST).
+     *      had been set to Erebot::Utils::VSTATIC_CONST).
      *
      * \retval mixed
      *      The content of the static data whose name is $name.
      *
-     * \throw Erebot_NotFoundException
+     * \throw Erebot::NotFoundException
      *      No data could be found which matches the given $name,
      *      using the specified $source of data.
      */
-    static public function getVStatic(
+    public static function getVStatic(
         $class,
         $name,
         $source = self::VSTATIC_CONST
-    )
-    {
-        if (is_object($class))
+    ) {
+        if (is_object($class)) {
             $class = get_class($class);
+        }
         $refl = new ReflectionClass($class);
 
         if (($source & self::VSTATIC_CONST) == self::VSTATIC_CONST) {
             try {
                 return $refl->getConstant($name);
-            }
-            catch (ReflectionException $e) {
+            } catch (ReflectionException $e) {
             }
         }
 
@@ -229,12 +236,11 @@ class Erebot_Utils
             try {
                 $reflProp = $refl->getProperty($name);
                 return $reflProp->getValue();
-            }
-            catch (ReflectionException $e) {
+            } catch (ReflectionException $e) {
             }
         }
 
-        throw new Erebot_NotFoundException('No such thing');
+        throw new \Erebot\NotFoundException('No such thing');
     }
 
     /**
@@ -248,13 +254,15 @@ class Erebot_Utils
      * \retval bool
      *      Whether the given $item can be safely cast to a string.
      */
-    static public function stringifiable($item)
+    public static function stringifiable($item)
     {
-        if (is_string($item))
-            return TRUE;
-        if (is_object($item) && method_exists($item, '__toString'))
-            return TRUE;
-        return FALSE;
+        if (is_string($item)) {
+            return true;
+        }
+        if (is_object($item) && method_exists($item, '__toString')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -269,12 +277,7 @@ class Erebot_Utils
      * @param       string  $retstring   return string format
      * @retval      string  The given size, in a human readable format.
      */
-    static public function humanSize(
-        $size,
-        $max        = null,
-        $system     = 'si',
-        $retstring  = '%01.2f %s'
-    )
+    public static function humanSize($size, $max = null, $system = 'si', $retstring = '%01.2f %s')
     {
         // Pick units
         $systems = array();
@@ -301,7 +304,7 @@ class Erebot_Utils
     }
 
     /**
-     * Does the opposite of Erebot_Utils::humanSize.
+     * Does the opposite of Erebot::Utils::humanSize.
      * That is, this method takes some size expressed
      * in a human-friendly fashion and returns the
      * actual size.
@@ -310,10 +313,10 @@ class Erebot_Utils
      *      User-friendly size.
      *
      * \retval mixed
-     *      The actual size as an integer or NULL
+     *      The actual size as an integer or \b null
      *      if the size could not be determined.
      */
-    static public function parseHumanSize($humanSize)
+    public static function parseHumanSize($humanSize)
     {
         $size       = (float) str_replace(",", ".", $humanSize);
         $suffix     = (string) substr(
@@ -325,30 +328,28 @@ class Erebot_Utils
         $base       = 1000;
 
         switch (strlen($suffix)) {
-            case 0:{
-                return NULL;
-            }
+            case 0:
+                return null;
 
             case 1:
                 $exp = 0;
                 break;
 
-            case 3:{
+            case 3:
                 // 3 chars? We MUST be using SI units then.
-                if ($suffix[1] != 'i')
-                    return NULL;
+                if ($suffix[1] != 'i') {
+                    return null;
+                }
                 $suffix = $suffix[0].$suffix[1];
                 $base   = 1024;
                 // We don't break on purpose.
-            }
 
-            case 2:{
-                if (!isset($exponents[$suffix[0]]))
-                    return NULL;
+            case 2:
+                if (!isset($exponents[$suffix[0]])) {
+                    return null;
+                }
                 $exp = $exponents[$suffix[0]];
-            }
         }
         return (int) ($size * pow($base, $exp));
     }
 }
-

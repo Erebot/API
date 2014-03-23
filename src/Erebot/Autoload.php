@@ -1,35 +1,36 @@
 <?php
 
+namespace Erebot;
+
 /**
  * \brief
  *      Autoloader for Erebot's classes and interfaces.
  *
  * This autoloader is mainly the same as the one used
- * by PEAR2 packages, except that it does not rely on
- * features which are specific to PHP 5.3 (eg. namespaces).
+ * by PEAR2 packages.
  *
  * The documentation of this class has also been updated
  * to use Doxygen commands instead of phpDocumentor ones.
  */
-class Erebot_Autoload
+class Autoload
 {
     /// Whether the autoload class has been spl_autoload_register-ed
-    protected static $_registered = false;
+    protected static $registered = false;
 
     /// Array of PEAR2 autoload paths registered
-    protected static $_paths = array();
+    protected static $paths = array();
 
     /// Array of classname-to-file mapping
-    protected static $_map = array();
+    protected static $map = array();
 
     /// Array of class maps loaded
-    protected static $_maps = array();
+    protected static $maps = array();
 
     /// Last classmap specified
-    protected static $_mapfile = null;
+    protected static $mapfile = null;
 
     /// Array of classes loaded automatically not in the map
-    protected static $_unmapped = array();
+    protected static $unmapped = array();
 
     /**
      * Initialize the PEAR2 autoloader
@@ -43,7 +44,7 @@ class Erebot_Autoload
      * \return
      *      This method does not return anything.
      */
-    static function initialize($path = null, $mapfile = null)
+    public static function initialize($path = null, $mapfile = null)
     {
         self::register();
         self::addPath($path);
@@ -58,7 +59,7 @@ class Erebot_Autoload
      */
     protected static function register()
     {
-        if (!self::$_registered) {
+        if (!self::$registered) {
             // set up __autoload
             $autoload = spl_autoload_functions();
             spl_autoload_register(__CLASS__.'::load');
@@ -68,7 +69,7 @@ class Erebot_Autoload
                 spl_autoload_register('__autoload');
             }
         }
-        self::$_registered = true;
+        self::$registered = true;
     }
 
     /**
@@ -84,16 +85,19 @@ class Erebot_Autoload
     {
         $len = strlen(DIRECTORY_SEPARATOR);
         while (1) {
-            if (!is_string($path))
+            if (!is_string($path)) {
                 return;
-            if (substr($path, -$len) == DIRECTORY_SEPARATOR)
+            }
+
+            if (substr($path, -$len) == DIRECTORY_SEPARATOR) {
                 $path = substr($path, 0, -$len);
-            else
+            } else {
                 break;
+            }
         }
 
-        if (!in_array($path, self::$_paths)) {
-            self::$_paths[] = $path;
+        if (!in_array($path, self::$paths)) {
+            self::$paths[] = $path;
         }
     }
 
@@ -108,18 +112,18 @@ class Erebot_Autoload
      */
     protected static function addMap($mapfile)
     {
-        if (! in_array($mapfile, self::$_maps)) {
+        if (! in_array($mapfile, self::$maps)) {
 
             // keep track of specific map file loaded in this
             // instance so we can update it if necessary
-            self::$_mapfile = $mapfile;
+            self::$mapfile = $mapfile;
 
             if (file_exists($mapfile)) {
                 $map = include $mapfile;
                 if (is_array($map)) {
                     // mapfile contains a valid map, so we'll keep it
-                    self::$_maps[] = $mapfile;
-                    self::$_map = array_merge(self::$_map, $map);
+                    self::$maps[] = $mapfile;
+                    self::$map = array_merge(self::$map, $map);
                 }
             }
 
@@ -138,11 +142,11 @@ class Erebot_Autoload
      */
     protected static function isMapped($class)
     {
-        if (isset(self::$_map[$class])) {
+        if (isset(self::$map[$class])) {
             return true;
         }
-        if (isset(self::$_mapfile) && ! isset(self::$_map[$class])) {
-            self::$_unmapped[] = $class;
+        if (isset(self::$mapfile) && ! isset(self::$map[$class])) {
+            self::$unmapped[] = $class;
             return false;
         }
         return false;
@@ -158,26 +162,27 @@ class Erebot_Autoload
      *      TRUE if the class could be loaded,
      *      FALSE otherwise.
      */
-    static function load($class)
+    public static function load($class)
     {
         /* Protects us from possible remote code inclusion due to:
            https://bugs.php.net/bug.php?id=55475
            We should already be safe without this check due to the
            way this autoloader works, but this helps other autoloaders
            that use other mechanisms and may be vulnerable. */
-        if (strpos($class, ":") !== false)
+        if (strpos($class, ":") !== false) {
             // Safer than returning false as it prevents
             // other autoloaders from ever executing...
             throw new Exception('Possible remote code injection detected');
+        }
 
         // need to check if there's a current map file specified ALSO.
         // this could be the first time writing it.
         $mapped = self::isMapped($class);
         if ($mapped) {
-            require_once self::$_map[$class];
+            require_once self::$map[$class];
             if (!self::loadSuccessful($class)) {
                 // record this failure & keep going, we may still find it
-                self::$_unmapped[] = $class;
+                self::$unmapped[] = $class;
             } else {
                 return true;
             }
@@ -188,7 +193,7 @@ class Erebot_Autoload
             DIRECTORY_SEPARATOR,
             $class
         ) . '.php';
-        foreach (self::$_paths as $path) {
+        foreach (self::$paths as $path) {
             if (file_exists($path . DIRECTORY_SEPARATOR . $file)) {
                 require_once $path . DIRECTORY_SEPARATOR . $file;
                 if (!self::loadSuccessful($class)) {
@@ -199,7 +204,7 @@ class Erebot_Autoload
                     );
                 }
 
-                if (in_array($class, self::$_unmapped)) {
+                if (in_array($class, self::$unmapped)) {
                     self::updateMap(
                         $class,
                         $path . DIRECTORY_SEPARATOR . $file
@@ -212,7 +217,7 @@ class Erebot_Autoload
         $e = new Exception(
             'Class ' . $class . ' could not be loaded from ' .
             $file . ', file does not exist (registered paths="' .
-            implode(PATH_SEPARATOR, self::$_paths) .
+            implode(PATH_SEPARATOR, self::$paths) .
             '") [Autoload]'
         );
         $trace = $e->getTrace();
@@ -234,8 +239,9 @@ class Erebot_Autoload
         // If there are other autoload functions registered,
         // let's try to play nicely with them...
         // ...otherwise, we just throw an exception.
-        if (count(spl_autoload_functions()) == 1)
+        if (count(spl_autoload_functions()) == 1) {
             throw $e;
+        }
         return false;
     }
 
@@ -273,14 +279,14 @@ class Erebot_Autoload
      */
     protected static function updateMap($class, $origin)
     {
-        if (is_writable(self::$_mapfile) ||
-            is_writable(dirname(self::$_mapfile))) {
-            self::$_map[$class] = $origin;
+        if (is_writable(self::$mapfile) ||
+            is_writable(dirname(self::$mapfile))) {
+            self::$map[$class] = $origin;
             file_put_contents(
-                self::$_mapfile,
+                self::$mapfile,
                 '<'."?php\n"
                 . "// Autoload auto-generated classmap\n"
-                . "return " . var_export(self::$_map, true) . ';',
+                . "return " . var_export(self::$map, true) . ';',
                 LOCK_EX
             );
         }
@@ -292,9 +298,8 @@ class Erebot_Autoload
      * \retval array
      *      Array of registered paths' names.
      */
-    static function getPaths()
+    public static function getPaths()
     {
-        return self::$_paths;
+        return self::$paths;
     }
 }
-

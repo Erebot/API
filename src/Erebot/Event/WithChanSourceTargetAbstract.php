@@ -18,24 +18,25 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract Event which applies to a channel
  *      and has a source and a target.
  */
-abstract class  Erebot_Event_WithChanSourceTargetAbstract
-extends         Erebot_Event_WithSourceTargetAbstract
-implements      Erebot_Interface_Event_Base_Chan
+abstract class WithChanSourceTargetAbstract extends \Erebot\Event\WithSourceTargetAbstract implements
+    \Erebot\Interfaces\Event\Base\Chan
 {
     /// IRC channel this event relates to.
-    protected $_chan;
+    protected $chan;
 
     /**
      * Creates a new event for which a source,
      * a destination (target) and a channel
      * can be identified.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $chan
@@ -48,20 +49,17 @@ implements      Erebot_Interface_Event_Base_Chan
      *      Target identified for this event.
      */
     public function __construct(
-        Erebot_Interface_Connection $connection,
-                                    $chan,
-                                    $source,
-                                    $target
-    )
-    {
+        \Erebot\Interfaces\Connection $connection,
+        $chan,
+        $source,
+        $target
+    ) {
         parent::__construct($connection, $source, $target);
-        $this->_chan = $chan;
+        $this->chan = $chan;
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Chan::getChan()
     public function getChan()
     {
-        return $this->_chan;
+        return $this->chan;
     }
 }
-

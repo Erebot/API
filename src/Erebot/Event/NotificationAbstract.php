@@ -18,20 +18,21 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract Event for WATCH list notifications.
  */
-abstract class  Erebot_Event_NotificationAbstract
-extends         Erebot_Event_WithSourceTextAbstract
+abstract class NotificationAbstract extends \Erebot\Event\WithSourceTextAbstract
 {
     /// Timestamp the notification was issued at.
-    protected $_timestamp;
+    protected $timestamp;
 
     /**
      * Constructs a new event related to a notification.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      Connection the event originated from.
      *
      * \param string $source
@@ -51,18 +52,18 @@ extends         Erebot_Event_WithSourceTextAbstract
      *      Message explaining why the notification was triggered.
      */
     public function __construct(
-        Erebot_Interface_Connection $connection,
-                                    $source,
-                                    $ident,
-                                    $host,
-        DateTime                    $timestamp,
-                                    $text
-    )
-    {
-        if ($ident !== NULL && $host !== NULL)
+        \Erebot\Interfaces\Connection $connection,
+        $source,
+        $ident,
+        $host,
+        \DateTime $timestamp,
+        $text
+    ) {
+        if ($ident !== null && $host !== null) {
             $source .= '!'.$ident.'@'.$host;
+        }
         parent::__construct($connection, $source, $text);
-        $this->_timestamp   = $timestamp;
+        $this->timestamp = $timestamp;
     }
 
     /**
@@ -74,7 +75,6 @@ extends         Erebot_Event_WithSourceTextAbstract
      */
     public function getTimestamp()
     {
-        return $this->_timestamp;
+        return $this->timestamp;
     }
 }
-

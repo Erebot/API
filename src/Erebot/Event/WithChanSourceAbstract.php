@@ -18,27 +18,28 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract Event which has a source and applies to a channel.
  */
-abstract class  Erebot_Event_WithChanSourceAbstract
-extends         Erebot_Event_Abstract
-implements      Erebot_Interface_Event_Base_Chan,
-                Erebot_Interface_Event_Base_Source
+abstract class WithChanSourceAbstract extends \Erebot\Event\AbstractEvent implements
+    \Erebot\Interfaces\Event\Base\Chan,
+    \Erebot\Interfaces\Event\Base\Source
 {
     /// IRC channel this event relates to.
-    protected $_chan;
+    protected $chan;
 
     /// Source the event originated from.
-    protected $_source;
+    protected $source;
 
     /**
      * Creates a new event dealing with an IRC
      * channel and for which a source can be
      * identified.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $chan
@@ -48,26 +49,22 @@ implements      Erebot_Interface_Event_Base_Chan,
      *      Source identified for this event.
      */
     public function __construct(
-        Erebot_Interface_Connection $connection,
-                                    $chan,
-                                    $source
-    )
-    {
+        \Erebot\Interfaces\Connection $connection,
+        $chan,
+        $source
+    ) {
         parent::__construct($connection);
-        $this->_chan    = $chan;
-        $this->_source  = new Erebot_Identity($source);
+        $this->chan   = $chan;
+        $this->source = new \Erebot\Identity($source);
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Chan::getChan()
     public function getChan()
     {
-        return $this->_chan;
+        return $this->chan;
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Source::getSource()
     public function getSource()
     {
-        return $this->_source;
+        return $this->source;
     }
 }
-

@@ -21,7 +21,8 @@
         "source": "https://github.com/Erebot/Erebot_API"
     },
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "ext-spl": "*"
     },
     "require-dev": {
         "erebot/buildenv": "~1.1"

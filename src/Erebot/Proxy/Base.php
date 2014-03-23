@@ -18,17 +18,19 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Proxy;
+
 /**
  * \brief
  *      Base class for a proxy client.
  */
-abstract class Erebot_Proxy_Base
+abstract class Base
 {
     /// A socket on which to operate.
-    protected $_socket;
+    protected $socket;
 
     /// A logger for this proxy client.
-    protected $_logger;
+    protected $logger;
 
     /**
      * Create the base for a proxy client.
@@ -38,27 +40,30 @@ abstract class Erebot_Proxy_Base
      */
     public function __construct($socket)
     {
-        if (!is_resource($socket))
-            throw new Erebot_InvalidValueException('Not a socket');
+        if (!is_resource($socket)) {
+            throw new \Erebot\InvalidValueException('Not a socket');
+        }
 
-        $this->_socket  = $socket;
-        $logging        = Plop::getInstance();
-        $this->_logger  = $logging->getLogger(__FILE__ . DIRECTORY_SEPARATOR);
+        $this->socket   = $socket;
+        $logging        = \Plop::getInstance();
+        $this->logger   = $logging->getLogger(__FILE__ . DIRECTORY_SEPARATOR);
     }
 
     /**
      * Main method which will do all the work
      * of making the proxy tunnel.
      *
-     * \param Erebot_URI $proxyURI
+     * \param Erebot::URI::URIInterface $proxyURI
      *      URI used to designate the proxy.
      *
-     * \param Erebot_URI $nextURI
+     * \param Erebot::URI::URIInterface $nextURI
      *      URI used to designate the next element
      *      in the proxy chain. The next URI may
      *      point to either another proxy (chaining),
      *      or the final end point of the chain.
      */
-    abstract public function proxify(Erebot_URI $proxyURI, Erebot_URI $nextURI);
+    abstract public function proxify(
+        \Erebot\URI\URIInterface $proxyURI,
+        \Erebot\URI\URIInterface $nextURI
+    );
 }
-

@@ -18,6 +18,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An abstract class that provides an IRC collation.
@@ -25,10 +27,8 @@
  * Using subclasses of this class, you can compare two
  * IRC nicknames.
  */
-abstract class  Erebot_IrcCollator
-implements      Erebot_Interface_IrcCollator
+abstract class IrcCollator implements \Erebot\Interfaces\IrcCollator
 {
-    /// \copydoc Erebot_Interface_IrcCollator::compare()
     public function compare($a, $b)
     {
         return strcmp(
@@ -37,7 +37,6 @@ implements      Erebot_Interface_IrcCollator
         );
     }
 
-    /// \copydoc Erebot_Interface_IrcCollator::limitedCompare()
     public function limitedCompare($a, $b, $len)
     {
         return strncmp(
@@ -47,31 +46,30 @@ implements      Erebot_Interface_IrcCollator
         );
     }
 
-    /// \copydoc Erebot_Interface_IrcCollator::normalizeNick()
     public function normalizeNick($nick)
     {
         $pos = strpos($nick, '!');
         $suffix = '';
-        if ($pos !== FALSE) {
+        if ($pos !== false) {
             $suffix = substr($nick, $pos);
             $nick = substr($nick, 0, $pos);
-            if ($nick === FALSE)
-                throw new Erebot_InvalidValueException(
+            if ($nick === false) {
+                throw new \Erebot\InvalidValueException(
                     $this->_bot->gettext('Not a valid mask')
                 );
+            }
         }
-        return $this->_normalizeNick($nick).$suffix;
+        return $this->realNormalizeNick($nick).$suffix;
     }
 
     /**
-     * \copydoc Erebot_Interface_IrcCollator::normalizeNick()
+     * \copydoc Erebot::Interfaces::IrcCollator::normalizeNick()
      *
      * \note
      *      This method must be redefined in subclasses.
      */
-    protected function _normalizeNick($nick)
+    protected function realNormalizeNick($nick)
     {
-        throw new Erebot_NotImplementedException();
+        throw new \Erebot\NotImplementedException();
     }
 }
-

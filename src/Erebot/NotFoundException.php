@@ -18,6 +18,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown when the given item could not be found.
@@ -25,8 +27,6 @@
  *  Often used is getters which operate on associative arrays when
  *  asked for a key which doesn't exist.
  */
-class   Erebot_NotFoundException
-extends Erebot_Exception
+class NotFoundException extends \Erebot\Exception
 {
 }
-

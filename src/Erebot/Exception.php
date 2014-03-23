@@ -18,12 +18,12 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      Base class for other (Erebot-related) exceptions.
  */
-class   Erebot_Exception
-extends Exception
+class Exception extends \Exception
 {
 }
-

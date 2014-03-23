@@ -18,14 +18,14 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown when Erebot stops.
  *
  * This exception is meant for internal usage only.
  */
-class   Erebot_StopException
-extends Erebot_Exception
+class StopException extends \Erebot\Exception
 {
 }
-

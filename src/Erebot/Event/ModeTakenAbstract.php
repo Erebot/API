@@ -18,13 +18,13 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      Triggered when someone removes a mode from a channel.
  */
-class       Erebot_Event_ModeTakenAbstract
-extends     Erebot_Event_WithChanSourceTextAbstract
-implements  Erebot_Interface_Event_Base_ChanModeTaken
+class ModeTakenAbstract extends \Erebot\Event\WithChanSourceTextAbstract implements
+    \Erebot\Interfaces\Event\Base\ChanModeTaken
 {
 }
-

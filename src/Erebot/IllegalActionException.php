@@ -18,12 +18,12 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown when some illegal action was attempted.
  */
-class   Erebot_IllegalActionException
-extends Erebot_Exception
+class IllegalActionException extends \Erebot\Exception
 {
 }
-

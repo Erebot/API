@@ -3,23 +3,23 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "aa1013c21ec2e0ee7c7bf944533475d7",
+    "hash": "9cb66dd4a4a7d302159bf12b4a1ab57f",
     "packages": [
 
     ],
     "packages-dev": [
         {
             "name": "erebot/buildenv",
-            "version": "dev-master",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Erebot_Buildenv.git",
-                "reference": "a85c273ec439fe3c9a5d6bef11c6ed669bf3fac8"
+                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Erebot_Buildenv/zipball/a85c273ec439fe3c9a5d6bef11c6ed669bf3fac8",
-                "reference": "a85c273ec439fe3c9a5d6bef11c6ed669bf3fac8",
+                "url": "https://api.github.com/repos/Erebot/Erebot_Buildenv/zipball/c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
+                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
                 "shasum": ""
             },
             "require": {
@@ -31,7 +31,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -50,20 +50,20 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2014-01-03 16:22:17"
+            "time": "2014-01-03 11:44:34"
         },
         {
             "name": "phing/phing",
-            "version": "dev-master",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "1113b781fd931a63ea87fe0f2ee6be33e126a011"
+                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/1113b781fd931a63ea87fe0f2ee6be33e126a011",
-                "reference": "1113b781fd931a63ea87fe0f2ee6be33e126a011",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/bd2689790c620ac745b3ad29765c641a0dd5d007",
+                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "task",
                 "tool"
             ],
-            "time": "2013-12-12 13:48:30"
+            "time": "2014-02-13 13:17:59"
         }
     ],
     "aliases": [
@@ -113,7 +113,8 @@
 
     ],
     "platform": {
-        "php": ">=5.2.2"
+        "php": ">=5.3.0",
+        "ext-spl": "*"
     },
     "platform-dev": [
 

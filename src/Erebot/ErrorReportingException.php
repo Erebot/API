@@ -18,6 +18,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown whenever PHP raises a notice, warning, etc.
@@ -30,11 +32,10 @@
  * Original implementation proposed by luke at cywh dot com:
  * http://php.net/manual/en/class.errorexception.php#89132
  */
-class   Erebot_ErrorReportingException
-extends Erebot_Exception
+class ErrorReportingException extends \Erebot\Exception
 {
     /// A mapping of PHP's error levels' names to their numeric value.
-    static protected $_map = NULL;
+    static protected $map = null;
 
     /**
      * Constructs a new exception from a PHP error/warning/notice.
@@ -55,20 +56,22 @@ extends Erebot_Exception
      */
     public function __construct($message, $code, $filename, $lineno)
     {
-        if (self::$_map === NULL) {
-            $constants = get_defined_constants(TRUE);
+        if (self::$map === null) {
+            $constants = get_defined_constants(true);
             $core = array();
-            if (isset($constants['Core']))
+            if (isset($constants['Core'])) {
                 $core = $constants['Core'];
-            else if (isset($constants['internal']))
+            } elseif (isset($constants['internal'])) {
                 $core = $constants['internal'];
-            else if (isset($constants['mhash']))
+            } elseif (isset($constants['mhash'])) {
                 $core = $constants['mhash'];
+            }
 
-            self::$_map = array();
+            self::$map = array();
             foreach ($core as $name => $value) {
-                if (substr($name, 0, 2) == 'E_')
-                    self::$_map[$value] = $name;
+                if (substr($name, 0, 2) == 'E_') {
+                    self::$map[$value] = $name;
+                }
             }
         }
 
@@ -85,23 +88,12 @@ extends Erebot_Exception
      */
     public function __toString()
     {
-        if (isset(self::$_map[$this->code]))
-            $code = self::$_map[$this->code];
-        else
+        if (isset(self::$map[$this->code])) {
+            $code = self::$map[$this->code];
+        } else {
             $code = '???';
+        }
 
         return "[$code] - {$this->message}";
     }
 }
-
-set_error_handler(
-    create_function(
-        '$errno, $errstr, $errfile, $errline',
-        'if (($errno & error_reporting()) != $errno) return FALSE;'.
-        'throw new Erebot_ErrorReportingException('.
-        '   $errstr, $errno, $errfile, $errline'.
-        ');'
-    ),
-    E_ALL
-);
-

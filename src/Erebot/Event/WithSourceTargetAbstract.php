@@ -18,25 +18,26 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract Event with a source and a target.
  */
-abstract class  Erebot_Event_WithSourceTargetAbstract
-extends         Erebot_Event_Abstract
-implements      Erebot_Interface_Event_Base_Source,
-                Erebot_Interface_Event_Base_Target
+abstract class WithSourceTargetAbstract extends \Erebot\Event\AbstractEvent implements
+    \Erebot\Interfaces\Event\Base\Source,
+    \Erebot\Interfaces\Event\Base\Target
 {
     /// Source the event originated from.
-    protected $_source;
+    protected $source;
     /// Target of the event (usually the bot).
-    protected $_target;
+    protected $target;
 
     /**
      * Creates a new event for which a source
      *  and a destination (target) can be identified.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $source
@@ -46,26 +47,22 @@ implements      Erebot_Interface_Event_Base_Source,
      *      Target identified for this event.
      */
     public function __construct(
-        Erebot_Interface_Connection $connection,
-                                    $source,
-                                    $target
-    )
-    {
+        \Erebot\Interfaces\Connection $connection,
+        $source,
+        $target
+    ) {
         parent::__construct($connection);
-        $this->_source = new Erebot_Identity($source);
-        $this->_target = $target;
+        $this->source = new \Erebot\Identity($source);
+        $this->target = $target;
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Source::getSource()
     public function getSource()
     {
-        return $this->_source;
+        return $this->source;
     }
 
-    /// \copydoc Erebot_Interface_Event_Base_Target::getTarget()
     public function getTarget()
     {
-        return $this->_target;
+        return $this->target;
     }
 }
-

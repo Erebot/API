@@ -18,27 +18,29 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Module;
+
 /**
  * \brief
  *      An abstract class which serves as the base
  *      to build additional modules for Erebot.
  */
-abstract class Erebot_Module_Base
+abstract class Base
 {
     /// The connection associated with this instance.
-    protected $_connection;
+    protected $connection;
 
     /// The channel associated with this instance, if any.
-    protected $_channel;
+    protected $channel;
 
     /// The translator to use for messages coming from this instance.
-    protected $_translator;
+    protected $translator;
 
     /// Factories to use for this module.
-    protected $_factories;
+    protected $factories;
 
     /// A logger for this module's messages.
-    protected $_logger;
+    protected $logger;
 
 
     /// Passed when the module is loaded (instead of reloaded).
@@ -76,7 +78,7 @@ abstract class Erebot_Module_Base
      * This method is called whenever the module is (re)loaded.
      *
      * \param int $flags
-     *      A bitwise OR of the Erebot_Module_Base::RELOAD_*
+     *      A bitwise OR of the Erebot::Module::Base::RELOAD_*
      *      constants. Your method should take proper actions
      *      depending on the value of those flags.
      *
@@ -84,7 +86,7 @@ abstract class Erebot_Module_Base
      *      See the documentation on individual RELOAD_*
      *      constants for a list of possible values.
      */
-    abstract protected function _reload($flags);
+    abstract protected function reload($flags);
 
     /**
      * This method is called whenever the module
@@ -94,55 +96,70 @@ abstract class Erebot_Module_Base
      * you need to do to remove any bits of your
      * module's existence (eg. clean up memory, etc.).
      */
-    protected function _unload()
+    protected function unload()
     {
     }
 
     /**
      * Constructor for modules.
      *
-     * \param string|NULL $channel
+     * \param string|null $channel
      *      (optional) The channel this instance applies to.
-     *      This will be NULL for modules loaded at the server
+     *      This will be \b null for modules loaded at the server
      *      level or higher in the configuration hierarchy.
      */
     final public function __construct($channel)
     {
-        $this->_connection  =
-        $this->_translator  =
-        $this->_mainCfg     = NULL;
-        $this->_channel     = $channel;
-        $this->_factories   = array();
+        $this->connection  =
+        $this->translator  =
+        $this->mainCfg     = null;
+        $this->channel     = $channel;
+        $this->factories   = array();
 
         $ifaces = array(
-            '!Callable'         => 'Erebot_Callable',
-            '!EventHandler'     => 'Erebot_EventHandler',
-            '!Identity'         => 'Erebot_Identity',
-            '!NumericHandler'   => 'Erebot_NumericHandler',
-            '!NumericReference' => 'Erebot_NumericReference',
-            '!Styling'          => 'Erebot_Styling',
-            '!Styling_Currency' => 'Erebot_Styling_Currency',
-            '!Styling_DateTime' => 'Erebot_Styling_DateTime',
-            '!Styling_Duration' => 'Erebot_Styling_Duration',
-            '!TextWrapper'      => 'Erebot_TextWrapper',
-            '!Timer'            => 'Erebot_Timer',
+            '\\Erebot\\CallableWrapper\\CallableInterface' =>
+                '\\Erebot\\CallableWrapper\\Main',
+
+            '!EventHandler'     => '\\Erebot\\EventHandler',
+
+            '!Identity'         => '\\Erebot\\Identity',
+
+            '!NumericHandler'   => '\\Erebot\\NumericHandler',
+
+            '!NumericReference' => '\\Erebot\\NumericReference',
+
+            '\\Erebot\\Styling\\MainInterface' =>
+                '\\Erebot\\Styling\\Main',
+
+            '\\Erebot\\Styling\\Variables\\CurrencyInterface' =>
+                '\\Erebot\\Styling\\Variables\\Currency',
+
+            '\\Erebot\\Styling\\Variables\\DateTimeInterface' =>
+                '\\Erebot\\Styling\\Variables\\DateTime',
+
+            '\\Erebot\\Styling\\Variables\\DurationInterface' =>
+                '\\Erebot\\Styling\\Variables\\Duration',
+
+            '!TextWrapper'      => '\\Erebot\\TextWrapper',
+
+            '\\Erebot\\Timer\\TimerInterface' =>
+                '\\Erebot\\Timer\\Timer',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
                 $this->setFactory($iface, $cls);
-            }
-            catch (Erebot_InvalidValueException $e) {
+            } catch (\Erebot\InvalidValueException $e) {
                 // Ignore silently as the only time the default classes
                 // won't exist is when we run the tests for some module.
             }
         }
 
         /// @FIXME: handle dependency injection somehow
-        $this->_logger = NULL;
+        $this->logger = null;
         if (class_exists('Plop')) {
             $logging =&  Plop::getInstance();
             $reflector = new ReflectionObject($this);
-            $this->_logger = $logging->getLogger($reflector->getFileName());
+            $this->logger = $logging->getLogger($reflector->getFileName());
             unset($logging);
         }
     }
@@ -151,10 +168,10 @@ abstract class Erebot_Module_Base
     final public function __destruct()
     {
         unset(
-            $this->_connection,
-            $this->_translator,
-            $this->_channel,
-            $this->_mainCfg
+            $this->connection,
+            $this->translator,
+            $this->channel,
+            $this->mainCfg
         );
     }
 
@@ -162,11 +179,11 @@ abstract class Erebot_Module_Base
      * Public method to (re)load a module.
      * This eventually reconfigures the bot.
      *
-     * \param Erebot_Interface_Connection $connection
+     * \param Erebot::Interface::Connection $connection
      *      IRC connection associated with this instance.
      *
      * \param int $flags
-     *      A bitwise OR of the Erebot_Module_Base::RELOAD_*
+     *      A bitwise OR of the Erebot::Module::Base::RELOAD_*
      *      constants. Your method should take proper actions
      *      depending on the value of those flags.
      *
@@ -174,26 +191,24 @@ abstract class Erebot_Module_Base
      *      See the documentation on individual RELOAD_*
      *      constants for a list of possible values.
      */
-    final public function reload(
-        Erebot_Interface_Connection $connection,
-                                    $flags
-    )
-    {
-        if ($this->_connection === NULL)
+    final public function moduleReload(
+        \Erebot\Interfaces\Connection $connection,
+        $flags
+    ) {
+        if ($this->connection === null) {
             $flags |= self::RELOAD_INIT;
-        else
+        } else {
             $flags &= ~self::RELOAD_INIT;
+        }
 
-        $this->_connection  = $connection;
-        $serverCfg          = $this->_connection->getConfig(NULL);
-        $this->_mainCfg     = $serverCfg->getMainCfg();
+        $this->connection   = $connection;
+        $serverCfg          = $this->connection->getConfig(null);
+        $this->mainCfg      = $serverCfg->getMainCfg();
 
-        // Passing $this to get_class() is necessary to retrieve the instance's
-        // class instead of the code's definition class (Erebot_Module_Base).
-        $this->_translator  = $this->_mainCfg->getTranslator(get_class($this));
-        $this->_reload($flags);
+        $this->translator = $this->mainCfg->getTranslator(get_called_class());
+        $this->reload($flags);
 
-        if ($this instanceof Erebot_Interface_HelpEnabled) {
+        if ($this instanceof \Erebot\Interfaces\HelpEnabled) {
             $cls = $this->getFactory('!Callable');
             $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
         }
@@ -201,11 +216,11 @@ abstract class Erebot_Module_Base
 
     /**
      * This method is called when unloading
-     * the module. It simply calls $this->_unload.
+     * the module. It simply calls $this->unload.
      */
-    final public function unload()
+    final public function moduleUnload()
     {
-        return $this->_unload();
+        return $this->unload();
     }
 
     /**
@@ -227,24 +242,28 @@ abstract class Erebot_Module_Base
      */
     public function setFactory($iface, $cls)
     {
-        if (!is_string($iface))
-            throw new Erebot_InvalidValueException('Not an interface name');
+        if (!is_string($iface)) {
+            throw new \Erebot\InvalidValueException('Not an interface name');
+        }
 
         $iface = str_replace('!', 'Erebot_Interface_', $iface);
-        if (!interface_exists($iface, TRUE))
-            throw new Erebot_InvalidValueException(
+        if (!interface_exists($iface, true)) {
+            throw new \Erebot\InvalidValueException(
                 'No such interface ('.$iface.')'
             );
-        if (!class_exists($cls, TRUE))
-            throw new Erebot_InvalidValueException('No such class ('.$cls.')');
+        }
+        if (!class_exists($cls, true)) {
+            throw new \Erebot\InvalidValueException('No such class ('.$cls.')');
+        }
 
         $reflector = new ReflectionClass($cls);
-        if (!$reflector->isSubclassOf($iface))
-            throw new Erebot_InvalidValueException(
+        if (!$reflector->isSubclassOf($iface)) {
+            throw new \Erebot\InvalidValueException(
                 'A class that implements the interface was expected'
             );
+        }
         $iface = strtolower($iface);
-        $this->_factories[$iface] = $cls;
+        $this->factories[$iface] = $cls;
     }
 
     /**
@@ -268,16 +287,18 @@ abstract class Erebot_Module_Base
      */
     public function getFactory($iface)
     {
-        if (!is_string($iface))
-            throw new Erebot_InvalidValueException('Not an interface name');
+        if (!is_string($iface)) {
+            throw new \Erebot\InvalidValueException('Not an interface name');
+        }
 
         $iface      = str_replace('!', 'Erebot_Interface_', $iface);
         $ifaceKey   = strtolower($iface);
-        if (!isset($this->_factories[$ifaceKey]))
-            throw new Erebot_InvalidValueException(
+        if (!isset($this->factories[$ifaceKey])) {
+            throw new \Erebot\InvalidValueException(
                 'No such interface ('.$iface.')'
             );
-        return $this->_factories[$ifaceKey];
+        }
+        return $this->factories[$ifaceKey];
     }
 
     /**
@@ -303,22 +324,24 @@ abstract class Erebot_Module_Base
         $targets,
         $message,
         $type = self::MSG_TYPE_PRIVMSG
-    )
-    {
+    ) {
         $types  = array('PRIVMSG', 'NOTICE', 'CTCP', 'CTCPREPLY', 'ACTION');
         $type   = strtoupper($type);
-        if (!in_array($type, $types))
+        if (!in_array($type, $types)) {
             throw new Exception('Not a valid type');
+        }
 
-        if (is_array($targets))
+        if (is_array($targets)) {
             $targets = implode(',', $targets);
-        else if ($targets instanceof Erebot_Identity)
+        } elseif ($targets instanceof \Erebot\Identity) {
             $targets = (string) $targets;
-        else if (!is_string($targets))
+        } elseif (!is_string($targets)) {
             throw new Exception('Not a valid target (expected a string)');
+        }
 
-        if (!Erebot_Utils::stringifiable($message))
+        if (!\Erebot\Utils::stringifiable($message)) {
             throw new Exception('Not a valid message (expected a string)');
+        }
 
         $message    = (string) $message;
         $parts      = array_map('trim', explode("\n", trim($message)));
@@ -354,12 +377,13 @@ abstract class Erebot_Module_Base
                 $message,
                 400 - $prefix - 2,
                 "\n",
-                TRUE
+                true
             )
         );
-        $io = $this->_connection->getIO();
-        foreach ($messages as $msg)
+        $io = $this->connection->getIO();
+        foreach ($messages as $msg) {
             $io->push($prefix.$msg.$marker);
+        }
     }
 
     /**
@@ -375,7 +399,7 @@ abstract class Erebot_Module_Base
      *      http://www.irchelp.org/irchelp/rfc/ctcpspec.html
      *      describes the quoting algorithm used.
      */
-    static protected function _ctcpQuote($message)
+    protected static function ctcpQuote($message)
     {
         // First comes low-level quoting.
         $quoting = array(
@@ -403,40 +427,41 @@ abstract class Erebot_Module_Base
      */
     protected function sendCommand($command)
     {
-        if (!Erebot_Utils::stringifiable($command))
+        if (!\Erebot\Utils::stringifiable($command)) {
             throw new Exception('Invalid command (not a string)');
-        $this->_connection->getIO()->push((string) $command);
+        }
+        $this->connection->getIO()->push((string) $command);
     }
 
     /**
      * Register a timer.
      *
-     * \param Erebot_Interface_Timer $timer
+     * \param Erebot::Timer::TimerInterface $timer
      *      The timer to register.
      *
      * \note
      *      This method is only a shortcut for
-     *      Erebot_Interface_Core::addTimer().
+     *      Erebot::Interfaces::Core::addTimer().
      */
-    protected function addTimer(Erebot_Interface_Timer $timer)
+    protected function addTimer(\Erebot\Timer\TimerInterface $timer)
     {
-        $bot = $this->_connection->getBot();
+        $bot = $this->connection->getBot();
         return $bot->addTimer($timer);
     }
 
     /**
      * Unregister a timer.
      *
-     * \param Erebot_Interface_Timer $timer
+     * \param Erebot::Timer::TimerInterface $timer
      *      The timer to unregister.
      *
      * \note
      *      This method is only a shortcut for
-     *      Erebot_Interface_Core::removeTimer().
+     *      Erebot::Interfaces::Core::removeTimer().
      */
-    protected function removeTimer(Erebot_Interface_Timer $timer)
+    protected function removeTimer(\Erebot\Timer\TimerInterface $timer)
     {
-        $bot = $this->_connection->getBot();
+        $bot = $this->connection->getBot();
         return $bot->removeTimer($timer);
     }
 
@@ -467,17 +492,16 @@ abstract class Erebot_Module_Base
     private function parseSomething($something, $param, $default)
     {
         $function   = 'parse'.$something;
-        $bot        = $this->_connection->getBot();
-        if ($this->_channel !== NULL) {
+        $bot        = $this->connection->getBot();
+        if ($this->channel !== null) {
             try {
-                $config = $this->_connection->getConfig($this->_channel);
+                $config = $this->connection->getConfig($this->channel);
                 return $config->$function(get_class($this), $param);
-            }
-            catch (Erebot_Exception $e) {
+            } catch (\Erebot\Exception $e) {
                 unset($config);
             }
         }
-        $config = $this->_connection->getConfig(NULL);
+        $config = $this->connection->getConfig(null);
         return $config->$function(get_class($this), $param, $default);
     }
 
@@ -494,10 +518,10 @@ abstract class Erebot_Module_Base
      * \retval bool
      *      The value for that parameter.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given $default value does not have the right type.
      */
-    protected function parseBool($param, $default = NULL)
+    protected function parseBool($param, $default = null)
     {
         return $this->parseSomething('Bool', $param, $default);
     }
@@ -515,10 +539,10 @@ abstract class Erebot_Module_Base
      * \retval string
      *      The value for that parameter.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given $default value does not have the right type.
      */
-    protected function parseString($param, $default = NULL)
+    protected function parseString($param, $default = null)
     {
         return $this->parseSomething('String', $param, $default);
     }
@@ -536,10 +560,10 @@ abstract class Erebot_Module_Base
      * \retval int
      *      The value for that parameter.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given $default value does not have the right type.
      */
-    protected function parseInt($param, $default = NULL)
+    protected function parseInt($param, $default = null)
     {
         return $this->parseSomething('Int', $param, $default);
     }
@@ -557,10 +581,10 @@ abstract class Erebot_Module_Base
      * \retval float
      *      The value for that parameter.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given $default value does not have the right type.
      */
-    protected function parseReal($param, $default = NULL)
+    protected function parseReal($param, $default = null)
     {
         return $this->parseSomething('Real', $param, $default);
     }
@@ -573,14 +597,14 @@ abstract class Erebot_Module_Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param Erebot_Interface_Callable $callback
+     * \param Erebot::CallableWrapper::CallableInterface $callback
      *      The callback to register as the help method
      *      for this module.
      *
-     * \retval TRUE
+     * \retval true
      *      The callback could be registered.
      *
-     * \retval FALSE
+     * \retval false
      *      The callback could not be registered.
      *
      * \note
@@ -588,67 +612,60 @@ abstract class Erebot_Module_Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod(Erebot_Interface_Callable $callback)
+    protected function registerHelpMethod(\Erebot\CallableWrapper\CallableInterface $callback)
     {
         try {
-            $helper = $this->_connection->getModule(
+            $helper = $this->connection->getModule(
                 'Erebot_Module_Helper',
-                $this->_channel
+                $this->channel
             );
             return $helper->realRegisterHelpMethod($this, $callback);
-        }
-        catch (EException $e) {
-            return FALSE;
+        } catch (EException $e) {
+            return false;
         }
     }
 
     /**
      * Returns the appropriate formatter for the given channel.
      *
-     * \param NULL|FALSE|string $chan
+     * \param null|false|string $chan
      *      The channel for which a formatter must be returned.
-     *      If $chan is NULL, the hierarchy of configurations
+     *      If $chan is \b null, the hierarchy of configurations
      *      is traversed to find the most appropriate formatter.
-     *      If $chan is FALSE, a formatter is built using the
+     *      If $chan is \b false, a formatter is built using the
      *      bot's main translator.
      *
-     * \retval Erebot_Interface_Styling
+     * \retval Erebot::Styling::Interface::MainInterface
      *      A formatter for the given channel.
      */
     protected function getFormatter($chan)
     {
         $cls = $this->getFactory('!Styling');
-        if ($chan === FALSE)
-            return new $cls($this->_translator);
-
-        else if ($chan !== NULL) {
-            $config = $this->_connection->getConfig($chan);
+        if ($chan === false) {
+            return new $cls($this->translator);
+        } elseif ($chan !== null) {
+            $config = $this->connection->getConfig($chan);
             try {
                 // Passing $this to get_class() is necessary to retrieve
                 // the instance's class instead of the code's definition
-                // class (Erebot_Module_Base).
+                // class (\Erebot\Module\Base).
                 return new $cls($config->getTranslator(get_class($this)));
-            }
-            catch (Erebot_Exception $e) {
+            } catch (\Erebot\Exception $e) {
             // The channel lacked a specific config. Use the cascade.
             }
             unset($config);
         }
 
-        $config = $this->_connection->getConfig($this->_channel);
+        $config = $this->connection->getConfig($this->channel);
         try {
-            // Passing $this to get_class() is necessary to retrieve
-            // the instance's class instead of the code's definition
-            // class (Erebot_Module_Base).
-            return new $cls($config->getTranslator(get_class($this)));
-        }
-        catch (Erebot_Exception $e) {
+            return new $cls($config->getTranslator(get_called_class()));
+        } catch (\Erebot\Exception $e) {
             // The channel lacked a specific config. Use the cascade.
         }
         unset($config);
 
-        $config = $this->_connection->getConfig(NULL);
-        return new $cls($config->getTranslator(get_class($this)));
+        $config = $this->connection->getConfig(null);
+        return new $cls($config->getTranslator(get_called_class()));
     }
 
     /**
@@ -659,13 +676,12 @@ abstract class Erebot_Module_Base
      *      Name of the numeric message for which a reference
      *      must be returned (eg. "RPL_WELCOME").
      *
-     * \retval Erebot_Interface_NumericReference
+     * \retval Erebot::Interfaces::NumericReference
      *      A numeric reference.
      */
     public function getNumRef($name)
     {
         $cls = $this->getFactory('!NumericReference');
-        return new $cls($this->_connection, $name);
+        return new $cls($this->connection, $name);
     }
 }
-

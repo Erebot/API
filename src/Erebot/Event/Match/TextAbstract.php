@@ -18,6 +18,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event\Match;
+
 /**
  * \brief
  *      Abstract filter that matches events based on their content (text).
@@ -25,14 +27,13 @@
  * Subclasses must provide the logic for the matching algorithm
  * by overriding the _match() method.
  */
-abstract class  Erebot_Event_Match_TextAbstract
-implements      Erebot_Interface_Event_Match
+abstract class TextAbstract implements \Erebot\Interfaces\Event\Match
 {
     /// Pattern used in comparisons, as a string.
-    protected $_pattern;
+    protected $pattern;
 
-    /// Boolean or NULL indicating whether a prefix is required or not.
-    protected $_requirePrefix;
+    /// Boolean or null indicating whether a prefix is required or not.
+    protected $requirePrefix;
 
     /**
      * Creates a new instance of this filter.
@@ -40,15 +41,15 @@ implements      Erebot_Interface_Event_Match
      * \param string $pattern
      *      Pattern to use in text comparisons.
      *
-     * \param bool|NULL $requirePrefix
-     *      (optional) Whether a prefix will be required (TRUE),
-     *      allowed (NULL) or disallowed (FALSE).
+     * \param bool|null $requirePrefix
+     *      (optional) Whether a prefix will be required (\b true),
+     *      allowed (\b null) or disallowed (\b false).
      *      The default is to prohibit the use of a prefix.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given value for $pattern or $requirePrefix is invalid.
      */
-    public function __construct($pattern, $requirePrefix = FALSE)
+    public function __construct($pattern, $requirePrefix = false)
     {
         $this->setPattern($pattern);
         $this->setPrefixRequirement($requirePrefix);
@@ -62,7 +63,7 @@ implements      Erebot_Interface_Event_Match
      */
     public function getPattern()
     {
-        return $this->_pattern;
+        return $this->pattern;
     }
 
     /**
@@ -71,64 +72,67 @@ implements      Erebot_Interface_Event_Match
      * \param string $pattern
      *      Pattern to use in text comparisons.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given value for $pattern is invalid.
      */
     public function setPattern($pattern)
     {
-        if (!Erebot_Utils::stringifiable($pattern))
-            throw new Erebot_InvalidValueException('Pattern must be a string');
+        if (!\Erebot\Utils::stringifiable($pattern)) {
+            throw new \Erebot\InvalidValueException('Pattern must be a string');
+        }
 
-        $this->_pattern = $pattern;
+        $this->pattern = $pattern;
     }
 
     /**
      * Returns the prefix requirement constraint for this filter.
      *
-     * \retval bool|NULL
-     *      Either TRUE if a prefix is required,
-     *      NULL if a prefix is allowed,
-     *      FALSE if a prefix is disallowed.
+     * \retval bool|null
+     *      Either \b true if a prefix is required,
+     *      \b null if a prefix is allowed,
+     *      \b false if a prefix is disallowed.
      */
     public function getPrefixRequirement()
     {
-        return $this->_requirePrefix;
+        return $this->requirePrefix;
     }
 
     /**
      * Sets the constraint on prefix requirement.
      *
-     * \param bool|NULL $requirePrefix
-     *      (optional) Whether a prefix will be required (TRUE),
-     *      allowed (NULL) or disallowed (FALSE).
+     * \param bool|null $requirePrefix
+     *      (optional) Whether a prefix will be required (\b true),
+     *      allowed (\b null) or disallowed (\b false).
      *      The default is to prohibit the use of a prefix.
      *
-     * \throw Erebot_InvalidValueException
+     * \throw Erebot::InvalidValueException
      *      The given value for $requirePrefix is invalid.
      */
-    public function setPrefixRequirement($requirePrefix = FALSE)
+    public function setPrefixRequirement($requirePrefix = false)
     {
-        if ($requirePrefix !== NULL && !is_bool($requirePrefix))
-            throw new Erebot_InvalidValueException(
-                '$requirePrefix must be a boolean or NULL'
+        if ($requirePrefix !== null && !is_bool($requirePrefix)) {
+            throw new \Erebot\InvalidValueException(
+                '$requirePrefix must be a boolean or null'
             );
+        }
 
-        $this->_requirePrefix = $requirePrefix;
+        $this->requirePrefix = $requirePrefix;
     }
 
-    /// \copydoc Erebot_Interface_Event_Match::match()
-    public function match(Erebot_Interface_Event_Base_Generic $event)
+    public function match(\Erebot\Interfaces\Event\Base\Generic $event)
     {
-        if (!($event instanceof Erebot_Interface_Event_Base_Text))
-            return FALSE;
+        if (!($event instanceof \Erebot\Interfaces\Event\Base\Text)) {
+            return false;
+        }
 
         $prefix = $event
-            ->getConnection()->getConfig(NULL)
+            ->getConnection()->getConfig(null)
             ->getMainCfg()->getCommandsPrefix();
 
-        $result = $this->_match($prefix, $event->getText());
-        if (!is_bool($result))
-            throw new Erebot_InvalidValueException('Invalid return value');
+        $result = $this->realMatch($prefix, $event->getText());
+        if (!is_bool($result)) {
+            throw new \Erebot\InvalidValueException('Invalid return value');
+        }
         return $result;
     }
 
@@ -147,9 +151,8 @@ implements      Erebot_Interface_Event_Match
      *      Content of the incoming event.
      *
      * \retval bool
-     *      TRUE if the event's content passes the filter,
-     *      FALSE otherwise.
+     *      \b true if the event's content passes the filter,
+     *      \b false otherwise.
      */
-    abstract protected function _match($prefix, $text);
+    abstract protected function realMatch($prefix, $text);
 }
-

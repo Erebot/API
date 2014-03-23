@@ -18,13 +18,13 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown when you try to use a feature
  *      which has not been implemented yet.
  */
-class   Erebot_NotImplementedException
-extends Erebot_Exception
+class NotImplementedException extends \Erebot\Exception
 {
 }
-

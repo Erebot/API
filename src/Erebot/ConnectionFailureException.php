@@ -18,12 +18,12 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot;
+
 /**
  * \brief
  *      An exception thrown to indicate a connection failure.
  */
-class   Erebot_ConnectionFailureException
-extends Erebot_Exception
+class ConnectionFailureException extends \Erebot\Exception
 {
 }
-

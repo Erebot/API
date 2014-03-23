@@ -18,13 +18,14 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Event;
+
 /**
  * \brief
  *      An abstract Event which represents a usermode change
  *      on a channel.
  */
-abstract class  Erebot_Event_ChanUserModeAbstract
-extends         Erebot_Event_WithChanSourceTargetAbstract
+abstract class ChanUserModeAbstract extends \Erebot\Event\WithChanSourceTargetAbstract
 {
     /**
      * Returns a description of the mode this event
@@ -39,4 +40,3 @@ extends         Erebot_Event_WithChanSourceTargetAbstract
         return self::MODE_PREFIX . self::MODE_LETTER;
     }
 }
-
