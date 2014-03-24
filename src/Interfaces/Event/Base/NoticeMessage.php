@@ -24,6 +24,6 @@ namespace Erebot\Interfaces\Event\Base;
  * \brief
  *      Interface for an event capable of conveying a NOTICE.
  */
-interface NoticeMessage extends Erebot\Interfaces\Event\Base\MessageCapable
+interface NoticeMessage extends \Erebot\Interfaces\Event\Base\MessageCapable
 {
 }

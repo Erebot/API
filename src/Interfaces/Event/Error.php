@@ -24,6 +24,6 @@ namespace Erebot\Interfaces\Event;
  * \brief
  *      Interface to deal with an IRC error.
  */
-interface Error extends Erebot\Interfaces\Event\Base\Text
+interface Error extends \Erebot\Interfaces\Event\Base\Text
 {
 }

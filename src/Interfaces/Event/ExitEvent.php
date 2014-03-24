@@ -24,6 +24,6 @@ namespace Erebot\Interfaces\Event;
  * \brief
  *      Interface for when the bot terminates itself.
  */
-interface ExitEvent extends Erebot\Interfaces\Event\Base\Generic
+interface ExitEvent extends \Erebot\Interfaces\Event\Base\Generic
 {
 }
