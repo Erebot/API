@@ -223,7 +223,7 @@ class Utils
         if (is_object($class)) {
             $class = get_class($class);
         }
-        $refl = new ReflectionClass($class);
+        $refl = new \ReflectionClass($class);
 
         if (($source & self::VSTATIC_CONST) == self::VSTATIC_CONST) {
             try {

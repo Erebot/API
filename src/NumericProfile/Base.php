@@ -218,7 +218,7 @@ abstract class Base implements \ArrayAccess
     /// Constructs a new instance of this numeric profile.
     final public function __construct()
     {
-        $this->reflector = new ReflectionClass(get_class($this));
+        $this->reflector = new \ReflectionClass(get_class($this));
     }
 
     /**

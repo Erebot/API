@@ -172,7 +172,7 @@ class Autoload
         if (strpos($class, ":") !== false) {
             // Safer than returning false as it prevents
             // other autoloaders from ever executing...
-            throw new Exception('Possible remote code injection detected');
+            throw new \Exception('Possible remote code injection detected');
         }
 
         // need to check if there's a current map file specified ALSO.
@@ -197,7 +197,7 @@ class Autoload
             if (file_exists($path . DIRECTORY_SEPARATOR . $file)) {
                 require_once $path . DIRECTORY_SEPARATOR . $file;
                 if (!self::loadSuccessful($class)) {
-                    throw new Exception(
+                    throw new \Exception(
                         'Class ' . $class . ' was not present in ' .
                         $path . DIRECTORY_SEPARATOR . $file .
                         '") [Autoload]'
@@ -214,7 +214,7 @@ class Autoload
             }
         }
 
-        $e = new Exception(
+        $e = new \Exception(
             'Class ' . $class . ' could not be loaded from ' .
             $file . ', file does not exist (registered paths="' .
             implode(PATH_SEPARATOR, self::$paths) .

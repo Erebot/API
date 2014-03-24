@@ -157,8 +157,8 @@ abstract class Base
         /// @FIXME: handle dependency injection somehow
         $this->logger = null;
         if (class_exists('Plop')) {
-            $logging =&  Plop::getInstance();
-            $reflector = new ReflectionObject($this);
+            $logging =& \Plop::getInstance();
+            $reflector = new \ReflectionObject($this);
             $this->logger = $logging->getLogger($reflector->getFileName());
             unset($logging);
         }
@@ -256,7 +256,7 @@ abstract class Base
             throw new \Erebot\InvalidValueException('No such class ('.$cls.')');
         }
 
-        $reflector = new ReflectionClass($cls);
+        $reflector = new \ReflectionClass($cls);
         if (!$reflector->isSubclassOf($iface)) {
             throw new \Erebot\InvalidValueException(
                 'A class that implements the interface was expected'
@@ -328,7 +328,7 @@ abstract class Base
         $types  = array('PRIVMSG', 'NOTICE', 'CTCP', 'CTCPREPLY', 'ACTION');
         $type   = strtoupper($type);
         if (!in_array($type, $types)) {
-            throw new Exception('Not a valid type');
+            throw new \Exception('Not a valid type');
         }
 
         if (is_array($targets)) {
@@ -336,11 +336,11 @@ abstract class Base
         } elseif ($targets instanceof \Erebot\Identity) {
             $targets = (string) $targets;
         } elseif (!is_string($targets)) {
-            throw new Exception('Not a valid target (expected a string)');
+            throw new \Exception('Not a valid target (expected a string)');
         }
 
         if (!\Erebot\Utils::stringifiable($message)) {
-            throw new Exception('Not a valid message (expected a string)');
+            throw new \Exception('Not a valid message (expected a string)');
         }
 
         $message    = (string) $message;
@@ -428,7 +428,7 @@ abstract class Base
     protected function sendCommand($command)
     {
         if (!\Erebot\Utils::stringifiable($command)) {
-            throw new Exception('Invalid command (not a string)');
+            throw new \Exception('Invalid command (not a string)');
         }
         $this->connection->getIO()->push((string) $command);
     }
