@@ -18,8 +18,6 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-define('EREBOT_VERSION', '0.5.1');
-
 namespace Erebot\Interfaces;
 
 /**
@@ -31,13 +29,6 @@ namespace Erebot\Interfaces;
  */
 interface Core
 {
-    /**
-     * Version information regarding this release of the bot.
-     * This information is also available as a global constant called
-     * EREBOT_VERSION.
-     */
-    const VERSION = EREBOT_VERSION;
-
     /**
      * Returns a list of all connections handled by the bot.
      *
@@ -95,17 +86,6 @@ interface Core
      *      A timer to unregister.
      */
     public function removeTimer(\Erebot\TimerInterface $timer);
-
-    /**
-     * Retrieves the bot's version information.
-     *
-     * \retval string
-     *      A string containing formatted version information about the bot.
-     *
-     * \see
-     *      The constant Erebot::VERSION contains the raw version information.
-     */
-    public static function getVersion();
 
     /**
      * Adds a (new) connection to the bot.

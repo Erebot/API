@@ -105,8 +105,7 @@ interface Main extends \Erebot\Interfaces\Config\Proxy
      * \note
      *      This is the version string as it was indicated in the configuration
      *      file (at the time it was written).
-     *      This may be different from the actual version of the code
-     *      (see also Erebot::Interfaces::Core::VERSION).
+     *      This may be different from the actual version of the code.
      */
     public function getVersion();
 
