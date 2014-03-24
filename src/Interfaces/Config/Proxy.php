@@ -30,7 +30,7 @@ namespace Erebot\Interfaces\Config;
 interface Proxy
 {
     /**
-     * Returns the appropriate ErebotI18n object to apply for translations
+     * Returns the appropriate i18n object to use for translations
      * at this configuration level.
      *
      * \param string $component
@@ -38,7 +38,7 @@ interface Proxy
      *      This should be set to the name of a module or "Erebot"
      *      for the core translator.
      *
-     * \retval Erebot::I18N::I18NInterface
+     * \retval Erebot::IntlInterface
      *      A translator object.
      *
      * \throw Erebot::NotFoundException
