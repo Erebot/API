@@ -71,30 +71,30 @@ interface Core
     public function stop();
 
     /**
-     * Returns a list of all \link Erebot::Timer::TimerInterface timers\endlink
+     * Returns a list of all \link Erebot::TimerInterface timers\endlink
      * currently registered.
      *
      * \retval array
      *      A list of timers registered for this instance,
-     *      as objects implementing Erebot::Timer::TimerInterface.
+     *      as objects implementing Erebot::TimerInterface.
      */
     public function getTimers();
 
     /**
      * Registers a timer for this instance.
      *
-     * \param Erebot::Timer::TimerInterface $timer
+     * \param Erebot::TimerInterface $timer
      *      A timer to register.
      */
-    public function addTimer(\Erebot\Timer\TimerInterface $timer);
+    public function addTimer(\Erebot\TimerInterface $timer);
 
     /**
      * Unregisters a timer.
      *
-     * \param Erebot::Timer::TimerInterface $timer
+     * \param Erebot::TimerInterface $timer
      *      A timer to unregister.
      */
-    public function removeTimer(\Erebot\Timer\TimerInterface $timer);
+    public function removeTimer(\Erebot\TimerInterface $timer);
 
     /**
      * Retrieves the bot's version information.

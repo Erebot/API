@@ -117,8 +117,8 @@ abstract class Base
         $this->factories   = array();
 
         $ifaces = array(
-            '\\Erebot\\CallableWrapper\\CallableInterface' =>
-                '\\Erebot\\CallableWrapper\\Main',
+            '\\Erebot\\CallableInterface' =>
+                '\\Erebot\\CallableWrapper',
 
             '!EventHandler'     => '\\Erebot\\EventHandler',
 
@@ -128,8 +128,8 @@ abstract class Base
 
             '!NumericReference' => '\\Erebot\\NumericReference',
 
-            '\\Erebot\\Styling\\MainInterface' =>
-                '\\Erebot\\Styling\\Main',
+            '\\Erebot\\StylingInterface' =>
+                '\\Erebot\\Styling',
 
             '\\Erebot\\Styling\\Variables\\CurrencyInterface' =>
                 '\\Erebot\\Styling\\Variables\\Currency',
@@ -142,8 +142,8 @@ abstract class Base
 
             '!TextWrapper'      => '\\Erebot\\TextWrapper',
 
-            '\\Erebot\\Timer\\TimerInterface' =>
-                '\\Erebot\\Timer\\Timer',
+            '\\Erebot\\TimerInterface' =>
+                '\\Erebot\\Timer',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
@@ -436,14 +436,14 @@ abstract class Base
     /**
      * Register a timer.
      *
-     * \param Erebot::Timer::TimerInterface $timer
+     * \param Erebot::TimerInterface $timer
      *      The timer to register.
      *
      * \note
      *      This method is only a shortcut for
      *      Erebot::Interfaces::Core::addTimer().
      */
-    protected function addTimer(\Erebot\Timer\TimerInterface $timer)
+    protected function addTimer(\Erebot\TimerInterface $timer)
     {
         $bot = $this->connection->getBot();
         return $bot->addTimer($timer);
@@ -452,14 +452,14 @@ abstract class Base
     /**
      * Unregister a timer.
      *
-     * \param Erebot::Timer::TimerInterface $timer
+     * \param Erebot::TimerInterface $timer
      *      The timer to unregister.
      *
      * \note
      *      This method is only a shortcut for
      *      Erebot::Interfaces::Core::removeTimer().
      */
-    protected function removeTimer(\Erebot\Timer\TimerInterface $timer)
+    protected function removeTimer(\Erebot\TimerInterface $timer)
     {
         $bot = $this->connection->getBot();
         return $bot->removeTimer($timer);
@@ -597,7 +597,7 @@ abstract class Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param Erebot::CallableWrapper::CallableInterface $callback
+     * \param Erebot::CallableInterface $callback
      *      The callback to register as the help method
      *      for this module.
      *
@@ -612,7 +612,7 @@ abstract class Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod(\Erebot\CallableWrapper\CallableInterface $callback)
+    protected function registerHelpMethod(\Erebot\CallableInterface $callback)
     {
         try {
             $helper = $this->connection->getModule(
@@ -635,7 +635,7 @@ abstract class Base
      *      If $chan is \b false, a formatter is built using the
      *      bot's main translator.
      *
-     * \retval Erebot::Styling::Interface::MainInterface
+     * \retval Erebot::StylingInterface
      *      A formatter for the given channel.
      */
     protected function getFormatter($chan)

@@ -53,17 +53,17 @@ abstract class Base
      * Main method which will do all the work
      * of making the proxy tunnel.
      *
-     * \param Erebot::URI::URIInterface $proxyURI
+     * \param Erebot::URIInterface $proxyURI
      *      URI used to designate the proxy.
      *
-     * \param Erebot::URI::URIInterface $nextURI
+     * \param Erebot::URIInterface $nextURI
      *      URI used to designate the next element
      *      in the proxy chain. The next URI may
      *      point to either another proxy (chaining),
      *      or the final end point of the chain.
      */
     abstract public function proxify(
-        \Erebot\URI\URIInterface $proxyURI,
-        \Erebot\URI\URIInterface $nextURI
+        \Erebot\URIInterface $proxyURI,
+        \Erebot\URIInterface $nextURI
     );
 }

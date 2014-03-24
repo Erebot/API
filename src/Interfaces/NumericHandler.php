@@ -51,10 +51,10 @@ interface NumericHandler
      * Sets the callback function/method associated with
      * this handler.
      *
-     * \param Erebot::CallableWrapper::CallableInterface $callback
+     * \param Erebot::CallableInterface $callback
      *      New callable associated with this handler.
      */
-    public function setCallback(\Erebot\CallableWrapper\CallableInterface $callback);
+    public function setCallback(\Erebot\CallableInterface $callback);
 
     /**
      * Returns the callback function/method associated with
