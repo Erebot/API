@@ -243,15 +243,13 @@ abstract class Base
             throw new \Erebot\InvalidValueException('Not an interface name');
         }
 
-        if (strpos($iface, '!') !== false) {
-            $ifaceName = str_replace('!', '\\Erebot\\Interface\\', $iface);
+        $ifaceName = str_replace('!', '\\Erebot\\Interface\\', $iface);
+        if (!interface_exists($ifaceName, true)) {
+            $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
             if (!interface_exists($ifaceName, true)) {
-                $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
-                if (!interface_exists($ifaceName, true)) {
-                    throw new \Erebot\InvalidValueException(
-                        'No such interface ('.$iface.')'
-                    );
-                }
+                throw new \Erebot\InvalidValueException(
+                    'No such interface ('.$iface.')'
+                );
             }
         }
 
