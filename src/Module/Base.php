@@ -243,7 +243,7 @@ abstract class Base
             throw new \Erebot\InvalidValueException('Not an interface name');
         }
 
-        $ifaceName = str_replace('!', '\\Erebot\\Interface\\', $iface);
+        $ifaceName = str_replace('!', '\\Erebot\\Interfaces\\', $iface);
         if (!interface_exists($ifaceName, true)) {
             $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
             if (!interface_exists($ifaceName, true)) {
@@ -292,7 +292,7 @@ abstract class Base
             throw new \Erebot\InvalidValueException('Not an interface name');
         }
 
-        $ifaceKey = strtolower(str_replace('!', '\\Erebot\\Interface\\', $iface));
+        $ifaceKey = strtolower(str_replace('!', '\\Erebot\\Interfaces\\', $iface));
         if (!isset($this->factories[$ifaceKey])) {
             $ifaceKey = strtolower(str_replace('!', '\\Erebot\\', $iface) . 'Interface');
             if (!isset($this->factories[$ifaceKey])) {
