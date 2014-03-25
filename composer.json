@@ -22,7 +22,11 @@
     },
     "require": {
         "php": ">=5.3.0",
-        "ext-spl": "*"
+        "ext-spl": "*",
+        "erebot/uri": "*",
+        "erebot/timer": "*",
+        "erebot/intl": "*",
+        "erebot/callable-wrapper": "*"
     },
     "require-dev": {
         "erebot/buildenv": "~1.1"
