@@ -188,7 +188,7 @@ abstract class Base
      *      See the documentation on individual RELOAD_*
      *      constants for a list of possible values.
      */
-    final public function moduleReload(
+    final public function reloadModule(
         \Erebot\Interfaces\Connection $connection,
         $flags
     ) {
@@ -215,7 +215,7 @@ abstract class Base
      * This method is called when unloading
      * the module. It simply calls $this->unload.
      */
-    final public function moduleUnload()
+    final public function unloadModule()
     {
         return $this->unload();
     }
