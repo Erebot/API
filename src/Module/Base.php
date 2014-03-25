@@ -117,8 +117,7 @@ abstract class Base
         $this->factories   = array();
 
         $ifaces = array(
-            '\\Erebot\\CallableInterface' =>
-                '\\Erebot\\CallableWrapper',
+            '!Callable'         => '\\Erebot\\CallableWrapper',
 
             '!EventHandler'     => '\\Erebot\\EventHandler',
 
@@ -128,8 +127,7 @@ abstract class Base
 
             '!NumericReference' => '\\Erebot\\NumericReference',
 
-            '\\Erebot\\StylingInterface' =>
-                '\\Erebot\\Styling',
+            '!Styling'          => '\\Erebot\\Styling',
 
             '\\Erebot\\Styling\\Variables\\CurrencyInterface' =>
                 '\\Erebot\\Styling\\Variables\\Currency',
@@ -142,8 +140,7 @@ abstract class Base
 
             '!TextWrapper'      => '\\Erebot\\TextWrapper',
 
-            '\\Erebot\\TimerInterface' =>
-                '\\Erebot\\Timer',
+            '!Timer'            => '\\Erebot\\Timer',
         );
         foreach ($ifaces as $iface => $cls) {
             try {
@@ -246,23 +243,29 @@ abstract class Base
             throw new \Erebot\InvalidValueException('Not an interface name');
         }
 
-        $iface = str_replace('!', 'Erebot_Interface_', $iface);
-        if (!interface_exists($iface, true)) {
-            throw new \Erebot\InvalidValueException(
-                'No such interface ('.$iface.')'
-            );
+        if (strpos($iface, '!') !== false) {
+            $ifaceName = str_replace('!', '\\Erebot\\Interface\\', $iface);
+            if (!interface_exists($ifaceName, true)) {
+                $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
+                if (!interface_exists($ifaceName, true)) {
+                    throw new \Erebot\InvalidValueException(
+                        'No such interface ('.$iface.')'
+                    );
+                }
+            }
         }
+
         if (!class_exists($cls, true)) {
             throw new \Erebot\InvalidValueException('No such class ('.$cls.')');
         }
 
         $reflector = new \ReflectionClass($cls);
-        if (!$reflector->isSubclassOf($iface)) {
+        if (!$reflector->isSubclassOf($ifaceName)) {
             throw new \Erebot\InvalidValueException(
                 'A class that implements the interface was expected'
             );
         }
-        $iface = strtolower($iface);
+        $iface = strtolower($ifaceName);
         $this->factories[$iface] = $cls;
     }
 
@@ -291,12 +294,14 @@ abstract class Base
             throw new \Erebot\InvalidValueException('Not an interface name');
         }
 
-        $iface      = str_replace('!', 'Erebot_Interface_', $iface);
-        $ifaceKey   = strtolower($iface);
+        $ifaceKey = strtolower(str_replace('!', '\\Erebot\\Interface\\', $iface));
         if (!isset($this->factories[$ifaceKey])) {
-            throw new \Erebot\InvalidValueException(
-                'No such interface ('.$iface.')'
-            );
+            $ifaceKey = strtolower(str_replace('!', '\\Erebot\\', $iface) . 'Interface');
+            if (!isset($this->factories[$ifaceKey])) {
+                throw new \Erebot\InvalidValueException(
+                    'No such interface ('.$iface.')'
+                );
+            }
         }
         return $this->factories[$ifaceKey];
     }
