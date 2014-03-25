@@ -619,11 +619,11 @@ abstract class Base
     {
         try {
             $helper = $this->connection->getModule(
-                'Erebot_Module_Helper',
+                '\\Erebot\\Module\\Helper',
                 $this->channel
             );
             return $helper->realRegisterHelpMethod($this, $callback);
-        } catch (EException $e) {
+        } catch (\Exception $e) {
             return false;
         }
     }
