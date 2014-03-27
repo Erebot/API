@@ -117,8 +117,6 @@ abstract class Base
         $this->factories   = array();
 
         $ifaces = array(
-            '!Callable'         => '\\Erebot\\CallableWrapper',
-
             '!EventHandler'     => '\\Erebot\\EventHandler',
 
             '!Identity'         => '\\Erebot\\Identity',
@@ -206,8 +204,7 @@ abstract class Base
         $this->reload($flags);
 
         if ($this instanceof \Erebot\Interfaces\HelpEnabled) {
-            $cls = $this->getFactory('!Callable');
-            $this->registerHelpMethod(new $cls(array($this, 'getHelp')));
+            $this->registerHelpMethod(\Erebot\CallableWrapper::wrap(array($this, 'getHelp')));
         }
     }
 
@@ -499,13 +496,13 @@ abstract class Base
         if ($this->channel !== null) {
             try {
                 $config = $this->connection->getConfig($this->channel);
-                return $config->$function(get_class($this), $param);
+                return $config->$function(get_called_class(), $param);
             } catch (\Erebot\Exception $e) {
                 unset($config);
             }
         }
         $config = $this->connection->getConfig(null);
-        return $config->$function(get_class($this), $param, $default);
+        return $config->$function(get_called_class(), $param, $default);
     }
 
     /**
@@ -600,7 +597,7 @@ abstract class Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param Erebot::CallableInterface $callback
+     * \param callable $callback
      *      The callback to register as the help method
      *      for this module.
      *
@@ -615,7 +612,7 @@ abstract class Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod(\Erebot\CallableInterface $callback)
+    protected function registerHelpMethod(callable $callback)
     {
         try {
             $helper = $this->connection->getModule(
@@ -649,10 +646,7 @@ abstract class Base
         } elseif ($chan !== null) {
             $config = $this->connection->getConfig($chan);
             try {
-                // Passing $this to get_class() is necessary to retrieve
-                // the instance's class instead of the code's definition
-                // class (\Erebot\Module\Base).
-                return new $cls($config->getTranslator(get_class($this)));
+                return new $cls($config->getTranslator(get_called_class()));
             } catch (\Erebot\Exception $e) {
             // The channel lacked a specific config. Use the cascade.
             }
