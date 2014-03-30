@@ -365,7 +365,7 @@ abstract class Base
 
         if ($ctcpType != "" && $message != "") {
             $ctcpType .= " ";
-            $message = self::_ctcpQuote($message);
+            $message = self::ctcpQuote($message);
         }
 
         $prefix = $type.' '.$targets.' :'.$marker.$ctcpType;
