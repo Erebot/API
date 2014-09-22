@@ -496,13 +496,13 @@ abstract class Base
         if ($this->channel !== null) {
             try {
                 $config = $this->connection->getConfig($this->channel);
-                return $config->$function(get_called_class(), $param);
+                return $config->$function('\\' . get_called_class(), $param);
             } catch (\Erebot\Exception $e) {
                 unset($config);
             }
         }
         $config = $this->connection->getConfig(null);
-        return $config->$function(get_called_class(), $param, $default);
+        return $config->$function('\\' . get_called_class(), $param, $default);
     }
 
     /**
