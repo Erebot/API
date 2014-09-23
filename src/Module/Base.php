@@ -151,11 +151,8 @@ abstract class Base
 
         /// @FIXME: handle dependency injection somehow
         $this->logger = null;
-        if (class_exists('Plop')) {
-            $logging =& \Plop::getInstance();
-            $reflector = new \ReflectionObject($this);
-            $this->logger = $logging->getLogger($reflector->getFileName());
-            unset($logging);
+        if (class_exists('\\Plop')) {
+            $this->logger =& \Plop::getInstance();
         }
     }
 
