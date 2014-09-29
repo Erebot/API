@@ -151,8 +151,8 @@ abstract class Base
 
         /// @FIXME: handle dependency injection somehow
         $this->logger = null;
-        if (class_exists('\\Plop')) {
-            $this->logger =& \Plop::getInstance();
+        if (class_exists('\\Plop\\Plop')) {
+            $this->logger =& \Plop\Plop::getInstance();
         }
     }
 

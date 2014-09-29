@@ -45,7 +45,7 @@ abstract class Base
         }
 
         $this->socket   = $socket;
-        $logging        = \Plop::getInstance();
+        $logging        = \Plop\Plop::getInstance();
         $this->logger   = $logging->getLogger(__FILE__ . DIRECTORY_SEPARATOR);
     }
 
