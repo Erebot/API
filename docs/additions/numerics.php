@@ -19,7 +19,7 @@
 /**
  * \brief
  *      A fake interface that contains information about
- *      all numerics Erebot supports.
+ *      all IRC numerics supported by Erebot.
  *
  * \note
  *      Some numerics may not be supported by the IRC server
@@ -2086,7 +2086,7 @@ interface Erebot_Interface_Numerics
      *      that causes this reply, in practice it seems to be sent whenever
      *      a user attempts to request too much information from a server.
      *      For example, if you attempt too many STATS requests in a short
-     *      period of time, you will get this error. 
+     *      period of time, you will get this error.
      */
     const RPL_LOAD2HI               = NULL;
 
@@ -2110,7 +2110,7 @@ interface Erebot_Interface_Numerics
      * \note
      *      Though the general format for this numeric is roughly the same
      *      for every IRCd, multiple variations can be found in the wild,
-     *      making it quite hard to parse this numeric.
+     *      making it quite hard to parse.
      */
     const RPL_LOCALUSERS            = NULL;
 
@@ -2267,7 +2267,7 @@ interface Erebot_Interface_Numerics
     /**
      * \brief
      *      Supported user and channel modes.
-     * 
+     *
      * \format{<servername> <version> <available user modes> <available channel modes>}
      */
     const RPL_MYINFO                = NULL;
