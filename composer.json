@@ -4,7 +4,7 @@
     "name": "erebot/api",
     "description": "API for the Erebot project",
     "keywords": ["Erebot", "IRC", "bot"],
-    "homepage": "https://github.com/Erebot/Erebot_API",
+    "homepage": "https://github.com/Erebot/API",
     "license": "GPL-3.0+",
     "authors": [
         {
@@ -15,10 +15,9 @@
     ],
     "support": {
         "email": "erebot@erebot.net",
-        "issues": "https://github.com/Erebot/Erebot_API/issues",
-        "wiki": "http://erebot.github.io/Erebot/",
+        "issues": "https://github.com/Erebot/API/issues",
         "irc": "irc://irc.iiens.net/Erebot",
-        "source": "https://github.com/Erebot/Erebot_API"
+        "source": "https://github.com/Erebot/API"
     },
     "require": {
         "php": ">=5.3.0",

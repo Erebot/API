@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "d319fdeadcbab5d46833a45cf794f953",
+    "hash": "9e10545711d7d496f120866345fe4e35",
     "packages": [
         {
             "name": "erebot/callable-wrapper",
@@ -11,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/CallableWrapper.git",
-                "reference": "8aeb93e6e945e29139f33b88668eb89d7dd65f55"
+                "reference": "bdeea06f4dba7ac8db553be37228951ff88b2aa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/CallableWrapper/zipball/8aeb93e6e945e29139f33b88668eb89d7dd65f55",
-                "reference": "8aeb93e6e945e29139f33b88668eb89d7dd65f55",
+                "url": "https://api.github.com/repos/Erebot/CallableWrapper/zipball/bdeea06f4dba7ac8db553be37228951ff88b2aa9",
+                "reference": "bdeea06f4dba7ac8db553be37228951ff88b2aa9",
                 "shasum": ""
             },
             "require": {
@@ -54,7 +55,7 @@
             "keywords": [
                 "callable"
             ],
-            "time": "2014-03-27 12:37:58"
+            "time": "2014-04-05 13:20:34"
         },
         {
             "name": "erebot/intl",
@@ -120,12 +121,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Timer.git",
-                "reference": "9834be144007cd0cb63139e17409a61eaf324282"
+                "reference": "66d5890b4378ecc382e7cee4cc66b849592e9989"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Timer/zipball/9834be144007cd0cb63139e17409a61eaf324282",
-                "reference": "9834be144007cd0cb63139e17409a61eaf324282",
+                "url": "https://api.github.com/repos/Erebot/Timer/zipball/66d5890b4378ecc382e7cee4cc66b849592e9989",
+                "reference": "66d5890b4378ecc382e7cee4cc66b849592e9989",
                 "shasum": ""
             },
             "require": {
@@ -164,7 +165,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2014-03-27 20:15:15"
+            "time": "2014-04-12 20:46:21"
         },
         {
             "name": "erebot/uri",
@@ -172,12 +173,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/URI.git",
-                "reference": "619036cbe34a04289733daab992ffaa5d12c5304"
+                "reference": "2eba59b8cb65ec8f436047f46f6804c9ba828dfc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/URI/zipball/619036cbe34a04289733daab992ffaa5d12c5304",
-                "reference": "619036cbe34a04289733daab992ffaa5d12c5304",
+                "url": "https://api.github.com/repos/Erebot/URI/zipball/2eba59b8cb65ec8f436047f46f6804c9ba828dfc",
+                "reference": "2eba59b8cb65ec8f436047f46f6804c9ba828dfc",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +217,7 @@
             "keywords": [
                 "uri"
             ],
-            "time": "2014-03-24 18:00:32"
+            "time": "2014-05-01 21:04:42"
         },
         {
             "name": "fpoirotte/file_gettext",
@@ -255,7 +256,8 @@
             "authors": [
                 {
                     "name": "Michael Wallner",
-                    "email": "mike@php.net"
+                    "email": "mike@php.net",
+                    "role": "Lead"
                 }
             ],
             "description": "Reader and writer for GNU PO and MO files",
@@ -271,12 +273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/PEAR_Exception.git",
-                "reference": "d5a3e9597040dcc56a4a2053a605e07214951202"
+                "reference": "8c18719fdae000b690e3912be401c76e406dd13b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/d5a3e9597040dcc56a4a2053a605e07214951202",
-                "reference": "d5a3e9597040dcc56a4a2053a605e07214951202",
+                "url": "https://api.github.com/repos/pear/PEAR_Exception/zipball/8c18719fdae000b690e3912be401c76e406dd13b",
+                "reference": "8c18719fdae000b690e3912be401c76e406dd13b",
                 "shasum": ""
             },
             "require": {
@@ -310,8 +312,7 @@
                 },
                 {
                     "name": "Greg Beaver",
-                    "email": "cellog@php.net",
-                    "role": "lead"
+                    "email": "cellog@php.net"
                 }
             ],
             "description": "The PEAR Exception base class.",
@@ -319,34 +320,39 @@
             "keywords": [
                 "exception"
             ],
-            "time": "2014-02-21 17:39:41"
+            "time": "2015-02-10 20:07:52"
         }
     ],
     "packages-dev": [
         {
             "name": "erebot/buildenv",
-            "version": "1.1.1",
+            "version": "1.2.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Erebot/Erebot_Buildenv.git",
-                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b"
+                "url": "https://github.com/Erebot/Buildenv.git",
+                "reference": "b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Erebot_Buildenv/zipball/c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
-                "reference": "c89cc016f8d1c80779e095e6d93d1b1c6e75b24b",
+                "url": "https://api.github.com/repos/Erebot/Buildenv/zipball/b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5",
+                "reference": "b16fc3a30bf2ebdf0a962d5e6af06e220a76ced5",
                 "shasum": ""
             },
             "require": {
+                "ext-json": "*",
                 "ext-phar": "*",
                 "ext-xsl": "*",
-                "phing/phing": ">=2.4.3",
+                "phing/phing": ">=2.9.0",
                 "php": ">=5.2.2"
+            },
+            "require-dev": {
+                "ext-bz2": "*",
+                "ext-zlib": "*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -365,29 +371,66 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2014-01-03 11:44:34"
+            "time": "2014-12-30 11:49:48"
         },
         {
             "name": "phing/phing",
-            "version": "2.7.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phingofficial/phing.git",
-                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007"
+                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phingofficial/phing/zipball/bd2689790c620ac745b3ad29765c641a0dd5d007",
-                "reference": "bd2689790c620ac745b3ad29765c641a0dd5d007",
+                "url": "https://api.github.com/repos/phingofficial/phing/zipball/f6c25373cbce5e042dddd9b951a3d5638bb78f67",
+                "reference": "f6c25373cbce5e042dddd9b951a3d5638bb78f67",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.2.0"
             },
+            "require-dev": {
+                "ext-pdo_sqlite": "*",
+                "lastcraft/simpletest": "@dev",
+                "pdepend/pdepend": "2.x",
+                "pear-pear.php.net/http_request2": "2.2.x",
+                "pear-pear.php.net/net_growl": "2.7.x",
+                "pear-pear.php.net/pear_packagefilemanager": "1.7.x",
+                "pear-pear.php.net/pear_packagefilemanager2": "1.0.x",
+                "pear-pear.php.net/xml_serializer": "0.20.x",
+                "pear/pear_exception": "~1.0",
+                "pear/versioncontrol_git": "@dev",
+                "pear/versioncontrol_svn": "~0.5",
+                "phpdocumentor/phpdocumentor": "2.x",
+                "phploc/phploc": "2.x",
+                "phpmd/phpmd": "~2.2",
+                "phpunit/phpunit": ">=3.7",
+                "sebastian/phpcpd": "2.x",
+                "squizlabs/php_codesniffer": "~2.2"
+            },
+            "suggest": {
+                "pdepend/pdepend": "PHP version of JDepend",
+                "pear/archive_tar": "Tar file management class",
+                "pear/versioncontrol_git": "A library that provides OO interface to handle Git repository",
+                "pear/versioncontrol_svn": "A simple OO-style interface for Subversion, the free/open-source version control system",
+                "phpdocumentor/phpdocumentor": "Documentation Generator for PHP",
+                "phploc/phploc": "A tool for quickly measuring the size of a PHP project",
+                "phpmd/phpmd": "PHP version of PMD tool",
+                "phpunit/php-code-coverage": "Library that provides collection, processing, and rendering functionality for PHP code coverage information",
+                "phpunit/phpunit": "The PHP Unit Testing Framework",
+                "sebastian/phpcpd": "Copy/Paste Detector (CPD) for PHP code",
+                "tedivm/jshrink": "Javascript Minifier built in PHP"
+            },
             "bin": [
                 "bin/phing"
             ],
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.10.x-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "classes/phing/"
@@ -398,40 +441,37 @@
                 "classes"
             ],
             "license": [
-                "LGPL3"
+                "LGPL-3.0"
             ],
             "authors": [
                 {
-                    "name": "Michiel Rook",
-                    "email": "mrook@php.net"
-                },
-                {
                     "name": "Phing Community",
                     "homepage": "http://www.phing.info/trac/wiki/Development/Contributors"
+                },
+                {
+                    "name": "Michiel Rook",
+                    "email": "mrook@php.net"
                 }
             ],
             "description": "PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.",
             "homepage": "http://www.phing.info/",
             "keywords": [
                 "build",
+                "phing",
                 "task",
                 "tool"
             ],
-            "time": "2014-02-13 13:17:59"
+            "time": "2015-02-19 15:49:46"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.0",
         "ext-spl": "*"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
