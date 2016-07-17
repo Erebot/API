@@ -80,7 +80,7 @@ interface Proxy
      *
      * \throw ErebotNotFoundException
      */
-     public function getModule($moduleName);
+    public function getModule($moduleName);
 
     /**
      * Returns the boolean value for a setting in some module.

@@ -113,7 +113,6 @@ class Autoload
     protected static function addMap($mapfile)
     {
         if (! in_array($mapfile, self::$maps)) {
-
             // keep track of specific map file loaded in this
             // instance so we can update it if necessary
             self::$mapfile = $mapfile;
@@ -126,7 +125,6 @@ class Autoload
                     self::$map = array_merge(self::$map, $map);
                 }
             }
-
         }
     }
 

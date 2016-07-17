@@ -56,7 +56,7 @@ interface Identity
      *      here (which contains additional information).
      *      To try to disambiguate, the term "identity string"
      *      has been used when referring to the user-defined
-     *      identity. 
+     *      identity.
      */
     public function getIdent();
 

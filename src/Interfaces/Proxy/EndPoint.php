@@ -22,7 +22,7 @@ namespace Erebot\Interfaces\Proxy;
 
 /**
  * \brief
- *      Represents the protocol used at the furthest 
+ *      Represents the protocol used at the furthest
  *      end point of a proxy chain.
  */
 interface EndPoint
@@ -30,7 +30,7 @@ interface EndPoint
     /**
      * Indicates whether this protocol makes
      * use of SSL.
-     * 
+     *
      * \retval bool
      *      Whether SSL encryption is required by this
      *      protocol (\b true) or not (\b false).

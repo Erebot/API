@@ -47,7 +47,7 @@ interface Main extends \Erebot\Interfaces\Config\Proxy
      *
      * \param string $configData
      *      Either a (relative or absolute) path to the configuration file
-     *      to load or a string representation of the configuration, 
+     *      to load or a string representation of the configuration,
      *      depending on the value of the $source parameter.
      *
      * \param opaque $source
