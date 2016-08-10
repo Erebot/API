@@ -1,5 +1,4 @@
 {
-    "minimum-stability": "dev",
     "prefer-stable": true,
     "name": "erebot/api",
     "description": "API for the Erebot project",
@@ -28,7 +27,8 @@
         "erebot/callable-wrapper": "*"
     },
     "require-dev": {
-        "erebot/buildenv": "~1.1"
+        "erebot/buildenv": "~1.1",
+        "erebot/testenv": "*"
     },
     "autoload": {
         "psr-4": {
