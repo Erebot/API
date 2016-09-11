@@ -372,7 +372,7 @@ abstract class Base
             "\n",
             wordwrap(
                 $message,
-                400 - $prefix - 2,
+                400 - strlen($prefix) - 2,
                 "\n",
                 true
             )
