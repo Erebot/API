@@ -493,16 +493,16 @@
         },
         {
             "name": "erebot/testenv",
-            "version": "1.1.0",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Testenv.git",
-                "reference": "3db9d3a77f14e1d807d6b877ce8ec65a3db9d381"
+                "reference": "a3f7302ac0cfbfec29ec8b3f007089fae1e02131"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/3db9d3a77f14e1d807d6b877ce8ec65a3db9d381",
-                "reference": "3db9d3a77f14e1d807d6b877ce8ec65a3db9d381",
+                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/a3f7302ac0cfbfec29ec8b3f007089fae1e02131",
+                "reference": "a3f7302ac0cfbfec29ec8b3f007089fae1e02131",
                 "shasum": ""
             },
             "require": {
@@ -519,7 +519,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -538,7 +538,7 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2016-09-03 06:43:16"
+            "time": "2016-09-11 20:30:35"
         },
         {
             "name": "myclabs/deep-copy",
