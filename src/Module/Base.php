@@ -128,13 +128,13 @@ abstract class Base
             '!Styling'          => '\\Erebot\\Styling',
 
             '\\Erebot\\Styling\\Variables\\CurrencyInterface' =>
-                '\\Erebot\\Styling\\Variables\\Currency',
+                '\\Erebot\\Styling\\Variables\\CurrencyVariable',
 
             '\\Erebot\\Styling\\Variables\\DateTimeInterface' =>
-                '\\Erebot\\Styling\\Variables\\DateTime',
+                '\\Erebot\\Styling\\Variables\\DateTimeVariable',
 
             '\\Erebot\\Styling\\Variables\\DurationInterface' =>
-                '\\Erebot\\Styling\\Variables\\Duration',
+                '\\Erebot\\Styling\\Variables\\DurationVariable',
 
             '!TextWrapper'      => '\\Erebot\\TextWrapper',
 
