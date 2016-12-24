@@ -23,7 +23,8 @@
         "erebot/uri": "*",
         "erebot/timer": "*",
         "erebot/intl": "*",
-        "erebot/callable-wrapper": "*"
+        "erebot/callable-wrapper": "*",
+        "fpoirotte/natives4doxygen": "*"
     },
     "require-dev": {
         "erebot/buildenv": "~1.1",
