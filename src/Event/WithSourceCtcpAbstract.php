@@ -34,7 +34,7 @@ abstract class WithSourceCtcpAbstract extends \Erebot\Event\WithSourceTextAbstra
     /**
      * Creates a new event representing a CTCP message.
      *
-     * \param Erebot::Interface::Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $source

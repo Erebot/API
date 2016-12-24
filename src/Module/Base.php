@@ -171,7 +171,7 @@ abstract class Base
      * Public method to (re)load a module.
      * This eventually reconfigures the bot.
      *
-     * \param Erebot::Interface::Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      IRC connection associated with this instance.
      *
      * \param int $flags

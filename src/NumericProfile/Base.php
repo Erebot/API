@@ -221,21 +221,13 @@ abstract class Base implements \ArrayAccess
         $this->reflector = new \ReflectionClass(get_called_class());
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetExists()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetExists
     public function offsetExists($offset)
     {
         return ($this[$offset] !== null);
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetGet()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetGet
     public function offsetGet($offset)
     {
         if (!is_string($offset)) {
@@ -268,21 +260,13 @@ abstract class Base implements \ArrayAccess
         throw new \Erebot\InvalidValueException('Loop detected');
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetSet()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetSet
     public function offsetSet($offset, $value)
     {
         throw new \Erebot\NotImplementedException();
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetUnset()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetUnset
     public function offsetUnset($offset)
     {
         throw new \Erebot\NotImplementedException();

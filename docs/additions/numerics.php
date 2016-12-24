@@ -16,6 +16,8 @@
     along with Erebot.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+namespace Erebot\Interfaces;
+
 /**
  * \brief
  *      A fake interface that contains information about
@@ -24,10 +26,10 @@
  * \note
  *      Some numerics may not be supported by the IRC server
  *      you're making Erebot connect to. This list is only
- *      informative about what Erebot supports, not about
+ *      indicative of what Erebot supports, not about
  *      what may actually be used in real life applications.
  */
-interface Erebot_Interface_Numerics
+interface Numerics
 {
     /**
      * \TODO

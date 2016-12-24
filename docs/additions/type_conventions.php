@@ -71,8 +71,8 @@ The following types are used in this documentation:
             array (sometimes referred to as a list, vector or collection) of
             values of type \c X.
 
-            For example, <tt>list(iErebotEvent)</tt> refers to a numerically-indexed
-            array containing objects implementing the iErebotEvent interface.
+            For example, <tt>list(Erebot\\Interfaces\\Event\\Ban)</tt> refers to a numerically-indexed
+            array containing objects implementing the Erebot::Interfaces::Event::Ban interface.
 
             \b{Note}: recursive constructs such as <tt>list(list(int))</tt> are allowed.
         </td>
@@ -87,9 +87,9 @@ The following types are used in this documentation:
             of type \c X and whose values are of type \c Y (this is sometimes
             referred to as a map, hash or dictionary).
 
-            For example, <tt>dict(string=>iErebotEvent)</tt> refers to an
+            For example, <tt>dict(string=>Erebot\\Interfaces\\Event\\Ban)</tt> refers to an
             array whose keys are <tt>string</tt>s and values are objects
-            implementing the iErebotEvent interface.
+            implementing the Erebot::Interfaces::Event::Ban interface.
 
             \b{Note}: recursive constructs such as <tt>dict(X=>dict(Y=>Z))</tt> are
             allowed.

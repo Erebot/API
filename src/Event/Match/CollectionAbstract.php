@@ -57,41 +57,25 @@ abstract class CollectionAbstract implements
         $this->submatchers = $args;
     }
 
-    /**
-     * \copydoc Countable::count()
-     * \see
-     *      docs/additions/iface_Countable.php
-     */
+    /// \copydoc Countable::count
     public function count()
     {
         return count($this->submatchers);
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetExists()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetExists
     public function offsetExists($offset)
     {
         return isset($this->submatchers[$offset]);
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetGet()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetGet
     public function offsetGet($offset)
     {
         return $this->submatchers[$offset];
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetSet()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetSet
     public function offsetSet($offset, $value)
     {
         if (!($value instanceof \Erebot\Interfaces\Event\Match)) {
@@ -100,11 +84,7 @@ abstract class CollectionAbstract implements
         $this->submatchers[$offset] = $value;
     }
 
-    /**
-     * \copydoc ArrayAccess::offsetUnset()
-     * \see
-     *      docs/additions/iface_ArrayAccess.php
-     */
+    /// \copydoc ArrayAccess::offsetUnset()
     public function offsetUnset($offset)
     {
         unset($this->submatchers[$offset]);

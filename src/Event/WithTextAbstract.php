@@ -33,7 +33,7 @@ abstract class WithTextAbstract extends \Erebot\Event\AbstractEvent implements
     /**
      * Creates a new event containing some text.
      *
-     * \param Erebot::Interface::Connection $connection
+     * \param Erebot::Interfaces::Connection $connection
      *      The connection this event came from.
      *
      * \param string $text
