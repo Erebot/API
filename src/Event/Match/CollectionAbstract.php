@@ -94,18 +94,15 @@ abstract class CollectionAbstract implements
      * Adds one or more subfilters to this filter.
      *
      * \retval Erebot::Event::Match::CollectionAbstract
-     *      Returns this instance, so that multiple called
+     *      Returns this instance, so that multiple calls
      *      to Erebot::Event::Match::CollectionAbstract::add()
      *      can be chained up together.
      *
-     * \note
-     *      You can pass one or more filters to this method
-     *      to add them to this filter's subfilters.
-     *
-     * \note
-     *      Duplicates of the same subfilter are silently ignored.
+     * \param $filter,...   One or more filters to add as subfilters
+     *                      of this filter. Duplicates are silently
+     *                      ignored.
      */
-    public function & add()
+    public function & add($filter)
     {
         $filters = func_get_args();
         foreach ($filters as $filter) {
@@ -123,19 +120,16 @@ abstract class CollectionAbstract implements
      * Removes one or more subfilters from this filter.
      *
      * \retval Erebot::Event::Match::CollectionAbstract
-     *      Returns this instance, so that multiple called
+     *      Returns this instance, so that multiple calls
      *      to Erebot::Event::Match::CollectionAbstract::remove()
      *      can be chained up together.
      *
-     * \note
-     *      You can pass one or more filters to this method
-     *      to remove them from this filter's subfilters.
-     *
-     * \note
-     *      Attempts to remove a filter which is not a
-     *      subfilter of this one are silently ignored.
+     * \param $filter,...   One or more filters to remove from this
+     *                      filter's subfilters. Filters which are
+     *                      not currently subfilters of this filter
+     *                      are silently ignored.
      */
-    public function & remove()
+    public function & remove($filter)
     {
         $filters = func_get_args();
         foreach ($filters as $filter) {
