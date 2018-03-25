@@ -469,6 +469,69 @@
             "time": "2014-04-05T12:50:53+00:00"
         },
         {
+            "name": "erebot/plop",
+            "version": "0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Erebot/Plop.git",
+                "reference": "67b1d2927517f7cf09e650c13e0af0b423c05f4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Erebot/Plop/zipball/67b1d2927517f7cf09e650c13e0af0b423c05f4a",
+                "reference": "67b1d2927517f7cf09e650c13e0af0b423c05f4a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "ext-sockets": "*",
+                "ext-spl": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "erebot/buildenv": "~1.2.0",
+                "pdepend/pdepend": "*",
+                "phpmd/phpmd": "*",
+                "phpunit/php-code-coverage": "*",
+                "phpunit/phpunit": "*",
+                "psr/log": "*",
+                "sebastian/phpcpd": "*",
+                "squizlabs/php_codesniffer": "*"
+            },
+            "suggest": {
+                "psr/log": "Provides the PSR-3 logging framework"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Plop\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "François Poirotte",
+                    "email": "clicky@erebot.net",
+                    "role": "lead"
+                }
+            ],
+            "description": "A simple logging library for PHP",
+            "homepage": "https://github.com/Erebot/Plop",
+            "keywords": [
+                "log",
+                "logging"
+            ],
+            "time": "2014-12-28T18:42:31+00:00"
+        },
+        {
             "name": "erebot/styling",
             "version": "0.1.1",
             "source": {
@@ -534,20 +597,21 @@
         },
         {
             "name": "erebot/testenv",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Testenv.git",
-                "reference": "62328750c2816331e6a569a904156eb3e4db9ddb"
+                "reference": "a0e5b218858dc1e67d40d76acde279b56ce5de43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/62328750c2816331e6a569a904156eb3e4db9ddb",
-                "reference": "62328750c2816331e6a569a904156eb3e4db9ddb",
+                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/a0e5b218858dc1e67d40d76acde279b56ce5de43",
+                "reference": "a0e5b218858dc1e67d40d76acde279b56ce5de43",
                 "shasum": ""
             },
             "require": {
                 "erebot/callable-wrapper": "*",
+                "erebot/plop": "^0.6",
                 "erebot/styling": "*",
                 "erebot/timer": "*",
                 "pdepend/pdepend": "*",
@@ -556,9 +620,6 @@
                 "phpunit/phpunit": "*",
                 "sebastian/phpcpd": "*",
                 "squizlabs/php_codesniffer": ">=1.2.2"
-            },
-            "require-dev": {
-                "erebot/plop": "^0.6"
             },
             "type": "library",
             "extra": {
@@ -582,7 +643,7 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2018-03-24T15:55:06+00:00"
+            "time": "2018-03-25T16:19:17+00:00"
         },
         {
             "name": "myclabs/deep-copy",
