@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bac10327b08bfabeffffacae94fa563",
+    "content-hash": "45fa66f5ea3047ab471988c175ffa475",
     "packages": [
         {
             "name": "erebot/callable-wrapper",
@@ -666,16 +666,16 @@
         },
         {
             "name": "erebot/testenv",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Erebot/Testenv.git",
-                "reference": "22f7f2b531fc283d43d98b1905fc9b4ffeb31830"
+                "reference": "f4c16440e47f2cd9c0361c10808d1a4293942381"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/22f7f2b531fc283d43d98b1905fc9b4ffeb31830",
-                "reference": "22f7f2b531fc283d43d98b1905fc9b4ffeb31830",
+                "url": "https://api.github.com/repos/Erebot/Testenv/zipball/f4c16440e47f2cd9c0361c10808d1a4293942381",
+                "reference": "f4c16440e47f2cd9c0361c10808d1a4293942381",
                 "shasum": ""
             },
             "require": {
@@ -693,7 +693,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "2.0.x-dev"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -712,7 +712,7 @@
             "keywords": [
                 "Erebot"
             ],
-            "time": "2018-05-11T12:15:17+00:00"
+            "time": "2018-05-11T16:41:27+00:00"
         },
         {
             "name": "myclabs/deep-copy",
