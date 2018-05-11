@@ -22,7 +22,7 @@
         "ext-spl": "*",
         "erebot/uri": "*",
         "erebot/timer": "*",
-        "erebot/intl": "*",
+        "erebot/intl": "^0.1.0",
         "erebot/callable-wrapper": "*",
         "fpoirotte/natives4doxygen": "*"
     },
