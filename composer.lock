@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3f973d9249ec4e1f8698a6eb2135e02a",
+    "content-hash": "9bac10327b08bfabeffffacae94fa563",
     "packages": [
         {
             "name": "erebot/callable-wrapper",
@@ -2965,7 +2965,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.3.0",
+        "php": ">=7.0",
         "ext-spl": "*"
     },
     "platform-dev": []
