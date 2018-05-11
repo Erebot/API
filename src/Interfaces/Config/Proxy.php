@@ -38,7 +38,7 @@ interface Proxy
      *      This should be set to the name of a module or "Erebot"
      *      for the core translator.
      *
-     * \retval Erebot::IntlInterface
+     * \retval Erebot::Intl::TranslatorInterface
      *      A translator object.
      *
      * \throw Erebot::NotFoundException

@@ -22,13 +22,13 @@
         "ext-spl": "*",
         "erebot/uri": "*",
         "erebot/timer": "*",
-        "erebot/intl": "^0.1.0",
+        "erebot/intl": "^0.2.0",
         "erebot/callable-wrapper": "*",
         "fpoirotte/natives4doxygen": "*"
     },
     "require-dev": {
         "erebot/buildenv": "^1.5.0",
-        "erebot/testenv": "*"
+        "erebot/testenv": "^2.0.0"
     },
     "autoload": {
         "psr-4": {
