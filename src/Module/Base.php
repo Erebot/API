@@ -201,7 +201,7 @@ abstract class Base
         $this->reload($flags);
 
         if ($this instanceof \Erebot\Interfaces\HelpEnabled) {
-            $this->registerHelpMethod(\Erebot\CallableWrapper::wrap(array($this, 'getHelp')));
+            $this->registerHelpMethod(array($this, 'getHelp'));
         }
     }
 
@@ -594,7 +594,7 @@ abstract class Base
      * This method may also choose to ignore a given request, which will
      * result in a default "No help available" response.
      *
-     * \param Erebot::CallableInterface $callback
+     * \param callable $callback
      *      The callback to register as the help method
      *      for this module.
      *
@@ -609,7 +609,7 @@ abstract class Base
      *      the same module, only the last registered callback
      *      will effectively be called to handle help requests.
      */
-    protected function registerHelpMethod(\Erebot\CallableInterface $callback)
+    protected function registerHelpMethod(callable $callback)
     {
         try {
             $helper = $this->connection->getModule(

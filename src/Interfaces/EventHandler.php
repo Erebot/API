@@ -32,13 +32,13 @@ interface EventHandler
     /**
      * Sets the callback associated with this handler.
      *
-     * \param Erebot::CallableInterface $callback
+     * \param callable $callback
      *      This callable object will be called
      *      whenever an event is received that
-     *      matches the criteria set by this event
+     *      matches the criteria set by this event's
      *      handler's filter.
      */
-    public function setCallback(\Erebot\CallableInterface $callback);
+    public function setCallback(callable $callback);
 
     /**
      * Returns a reference to the callback which was associated

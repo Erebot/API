@@ -59,7 +59,7 @@ class Utils
      */
     public static function getCallerObject()
     {
-        $bt     = debug_backtrace();
+        $bt     = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 3);
         $caller = isset($bt[2]['object']) ? $bt[2]['object'] : null;
         return $caller;
     }
