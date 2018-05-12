@@ -20,8 +20,8 @@
     "require": {
         "php": ">=7.0",
         "ext-spl": "*",
-        "erebot/uri": "*",
-        "erebot/timer": "*",
+        "erebot/uri": "^0.1.0",
+        "erebot/timer": "^0.2.0",
         "erebot/intl": "^0.2.0",
         "fpoirotte/natives4doxygen": "*"
     },
