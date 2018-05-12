@@ -43,6 +43,9 @@ abstract class Base
     protected $logger;
 
 
+    /// Passed to not reload anything (no-op).
+    const RELOAD_NONE       = 0x00;
+
     /// Passed when the module is loaded (instead of reloaded).
     const RELOAD_INIT       = 0x01;
 
