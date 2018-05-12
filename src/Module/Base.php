@@ -218,6 +218,33 @@ abstract class Base
     }
 
     /**
+     * Normalize the name of a tentative interface.
+     *
+     * \param string $iface
+     *      Name of the interface to normalize.
+     *
+     * \retval string
+     *      Normalized name for the interface.
+     */
+    private static function normalizeInterface($iface)
+    {
+        if (!is_string($iface)) {
+            throw new \Erebot\InvalidValueException('Not an interface name');
+        }
+
+        $ifaceName = str_replace('!', '\\Erebot\\Interfaces\\', $iface);
+        if (interface_exists($ifaceName, true)) {
+            return strtolower($ifaceName);
+        }
+
+        $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
+        if (interface_exists($ifaceName, true)) {
+            return strtolower($ifaceName);
+        }
+        throw new \Erebot\InvalidValueException('No such interface ('.$iface.')');
+    }
+
+    /**
      * Set the factory for the given interface.
      *
      * \param string $iface
@@ -236,19 +263,7 @@ abstract class Base
      */
     public function setFactory($iface, $cls)
     {
-        if (!is_string($iface)) {
-            throw new \Erebot\InvalidValueException('Not an interface name');
-        }
-
-        $ifaceName = str_replace('!', '\\Erebot\\Interfaces\\', $iface);
-        if (!interface_exists($ifaceName, true)) {
-            $ifaceName = str_replace('!', '\\Erebot\\', $iface) . 'Interface';
-            if (!interface_exists($ifaceName, true)) {
-                throw new \Erebot\InvalidValueException(
-                    'No such interface ('.$iface.')'
-                );
-            }
-        }
+        $ifaceName = self::normalizeInterface($iface);
 
         if (!class_exists($cls, true)) {
             throw new \Erebot\InvalidValueException('No such class ('.$cls.')');
@@ -260,8 +275,7 @@ abstract class Base
                 'A class that implements the interface was expected'
             );
         }
-        $iface = strtolower($ifaceName);
-        $this->factories[$iface] = $cls;
+        $this->factories[$ifaceName] = $cls;
     }
 
     /**
@@ -285,20 +299,30 @@ abstract class Base
      */
     public function getFactory($iface)
     {
-        if (!is_string($iface)) {
-            throw new \Erebot\InvalidValueException('Not an interface name');
+        $ifaceName = self::normalizeInterface($iface);
+        if (!isset($this->factories[$ifaceName])) {
+            throw new \Erebot\InvalidValueException('No such interface ('.$iface.')');
         }
+        return $this->factories[$ifaceName];
+    }
 
-        $ifaceKey = strtolower(str_replace('!', '\\Erebot\\Interfaces\\', $iface));
-        if (!isset($this->factories[$ifaceKey])) {
-            $ifaceKey = strtolower(str_replace('!', '\\Erebot\\', $iface) . 'Interface');
-            if (!isset($this->factories[$ifaceKey])) {
-                throw new \Erebot\InvalidValueException(
-                    'No such interface ('.$iface.')'
-                );
-            }
-        }
-        return $this->factories[$ifaceKey];
+    /**
+     * Returns a new instance implementing the given interface,
+     * using the rest of the arguments provided to this method.
+     *
+     * \param string $iface
+     *      Interface to "instantiate".
+     *
+     * \param mixed $args,...
+     *      Arguments to pass to the factory's constructor.
+     *
+     * \retval object
+     *      An instance implementating the requested interface.
+     */
+    public function new($iface, ...$args)
+    {
+        $cls = $this->getFactory($iface);
+        return new $cls(...$args);
     }
 
     /**
