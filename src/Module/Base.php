@@ -357,7 +357,7 @@ abstract class Base
 
         if (is_array($targets)) {
             $targets = implode(',', $targets);
-        } elseif ($targets instanceof \Erebot\Identity) {
+        } elseif ($targets instanceof \Erebot\Interfaces\Identity) {
             $targets = (string) $targets;
         } elseif (!is_string($targets)) {
             throw new \Exception('Not a valid target (expected a string)');
