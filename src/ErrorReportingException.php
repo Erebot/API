@@ -94,6 +94,6 @@ class ErrorReportingException extends \Erebot\Exception
             $code = '???';
         }
 
-        return "[$code] - {$this->message}";
+        return "[$code] - {$this->message} ({$this->file}:{$this->line})";
     }
 }
